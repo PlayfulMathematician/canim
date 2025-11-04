@@ -18,6 +18,10 @@ struct GfxDevice {
 CANIM_API GfxDevice *gfx_create_device(CanimResult *result,
                                        const GfxInitInfo *info) {
   GfxDevice *dev = (GfxDevice *)calloc(1, sizeof(GfxDevice));
+  if (!dev) {
+    *result = GL_GFX_DEVICE_CALLOC_ERROR;
+    return NULL;
+  }
   dev->headless = info->headless;
   dev->height = info->height;
   dev->width = info->width;
@@ -51,3 +55,22 @@ CANIM_API GfxDevice *gfx_create_device(CanimResult *result,
   glViewport(0, 0, dev->width, dev->height);
   return dev;
 }
+CANIM_API void gfx_destroy_device(CanimResult *result, GfxDevice *device) {
+  if (!device) {
+    return;
+  }
+  if (device->headless) {
+    eglDestroySurface(device->egl_display, device->egl_surface);
+    eglDestroyContext(device->egl_display, device->egl_context);
+    eglTerminate(device->egl_display);
+  } else {
+    if (device->glctx) {
+      SDL_GL_DeleteContext(device->glctx);
+    }
+    if (device->win) {
+      SDL_DestroyWindow(device->win);
+    }
+    SDL_QuitSubSystem(SDL_INIT_VIDEO);
+  }
+  free(device);
+};
