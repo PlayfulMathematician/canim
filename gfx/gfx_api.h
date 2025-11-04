@@ -3,6 +3,7 @@
 #include "../shared.h"
 #include <stdbool.h>
 typedef struct GfxDevice GfxDevice;
+typedef struct Triangulation Triangulation;
 typedef struct {
   bool headless;
   void *native_window;
