@@ -27,29 +27,81 @@ CANIM_API GfxDevice *gfx_create_device(CanimResult *result,
   dev->width = info->width;
   if (dev->headless) {
     dev->egl_display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
-    eglInitialize(dev->egl_display, 0, 0);
+    if (dev->egl_display == EGL_NO_DISPLAY) {
+      free(dev);
+      /// TODO: Add error
+      return NULL;
+    }
+    if (!eglInitialize(dev->egl_display, 0, 0)) {
+      free(dev);
+      /// TODO: ADD error
+      return NULL;
+    }
     EGLint cfg_attr[] = {EGL_SURFACE_TYPE, EGL_PBUFFER_BIT, EGL_RENDERABLE_TYPE,
                          EGL_OPENGL_BIT, EGL_NONE};
     EGLConfig cfg;
     EGLint N;
-    eglChooseConfig(dev->egl_display, cfg_attr, &cfg, 1, &N);
+    if (!eglChooseConfig(dev->egl_display, cfg_attr, &cfg, 1, &N) || N == 0) {
+      eglTerminate(dev->egl_display);
+      free(dev);
+      /// TODO: ADD ERORR
+      return NULL;
+    }
     EGLint pb_attr[] = {EGL_WIDTH, info->width, EGL_HEIGHT, info->height,
                         EGL_NONE};
     dev->egl_surface = eglCreatePbufferSurface(dev->egl_display, cfg, pb_attr);
+    if (dev->egl_surface == EGL_NO_DISPLAY) {
+      /// TODO: Add error
+      eglTerminate(dev->egl_display);
+      free(dev);
+      return NULL;
+    }
     eglBindAPI(EGL_OPENGL_API);
     dev->egl_context =
         eglCreateContext(dev->egl_display, cfg, EGL_NO_CONTEXT, NULL);
-    eglMakeCurrent(dev->egl_display, dev->egl_surface, dev->egl_surface,
-                   dev->egl_context);
+    if (dev->egl_context == EGL_NO_CONTEXT) {
+      /// TODO: an error may occur
+      eglDestroySurface(dev->egl_display, dev->egl_surface);
+      eglTerminate(dev->egl_display);
+      free(dev);
+      return NULL;
+    }
+    if (!eglMakeCurrent(dev->egl_display, dev->egl_surface, dev->egl_surface,
+                        dev->egl_context)) {
+      /// TODO: An error may occur
+      eglDestroySurface(dev->egl_display, dev->egl_surface);
+      eglDestroyContext(dev->egl_display, dev->egl_context);
+      eglTerminate(dev->egl_display);
+      free(dev);
+      return NULL;
+    }
   } else {
-    SDL_Init(SDL_INIT_VIDEO);
+    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+      /// TODO: AN ERROR
+      free(dev);
+      return NULL;
+    }
     dev->win = info->native_window
                    ? (SDL_Window *)info->native_window
                    : SDL_CreateWindow("Canim", SDL_WINDOWPOS_CENTERED,
                                       SDL_WINDOWPOS_CENTERED, info->width,
                                       info->height,
                                       SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    if (!dev->win) {
+      /// TODO: FAIL
+      SDL_QuitSubSystem(SDL_INIT_VIDEO);
+      free(dev);
+      return NULL;
+    }
     dev->glctx = SDL_GL_CreateContext(dev->win);
+    if (!dev->glctx) {
+      /// TODO: Fail
+      SDL_DestroyWindow(dev->win);
+      SDL_QuitSubSystem(SDL_INIT_VIDEO);
+      free(dev);
+      return NULL;
+    }
+
     SDL_GL_MakeCurrent(dev->win, dev->glctx);
   }
   glViewport(0, 0, dev->width, dev->height);
