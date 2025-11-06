@@ -1,12 +1,15 @@
-add_library(glad STATIC glad/glad.c)
+
+cmake_minimum_required(VERSION 3.10)
+project(GLAD LANGUAGES C)
+
+add_library(glad STATIC ${CMAKE_CURRENT_SOURCE_DIR}/glad/src/glad.c)
+
 target_include_directories(glad PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/glad/include
 )
+
 set_target_properties(glad PROPERTIES
-    C_STANDARD 17
     POSITION_INDEPENDENT_CODE ON
+    C_STANDARD 17
 )
-target_compile_options(glad PRIVATE -Wall -Wextra -Wno-unused-parameter)
-
-
 
