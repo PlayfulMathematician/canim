@@ -1,6 +1,6 @@
 #ifndef GFX_API_H
 #define GFX_API_H
-#include "../shared.h"
+#include "../demos/cube.off"
 #include <stdbool.h>
 typedef struct GfxDevice GfxDevice;
 typedef struct Triangulation Triangulation;
