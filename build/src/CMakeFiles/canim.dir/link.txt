@@ -1,0 +1,1 @@
+/usr/bin/cc -fPIC -O3 -DNDEBUG -Wl,--dependency-file=CMakeFiles/canim.dir/link.d -shared -Wl,-soname,libcanim.so -o libcanim.so CMakeFiles/canim.dir/core/core.c.o  -lm
