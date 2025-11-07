@@ -1,9 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/home/otis/stuff_bin/canim/build/cmake_install.cmake",
-		"/home/otis/stuff_bin/canim/build/external/cmake_install.cmake",
-		"/home/otis/stuff_bin/canim/build/src/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

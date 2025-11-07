@@ -1,2 +1,0 @@
-/usr/local/lib/canim/libcanim.so
-/usr/local/include/canim/core.h
