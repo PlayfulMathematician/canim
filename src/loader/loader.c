@@ -15,7 +15,11 @@
 #ifdef CANIM_PLATFORM_MAC
 #define LIB_EXT ".dylib"
 #endif
+#ifdef CANIM_PLATFORM_WINDOWS
+#include <windows.h>
+#define LIB_HANDLE HMODULE
 
+#endif
 const char *gfx_backend_libname(GfxBackend backend) {
   switch (backend) {
   case CANIM_GFX_GL:
@@ -24,4 +28,18 @@ const char *gfx_backend_libname(GfxBackend backend) {
   default:
     return NULL;
   }
+}
+GfxContainer *gfx_load_backend(CanimResult *result, GfxBackend backend,
+                               const GfxInitInfo *info) {
+  const char *libname = gfx_backend_libname(backend);
+  LIB_HANDLE handle = LIB_LOAD(libname);
+  const GfxAPI *api = (const GfxAPI *)LIB_SYM(handle, "GFX_API_ENTRY");
+  GfxContainer *gfx = calloc(1, sizeof(*gfx));
+  gfx->api = *api;
+  gfx->impl = NULL;
+  gfx->backend = backend;
+  GfxDevice *dev = gfx->api.gfx_create_device(result, gfx, info);
+  gfx->impl = dev;
+  *result = SUCCESS;
+  return gfx;
 }
