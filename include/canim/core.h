@@ -103,8 +103,16 @@ void print_error(CanimResult error);
 #define CANIM_PLATFORM_LINUX 1
 #define CANIM_PLATFORM_KNOWN 1
 #endif
+#ifdef CANIM_PLATFORM_LINUX
+#define CANIM_PLATFORM_POSIX 1
+#define CANIM_PLATFORM_KNOWN 1
+#endif
+#ifdef CANIM_PLATFORM_MAC
+#define CANIM_PLATFORM_POSIX 1
+#define CANIMCANIM_PLATFORM_KNOWN 1
+#endif
 #ifndef CANIM_PLATFORM_KNOWN
-#define CANIM_PLATFORM_UNKNOWN
+#define CANIM_PLATFORM_UNKNOWN 1
 #endif
 /// @def max
 /// @brief The maximizer
