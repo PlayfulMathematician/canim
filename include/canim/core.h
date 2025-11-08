@@ -1,8 +1,6 @@
 // SPDX-License-Identifier: MIT
 #pragma once
 #include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <sys/types.h>
 #define CANIM_API __attribute__((visibility("default")))
 
@@ -29,7 +27,7 @@
 /// @brief True if code is an error (NONFATAL or FATAL).
 #define IS_AN_ERROR(x)                                                         \
   ((STATUS_TYPE((x)) == FATAL) || (STATUS_TYPE((x)) == NONFATAL))
-// Error codes
+/// @brief This are all of the error codes
 enum {
   TRI_INIT_MALLOC_FAIL = (uint32_t)0x03000000,
   TRI_NOT_FOUND,
@@ -108,3 +106,51 @@ void print_error(CanimResult error);
 #ifndef CANIM_PLATFORM_KNOWN
 #define CANIM_PLATFORM_UNKNOWN
 #endif
+/// @def max
+/// @brief The maximizer
+#ifndef max
+#define max(a, b) (((a) > (b)) ? (a) : (b))
+#endif
+
+/// @def EPSILON
+/// @brief Tolerance for floating-point comparisons.
+#define EPSILON 0.000001
+
+/// @def null
+/// @brief I do not want to capitalize NULL
+#define null NULL
+
+/// @def BUFFER_SIZE
+/// @brief The size of a buffer
+#define BUFFER_SIZE 4096
+
+/// @def BIT_IGNORE
+/// @brief Alignment granularity in bits (round up to 2^BIT_IGNORE).
+#define BIT_IGNORE 4
+
+/// @def BIT_SIZE
+/// @brief 2 ^ BIT_IGNORE - 1
+#define BIT_SIZE ((1 << BIT_IGNORE) - 1)
+
+/// @def BIT_ALIGN(x)
+/// @brief Round x up to nearest aligned multiple.
+#define BIT_ALIGN(x) max(((x) + BIT_SIZE) & ~BIT_SIZE, 1)
+
+/// @def REALIGN(a,b)
+/// @brief True if a and b land in different aligned capacity buckets.
+#define REALIGN(a, b) BIT_ALIGN((a)) != BIT_ALIGN((b))
+
+#ifdef _WIN32
+#define POPEN _popen
+#define PCLOSE _pclose
+#define FILENO _fileno
+#define FTRUNCATE _chsize
+#define WB "wb"
+#else
+#define POPEN popen
+#define PCLOSE pclose
+#define FILENO fileno
+#define FTRUNCATE ftruncate
+#define WB "w"
+#endif
+long read_be_int(const unsigned char *p, int width);

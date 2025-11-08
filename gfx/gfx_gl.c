@@ -1,9 +1,9 @@
-#include "./gfx_api.h"
 #include <EGL/egl.h>
 #include <GL/gl.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_video.h>
+#include <canim/gfx.h>
 #include <stdlib.h>
 struct GfxDevice {
   bool headless;

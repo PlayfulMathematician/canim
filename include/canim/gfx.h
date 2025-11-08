@@ -1,7 +1,7 @@
-#ifndef GFX_API_H
-#define GFX_API_H
-#include "../demos/cube.off"
+#pragma once
+#include <canim/core.h>
 #include <stdbool.h>
+
 typedef struct GfxDevice GfxDevice;
 typedef struct Triangulation Triangulation;
 typedef struct {
@@ -14,4 +14,3 @@ typedef struct {
 CANIM_API GfxDevice *gfx_create_device(CanimResult *result,
                                        const GfxInitInfo *info);
 CANIM_API void gfx_destroy_device(CanimResult *result, GfxDevice *device);
-#endif

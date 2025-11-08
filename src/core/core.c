@@ -1,5 +1,6 @@
 // SPDX-License-Identifier: MIT
 #include <canim/core.h>
+#include <stdio.h>
 void print_error(CanimResult error) {
   if (!IS_AN_ERROR(error)) {
     return;
