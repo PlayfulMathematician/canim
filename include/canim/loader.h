@@ -1,6 +1,6 @@
 #pragma once
-#include <canim/core.h>
-#include <canim/gfx.h>
+#include "canim/core.h"
+#include "canim/gfx.h"
 CANIM_API GfxContainer *gfx_load_backend(CanimResult *result,
                                          GfxBackend backend,
                                          const GfxInitInfo *info);

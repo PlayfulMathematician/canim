@@ -1,6 +1,6 @@
 
-#include <canim/core.h>
-#include <canim/loader.h>
+#include "canim/loader.h"
+#include "canim/core.h"
 #include <stdlib.h>
 #ifdef CANIM_PLATFORM_POSIX
 #include <dlfcn.h>
@@ -18,6 +18,9 @@
 #ifdef CANIM_PLATFORM_WINDOWS
 #include <windows.h>
 #define LIB_HANDLE HMODULE
+#define LIB_LOAD(name) LoadLibraryA(name)
+#define LIB_SYM(h, sym) GetProcAddress(h, sym)
+#define LIB_CLOSE(h) FreeLibrary(h)
 
 #endif
 const char *gfx_backend_libname(GfxBackend backend) {

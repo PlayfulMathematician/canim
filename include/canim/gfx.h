@@ -1,5 +1,5 @@
 #pragma once
-#include <canim/core.h>
+#include "canim/core.h"
 #include <stdbool.h>
 typedef enum {
   CANIM_GFX_NONE = 0,
