@@ -1,6 +1,7 @@
 
 #include "canim/loader.h"
 #include "canim/core.h"
+#include <stdio.h>
 #include <stdlib.h>
 #ifdef CANIM_PLATFORM_POSIX
 #include <dlfcn.h>
@@ -26,7 +27,7 @@
 const char *gfx_backend_libname(GfxBackend backend) {
   switch (backend) {
   case CANIM_GFX_GL:
-    return "gl" LIB_EXT;
+    return "libgl" LIB_EXT;
 
   default:
     return NULL;
@@ -36,6 +37,9 @@ GfxContainer *gfx_load_backend(CanimResult *result, GfxBackend backend,
                                const GfxInitInfo *info) {
   const char *libname = gfx_backend_libname(backend);
   LIB_HANDLE handle = LIB_LOAD(libname);
+  if (!handle) {
+    fprintf(stderr, dlerror());
+  }
   const GfxAPI *api = (const GfxAPI *)LIB_SYM(handle, "GFX_API_ENTRY");
   GfxContainer *gfx = calloc(1, sizeof(*gfx));
   gfx->api = *api;
@@ -46,3 +50,5 @@ GfxContainer *gfx_load_backend(CanimResult *result, GfxBackend backend,
   *result = SUCCESS;
   return gfx;
 }
+
+void gfx_unload_backend(CanimResult *result, GfxContainer *gfx) {}

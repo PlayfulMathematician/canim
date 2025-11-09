@@ -25,10 +25,24 @@ foreach(GFX_FILE ${GFX_SRC})
   get_filename_component(NAME ${GFX_FILE} NAME_WE)
   add_library(${NAME} SHARED ${GFX_FILE})
   target_include_directories(${NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
-  target_link_libraries(${NAME} PRIVATE m)
+  target_link_libraries(${NAME} PRIVATE SDL2 EGL GL m)
   set_target_properties(${NAME} PROPERTIES
         OUTPUT_NAME "${NAME}"
         LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/canim"
     )
 endforeach()
+
+# --- install main canim library ---
+install(TARGETS canim
+    LIBRARY DESTINATION lib/canim
+)
+
+# --- install each gfx backend library ---
+foreach(GFX_FILE ${GFX_SRC})
+  get_filename_component(NAME ${GFX_FILE} NAME_WE)
+  install(TARGETS ${NAME}
+      LIBRARY DESTINATION lib/canim
+  )
+endforeach()
+
 

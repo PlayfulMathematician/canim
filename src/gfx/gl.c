@@ -15,8 +15,8 @@ struct GfxDevice {
   EGLSurface egl_surface;
   EGLContext egl_context;
 };
-CANIM_API GfxDevice *gfx_create_device(CanimResult *result,
-                                       const GfxInitInfo *info) {
+static GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
+                                   const GfxInitInfo *info) {
   GfxDevice *dev = (GfxDevice *)calloc(1, sizeof(GfxDevice));
   if (!dev) {
     *result = GL_GFX_DEVICE_CALLOC_ERROR;
@@ -107,7 +107,8 @@ CANIM_API GfxDevice *gfx_create_device(CanimResult *result,
   glViewport(0, 0, dev->width, dev->height);
   return dev;
 }
-CANIM_API void gfx_destroy_device(CanimResult *result, GfxDevice *device) {
+static void gl_destroy_device(CanimResult *result, GfxContainer *container) {
+  GfxDevice *device = container->impl;
   if (!device) {
     return;
   }
@@ -126,3 +127,10 @@ CANIM_API void gfx_destroy_device(CanimResult *result, GfxDevice *device) {
   }
   free(device);
 };
+
+const GfxAPI GFX_GL_API = {.gfx_create_device = gl_create_device,
+                           .gfx_destroy_device = gl_destroy_device};
+
+/* Symbol visible to the loader */
+__attribute__((visibility("default"))) const GfxAPI *GFX_API_ENTRY =
+    &GFX_GL_API;
