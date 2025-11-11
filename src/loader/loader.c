@@ -40,8 +40,10 @@ GfxContainer *gfx_load_backend(CanimResult *result, GfxBackend backend,
   if (!handle) {
     fprintf(stderr, dlerror());
   }
-  const GfxAPI *api = (const GfxAPI *)LIB_SYM(handle, "GFX_API_ENTRY");
+  const GfxAPI *const *entry =
+      (const GfxAPI *const *)LIB_SYM(handle, "GFX_API_ENTRY");
   GfxContainer *gfx = calloc(1, sizeof(*gfx));
+  const GfxAPI *api = *entry;
   gfx->api = *api;
   gfx->impl = NULL;
   gfx->backend = backend;

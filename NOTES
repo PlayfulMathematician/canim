@@ -1,0 +1,1 @@
+hwnd CreateWindowA() -> dc = GetDC(hwnd) -> hglrc  = wglCreateContext(dc) -> wglDeleteContext(hglrc) -> destroy the window somehow

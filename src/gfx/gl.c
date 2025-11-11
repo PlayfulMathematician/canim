@@ -15,8 +15,8 @@ struct GfxDevice {
   EGLSurface egl_surface;
   EGLContext egl_context;
 };
-static GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
-                                   const GfxInitInfo *info) {
+GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
+                            const GfxInitInfo *info) {
   GfxDevice *dev = (GfxDevice *)calloc(1, sizeof(GfxDevice));
   if (!dev) {
     *result = GL_GFX_DEVICE_CALLOC_ERROR;
@@ -107,7 +107,7 @@ static GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
   glViewport(0, 0, dev->width, dev->height);
   return dev;
 }
-static void gl_destroy_device(CanimResult *result, GfxContainer *container) {
+void gl_destroy_device(CanimResult *result, GfxContainer *container) {
   GfxDevice *device = container->impl;
   if (!device) {
     return;
