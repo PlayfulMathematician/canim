@@ -229,6 +229,14 @@ void print_error(CanimResult error) {
     fprintf(stderr,
             "When making an OpenGL context with SDL, something failed.\n");
     break;
+  case SDL_GLAD_LOAD_ERROR:
+    fprintf(stderr, "When loading OpenGL functions with GLAD, using SDL, "
+                    "something failed\n");
+    break;
+  case EGL_GLAD_LOAD_ERROR:
+    fprintf(stderr, "When loading OpenGL functions with GLAD, using EGL, "
+                    "something failed\n");
+    break;
   default:
     fprintf(stderr, "SOMETHING BAD HAPPENED, WE DON'T KNOW WHAT\n");
     break;
