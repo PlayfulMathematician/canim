@@ -1,7 +1,6 @@
-#include <canim/core.h>
-#include <canim/gfx.h>
-#include <canim/loader.h>
-#include <stdio.h>
+#include <SDL2/SDL.h>
+#include <canim/canim.h>
+#include <unistd.h>
 
 int main(void) {
   CanimResult result;
@@ -13,13 +12,19 @@ int main(void) {
     print_error(result);
     return 1;
   }
-
+  Uint32 start = SDL_GetTicks();
+  while (SDL_GetTicks() - start < 3000) {
+    SDL_Event e;
+    while (SDL_PollEvent(&e)) {
+      // no handling needed
+    }
+    SDL_Delay(16);
+  }
   if (!gfx->impl) {
     gfx_unload_backend(&result, gfx);
     return 1;
   }
 
   gfx_unload_backend(&result, gfx);
-
   return 0;
 }

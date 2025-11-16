@@ -48,6 +48,9 @@ GfxContainer *gfx_load_backend(CanimResult *result, GfxBackend backend,
   gfx->impl = NULL;
   gfx->backend = backend;
   GfxDevice *dev = gfx->api.gfx_create_device(result, gfx, info);
+  if (IS_AN_ERROR(*result)) {
+    return NULL;
+  }
   gfx->impl = dev;
   *result = SUCCESS;
   return gfx;

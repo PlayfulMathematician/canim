@@ -1,3 +1,4 @@
+#include "canim/core.h"
 #include "canim/gfx.h"
 #include <EGL/egl.h>
 #include <GL/gl.h>
@@ -29,12 +30,13 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
     dev->egl_display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
     if (dev->egl_display == EGL_NO_DISPLAY) {
       free(dev);
-      /// TODO: Add error
+      *result = EGL_NO_DISPLAY_ERROR;
       return NULL;
     }
+
     if (!eglInitialize(dev->egl_display, 0, 0)) {
       free(dev);
-      /// TODO: ADD error
+      *result = EGL_DISPLAY_INIT_ERROR;
       return NULL;
     }
     EGLint cfg_attr[] = {EGL_SURFACE_TYPE, EGL_PBUFFER_BIT, EGL_RENDERABLE_TYPE,
@@ -44,14 +46,14 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
     if (!eglChooseConfig(dev->egl_display, cfg_attr, &cfg, 1, &N) || N == 0) {
       eglTerminate(dev->egl_display);
       free(dev);
-      /// TODO: ADD ERORR
+      *result = EGL_DISPLAY_CONFIGURATION_ERROR;
       return NULL;
     }
     EGLint pb_attr[] = {EGL_WIDTH, info->width, EGL_HEIGHT, info->height,
                         EGL_NONE};
     dev->egl_surface = eglCreatePbufferSurface(dev->egl_display, cfg, pb_attr);
     if (dev->egl_surface == EGL_NO_DISPLAY) {
-      /// TODO: Add error
+      *result = EGL_NO_SURFACE_ERROR;
       eglTerminate(dev->egl_display);
       free(dev);
       return NULL;
@@ -60,7 +62,7 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
     dev->egl_context =
         eglCreateContext(dev->egl_display, cfg, EGL_NO_CONTEXT, NULL);
     if (dev->egl_context == EGL_NO_CONTEXT) {
-      /// TODO: an error may occur
+      *result = EGL_NO_CONTEXT_ERROR;
       eglDestroySurface(dev->egl_display, dev->egl_surface);
       eglTerminate(dev->egl_display);
       free(dev);
@@ -68,7 +70,7 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
     }
     if (!eglMakeCurrent(dev->egl_display, dev->egl_surface, dev->egl_surface,
                         dev->egl_context)) {
-      /// TODO: An error may occur
+      *result = EGL_MAKE_CURRENT_ERROR;
       eglDestroySurface(dev->egl_display, dev->egl_surface);
       eglDestroyContext(dev->egl_display, dev->egl_context);
       eglTerminate(dev->egl_display);
@@ -77,7 +79,7 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
     }
   } else {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-      /// TODO: AN ERROR
+      *result = SDL_INIT_VIDEO_ERROR;
       free(dev);
       return NULL;
     }
@@ -88,14 +90,14 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
                                       info->height,
                                       SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     if (!dev->win) {
-      /// TODO: FAIL
+      *result = SDL_WINDOW_CREATION_ERROR;
       SDL_QuitSubSystem(SDL_INIT_VIDEO);
       free(dev);
       return NULL;
     }
     dev->glctx = SDL_GL_CreateContext(dev->win);
     if (!dev->glctx) {
-      /// TODO: Fail
+      *result = SDL_GL_CONTEXT_CREATION_ERROR;
       SDL_DestroyWindow(dev->win);
       SDL_QuitSubSystem(SDL_INIT_VIDEO);
       free(dev);
@@ -105,6 +107,14 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
     SDL_GL_MakeCurrent(dev->win, dev->glctx);
   }
   glViewport(0, 0, dev->width, dev->height);
+  glClearColor(1.0f, 0.0f, 1.0f, 1.0f); // bright magenta so it's obvious
+  glClear(GL_COLOR_BUFFER_BIT);
+  if (dev->headless) {
+    eglSwapBuffers(dev->egl_display, dev->egl_surface);
+  } else {
+    SDL_GL_SwapWindow(dev->win);
+  }
+
   return dev;
 }
 void gl_destroy_device(CanimResult *result, GfxContainer *container) {
