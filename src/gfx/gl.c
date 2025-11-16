@@ -1,5 +1,6 @@
 #include "canim/core.h"
 #include "canim/gfx.h"
+#include "glad/glad.h"
 #include <EGL/egl.h>
 #include <GL/gl.h>
 #include <SDL2/SDL.h>

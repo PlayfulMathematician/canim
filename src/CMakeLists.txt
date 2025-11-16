@@ -30,7 +30,7 @@ foreach(GFX_FILE ${GFX_SRC})
       $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
       $<INSTALL_INTERFACE:include>
   )
-  target_link_libraries(${NAME} PRIVATE SDL2 EGL GL m)
+  target_link_libraries(${NAME} PRIVATE glad SDL2 EGL GL m)
   set_target_properties(${NAME} PROPERTIES
       OUTPUT_NAME "${NAME}"
       LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/canim"
