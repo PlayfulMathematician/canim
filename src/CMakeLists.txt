@@ -1,11 +1,3 @@
-cmake_minimum_required(VERSION 3.10)
-
-
-project(CanimSources LANGUAGES C)
-
-
-set(CMAKE_C_STANDARD 17)
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 file(GLOB_RECURSE ALL_SRC CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/*.c")
 list(FILTER ALL_SRC EXCLUDE REGEX "src/gfx/.*")
@@ -28,13 +20,13 @@ target_include_directories(canim_gl PUBLIC
 target_link_libraries(canim_gl PRIVATE glad SDL2 EGL GL m)
 
 set_target_properties(canim PROPERTIES
-    INSTALL_RPATH "/usr/local/lib/canim"
-    BUILD_RPATH "/usr/local/lib/canim"
+    INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib/canim"
+    BUILD_RPATH "${CMAKE_BINARY_DIR}/canim"
 )
 
 set_target_properties(canim_gl PROPERTIES
-    INSTALL_RPATH "/usr/local/lib/canim"
-    BUILD_RPATH "/usr/local/lib/canim"
+    INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib/canim"
+    BUILD_RPATH "${CMAKE_BINARY_DIR}/canim"
     OUTPUT_NAME "canim_gl"
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/canim"
 )
@@ -55,6 +47,3 @@ configure_file("${CMAKE_SOURCE_DIR}/pkgconfig/libcanim_gl.pc.in"
 install(FILES "${CMAKE_BINARY_DIR}/libcanim.pc" DESTINATION lib/pkgconfig RENAME "canim.pc")
 install(FILES "${CMAKE_BINARY_DIR}/libcanim_gl.pc" DESTINATION lib/pkgconfig RENAME "canim_gl.pc")
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION include)
-
-set(CMAKE_INSTALL_RPATH "/usr/local/lib/canim")
-set(CMAKE_BUILD_RPATH "/usr/local/lib/canim")
