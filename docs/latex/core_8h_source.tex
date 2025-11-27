@@ -1,0 +1,326 @@
+\doxysection{core.\+h}
+\hypertarget{core_8h_source}{}\label{core_8h_source}\index{include/canim/core.h@{include/canim/core.h}}
+\mbox{\hyperlink{core_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00001}00001\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00002}00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00003}00003\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00004}00004\ \textcolor{comment}{///\ @file\ core.h}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00005}00005\ \textcolor{comment}{///\ @brief\ This\ is\ everything\ core\ to\ Canim\ that\ is\ shared\ between\ subsystems}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00006}00006\ }
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <sys/types.h>}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00009}00009\ \textcolor{comment}{///\ @def\ CANIM\_API}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00010}00010\ \textcolor{comment}{///\ @brief\ Meant\ for\ a\ visibility\ label\ to\ all\ parts\ of\ the\ Canim\ API}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00011}\mbox{\hyperlink{core_8h_af67824050bb73e0bc92dfa256a227f5d}{00011}}\ \textcolor{preprocessor}{\#define\ CANIM\_API\ \_\_attribute\_\_((visibility("{}default"{})))}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00012}00012\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00013}00013\ \textcolor{comment}{///\ @def\ STATUS\_TYPE\_SHIFT}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00014}00014\ \textcolor{comment}{///\ @brief\ The\ bit\ shift\ applied\ to\ the\ value\ of\ an\ error\ to\ get\ it's\ type}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00015}\mbox{\hyperlink{core_8h_abe2cd544a187594cd52920f7e8a2c14b}{00015}}\ \textcolor{preprocessor}{\#define\ STATUS\_TYPE\_SHIFT\ 24}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00016}00016\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00017}00017\ \textcolor{comment}{///\ @def\ STATUS\_TYPE\_MASK}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00018}00018\ \textcolor{comment}{///\ @brief\ The\ mask\ applied\ to\ the\ an\ error\ to\ eliminate\ it's\ subtype.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00019}\mbox{\hyperlink{core_8h_ae3b6a3a8492dcb58629dcf87d70dae22}{00019}}\ \textcolor{preprocessor}{\#define\ STATUS\_TYPE\_MASK\ 0xFF000000}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00020}00020\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00021}00021\ \textcolor{comment}{///\ @def\ SUCCESS}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00022}00022\ \textcolor{comment}{///\ @brief\ This\ is\ the\ status\ code\ for\ success}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00023}\mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{00023}}\ \textcolor{preprocessor}{\#define\ SUCCESS\ 0x00}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00024}00024\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00025}00025\ \textcolor{comment}{///\ @def\ NOOP}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00026}00026\ \textcolor{comment}{///\ @brief\ No\ operation\ performed.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00027}\mbox{\hyperlink{core_8h_aaf54ff51d8f8327c08a5d248d1b102e7}{00027}}\ \textcolor{preprocessor}{\#define\ NOOP\ 0x01}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00028}00028\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00029}00029\ \textcolor{comment}{///\ @def\ NONFATAL}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00030}00030\ \textcolor{comment}{///\ @brief\ Non-\/fatal\ error\ (unused)}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00031}\mbox{\hyperlink{core_8h_a91cb745fa37495b233199082dcc4f12e}{00031}}\ \textcolor{preprocessor}{\#define\ NONFATAL\ 0x02}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00032}00032\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00033}00033\ \textcolor{comment}{///\ @def\ FATAL}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00034}00034\ \textcolor{comment}{///\ @brief\ Fatal\ error.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00035}\mbox{\hyperlink{core_8h_a4362ac890f9e50aac5882590deedde41}{00035}}\ \textcolor{preprocessor}{\#define\ FATAL\ 0x03}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00036}00036\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00037}00037\ \textcolor{comment}{///\ @def\ STATUS\_TYPE}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00038}00038\ \textcolor{comment}{///\ @brief\ Extracts\ the\ status\ type\ (SUCCESS/NOOP/NONFATAL/FATAL).}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00039}\mbox{\hyperlink{core_8h_a270ec9f912e71b313dc300119e373c63}{00039}}\ \textcolor{preprocessor}{\#define\ STATUS\_TYPE(code)\ (((code)\ \&\ STATUS\_TYPE\_MASK)\ >>\ STATUS\_TYPE\_SHIFT)}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00040}00040\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00041}00041\ \textcolor{comment}{///\ @def\ IS\_AN\_ERROR}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00042}00042\ \textcolor{comment}{///\ @brief\ True\ if\ code\ is\ an\ error\ (NONFATAL\ or\ FATAL).}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00043}\mbox{\hyperlink{core_8h_a835d919d30e7be9247ab52328b99f57f}{00043}}\ \textcolor{preprocessor}{\#define\ IS\_AN\_ERROR(x)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00044}00044\ \textcolor{preprocessor}{\ \ ((STATUS\_TYPE((x))\ ==\ FATAL)\ ||\ (STATUS\_TYPE((x))\ ==\ NONFATAL))}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00045}00045\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00046}00046\ \textcolor{comment}{///\ @brief\ This\ are\ all\ of\ the\ error\ codes}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00047}00047\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00048}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ab63f94f97b8a8ee8e794943e41e69d69}{00048}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ab63f94f97b8a8ee8e794943e41e69d69}{GFX\_DEVICE\_CALLOC\_ERROR}}\ =}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00049}00049\ \ \ \ \ \ \ (uint32\_t)0x03000000,\ \textcolor{comment}{///<\ When\ using\ calloc\ to\ allocate\ memory\ for\ a}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00050}00050\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ///<\ GfxDevice,\ calloc\ failed}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00051}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a8418ec7942cd9bb08be892c8a8dc8d64}{00051}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a8418ec7942cd9bb08be892c8a8dc8d64}{EGL\_NO\_DISPLAY\_ERROR}},\ \ \ \ \ \textcolor{comment}{///<\ When\ creating\ an\ EGL\ display,\ no\ display\ was}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00052}00052\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ///<\ created}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00053}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ab3f172bf3485e4db4f7690b04d36b124}{00053}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ab3f172bf3485e4db4f7690b04d36b124}{EGL\_DISPLAY\_INIT\_ERROR}},\ \textcolor{comment}{///<\ When\ initializing\ an\ EGL\ display\ something\ failed}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00054}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a46fa8b0540c5d865619f610d3fbdd348}{00054}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a46fa8b0540c5d865619f610d3fbdd348}{EGL\_DISPLAY\_CONFIGURATION\_ERROR}},\ \textcolor{comment}{///<\ When\ configuring\ an\ EGL\ display}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00055}00055\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ///<\ something\ failed.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00056}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ad0d5575af8a05a3df10c20d6f4ffd903}{00056}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ad0d5575af8a05a3df10c20d6f4ffd903}{EGL\_NO\_SURFACE\_ERROR}},\ \ \ \ \ \ \textcolor{comment}{///<\ When\ creating\ an\ EGL\ surface,\ no\ surface\ was}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00057}00057\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ///<\ created}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00058}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a9173e3b861791fd0ae666d9f906819bc}{00058}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a9173e3b861791fd0ae666d9f906819bc}{EGL\_NO\_CONTEXT\_ERROR}},\ \ \ \ \ \ \textcolor{comment}{///<\ When\ creating\ an\ EGL\ context,\ no\ context\ was}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00059}00059\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ///<\ created.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00060}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ab0b5eea75c1e0d1c5df7b9ff1b67478f}{00060}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ab0b5eea75c1e0d1c5df7b9ff1b67478f}{EGL\_MAKE\_CURRENT\_ERROR}},\ \ \ \ \textcolor{comment}{///<\ When\ the\ making\ the\ EGL\ context,\ surface\ and}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00061}00061\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ///<\ display\ the\ current\ one,\ something\ failed.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00062}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779af1c6c61fc97dead8f1907801e5efbcc5}{00062}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779af1c6c61fc97dead8f1907801e5efbcc5}{SDL\_INIT\_VIDEO\_ERROR}},\ \ \ \ \ \ \textcolor{comment}{///<\ When\ initializing\ SDL\ video,\ something\ failed}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00063}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a17bb6e08ffaa6b8b0ccfa96561fabf9f}{00063}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a17bb6e08ffaa6b8b0ccfa96561fabf9f}{SDL\_WINDOW\_CREATION\_ERROR}},\ \textcolor{comment}{///<\ When\ making\ a\ window\ with\ SDL2,\ something}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00064}00064\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ///<\ failed}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00065}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a12eac7b0008b0d636a4cc4daac6ec291}{00065}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a12eac7b0008b0d636a4cc4daac6ec291}{SDL\_GL\_CONTEXT\_CREATION\_ERROR}},\ \textcolor{comment}{///<\ When\ making\ an\ OpenGL\ context\ with\ SDL,}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00066}00066\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ///<\ something\ failed.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00067}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779abaa8bf766b1034c69ec693c50b6cba18}{00067}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779abaa8bf766b1034c69ec693c50b6cba18}{SDL\_GLAD\_LOAD\_ERROR}},\ \textcolor{comment}{///<\ When\ loading\ OpenGL\ functions\ with\ GLAD,\ using\ SDL,}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00068}00068\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ///<\ something\ failed}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00069}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a53b0816232fc16d51172b49e8474739c}{00069}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a53b0816232fc16d51172b49e8474739c}{EGL\_GLAD\_LOAD\_ERROR}},\ \textcolor{comment}{///<\ When\ loading\ OpenGL\ functions\ with\ GLAD,\ using\ EGL,}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00070}00070\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ///<\ something\ failed}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00071}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a947000974e3ae28975b1ece6aee26e13}{00071}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a947000974e3ae28975b1ece6aee26e13}{SVEC\_ZERO\_ELEMENT\_SIZE}},\ \textcolor{comment}{///<\ When\ initializing\ an\ SVec,\ the\ element\ size\ was}\textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00072}00072\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ///<\ set\ to\ zero}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00073}\mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779abb2f5f8a17f56d310c91dfdb93c53d1a}{00073}}\ \ \ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779abb2f5f8a17f56d310c91dfdb93c53d1a}{SVEC\_REALLOC\_FAIL}}\ \textcolor{comment}{///<\ When\ reallocating\ space\ for\ an\ SVec,\ something\ failed}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00074}00074\ \};}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00075}00075\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00076}00076\ \textcolor{comment}{///\ @brief\ Result\ code\ used\ across\ Canim\ operations.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00077}\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{00077}}\ \textcolor{keyword}{typedef}\ uint32\_t\ \mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}};}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00078}00078\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00079}00079\ \textcolor{comment}{///\ @brief\ Print\ out\ the\ error}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00080}00080\ \textcolor{comment}{///\ @param\ error\ The\ error\ to\ be\ printed.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00081}00081\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a7dc82be7653268522f6fcd296a8d7172}{print\_error}}(\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}}\ error);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00082}00082\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00083}00083\ \textcolor{comment}{///\ @def\ CANIM\_PLATFORM\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00084}00084\ \textcolor{comment}{///\ @brief\ Defined\ on\ Windows\ (\_WIN32).}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00085}00085\ \textcolor{preprocessor}{\#ifdef\ \_WIN32}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00086}00086\ \textcolor{preprocessor}{\#define\ CANIM\_PLATFORM\_WINDOWS\ 1}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00087}00087\ \textcolor{preprocessor}{\#define\ CANIM\_PLATFORM\_KNOWN\ 1}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00088}00088\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00089}00089\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00090}00090\ \textcolor{comment}{///\ @def\ CANIM\_PLATFORM\_MAC}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00091}00091\ \textcolor{comment}{///\ @brief\ Defined\ on\ macOS\ (\_\_APPLE\_\_).}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00092}00092\ \textcolor{preprocessor}{\#ifdef\ \_\_APPLE\_\_}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00093}00093\ \textcolor{preprocessor}{\#define\ CANIM\_PLATFORM\_MAC\ 1}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00094}00094\ \textcolor{preprocessor}{\#define\ CANIM\_PLATFORM\_KNOWN\ 1}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00095}00095\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00096}00096\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00097}00097\ \textcolor{comment}{///\ @def\ CANIM\_PLATFORM\_LINUX}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00098}00098\ \textcolor{comment}{///\ @brief\ Defined\ on\ Linux\ (\_\_linux\_\_).}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00099}00099\ \textcolor{preprocessor}{\#ifdef\ \_\_linux\_\_}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00100}00100\ \textcolor{preprocessor}{\#define\ CANIM\_PLATFORM\_LINUX\ 1}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00101}00101\ \textcolor{preprocessor}{\#define\ CANIM\_PLATFORM\_KNOWN\ 1}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00102}00102\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00103}00103\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00104}00104\ \textcolor{comment}{///\ @def\ CANIM\_PLATFORM\_POSIX}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00105}00105\ \textcolor{comment}{///\ @brief\ Defined\ on\ POSIX\ platforms\ (macOS\ or\ Linux).}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00106}00106\ \textcolor{preprocessor}{\#if\ defined(CANIM\_PLATFORM\_LINUX)\ ||\ defined(CANIM\_PLATFORM\_MAC)}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00107}00107\ \textcolor{preprocessor}{\#define\ CANIM\_PLATFORM\_POSIX\ 1}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00108}00108\ \textcolor{preprocessor}{\#define\ CANIM\_PLATFORM\_KNOWN\ 1}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00109}00109\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00110}00110\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00111}00111\ \textcolor{comment}{///\ @def\ CANIM\_PLATFORM\_UNKNOWN}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00112}00112\ \textcolor{comment}{///\ @brief\ Defined\ if\ no\ known\ platform\ could\ be\ detected.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00113}00113\ \textcolor{preprocessor}{\#ifndef\ CANIM\_PLATFORM\_KNOWN}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00114}\mbox{\hyperlink{core_8h_a8d0246fc1029a89e294c8a8ae3a172a5}{00114}}\ \textcolor{preprocessor}{\#define\ CANIM\_PLATFORM\_UNKNOWN\ 1}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00115}00115\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00116}00116\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00117}00117\ \textcolor{comment}{///\ @def\ max}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00118}00118\ \textcolor{comment}{///\ @brief\ A\ max\ macro}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00119}00119\ \textcolor{preprocessor}{\#ifndef\ max}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00120}\mbox{\hyperlink{core_8h_affe776513b24d84b39af8ab0930fef7f}{00120}}\ \textcolor{preprocessor}{\#define\ max(a,\ b)\ (((a)\ >\ (b))\ ?\ (a)\ :\ (b))}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00121}00121\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00122}00122\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00123}00123\ \textcolor{comment}{///\ @def\ EPSILON}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00124}00124\ \textcolor{comment}{///\ @brief\ Tolerance\ for\ floating-\/point\ comparisons.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00125}\mbox{\hyperlink{core_8h_a002b2f4894492820fe708b1b7e7c5e70}{00125}}\ \textcolor{preprocessor}{\#define\ EPSILON\ 0.000001}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00126}00126\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00127}00127\ \textcolor{comment}{///\ @def\ null}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00128}00128\ \textcolor{comment}{///\ @brief\ I\ do\ not\ want\ to\ capitalize\ NULL}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00129}\mbox{\hyperlink{core_8h_ac97b8ee753e4405397a42ad5799b0f9e}{00129}}\ \textcolor{preprocessor}{\#define\ null\ NULL}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00130}00130\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00131}00131\ \textcolor{comment}{///\ @def\ BUFFER\_SIZE}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00132}00132\ \textcolor{comment}{///\ @brief\ The\ size\ of\ a\ buffer}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00133}\mbox{\hyperlink{core_8h_a6b20d41d6252e9871430c242cb1a56e7}{00133}}\ \textcolor{preprocessor}{\#define\ BUFFER\_SIZE\ 4096}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00134}00134\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00135}00135\ \textcolor{comment}{///\ @def\ POPEN}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00136}00136\ \textcolor{comment}{///\ @brief\ A\ cross\ platform\ alias\ for\ opening\ a\ pipe.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00137}00137\ \textcolor{preprocessor}{\#ifdef\ CANIM\_PLATFORM\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00138}00138\ \textcolor{preprocessor}{\#define\ POPEN\ \_popen}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00139}00139\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00140}\mbox{\hyperlink{core_8h_ab6949e8178edeb4294d893f3ee4966d5}{00140}}\ \textcolor{preprocessor}{\#define\ POPEN\ popen}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00141}00141\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00142}00142\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00143}00143\ \textcolor{comment}{///\ @def\ PCLOSE}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00144}00144\ \textcolor{comment}{///\ @brief\ A\ cross\ platform\ alias\ for\ closing\ a\ pipe.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00145}00145\ \textcolor{preprocessor}{\#ifdef\ CANIM\_PLATFORM\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00146}00146\ \textcolor{preprocessor}{\#define\ PCLOSE\ \_pclose}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00147}00147\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00148}\mbox{\hyperlink{core_8h_a4c39c7c96d7f5d1f5cd1743122d476e3}{00148}}\ \textcolor{preprocessor}{\#define\ PCLOSE\ pclose}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00149}00149\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00150}00150\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00151}00151\ \textcolor{comment}{///\ @def\ WB}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00152}00152\ \textcolor{comment}{///\ @brief\ Correct\ mode\ for\ writing\ in\ binary\ files\ on\ each\ platform}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00153}00153\ \textcolor{preprocessor}{\#ifdef\ CANIM\_PLATFORM\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00154}00154\ \textcolor{preprocessor}{\#define\ WB\ "{}wb"{}}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00155}00155\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00156}\mbox{\hyperlink{core_8h_a9b2a44784b5711a72705c875ddfb7761}{00156}}\ \textcolor{preprocessor}{\#define\ WB\ "{}w"{}}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00157}00157\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00158}00158\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00159}00159\ \textcolor{comment}{///\ @brief\ Read\ a\ 16-\/bit\ unsigned\ integer\ in\ big\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00160}00160\ \textcolor{comment}{///\ @param\ p\ Pointer\ to\ a\ buffer\ containing\ at\ least\ 2\ bytes}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00161}00161\ \textcolor{comment}{///\ @return\ The\ 16-\/bit\ unsigned\ integer}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00162}\mbox{\hyperlink{core_8h_a627c3c4390e434a20d82c95210ec1b0b}{00162}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint16\_t\ \mbox{\hyperlink{core_8h_a627c3c4390e434a20d82c95210ec1b0b}{read\_be\_u16}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00163}00163\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00164}00164\ \textcolor{comment}{///\ @brief\ Read\ a\ 32-\/bit\ unsigned\ integer\ in\ big\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00165}00165\ \textcolor{comment}{///\ @param\ p\ Pointer\ to\ a\ buffer\ containing\ at\ least\ 4\ bytes}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00166}00166\ \textcolor{comment}{///\ @return\ The\ 32-\/bit\ unsigned\ integer}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00167}\mbox{\hyperlink{core_8h_a17b82d598240d8fb05f46ece4283e840}{00167}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint32\_t\ \mbox{\hyperlink{core_8h_a17b82d598240d8fb05f46ece4283e840}{read\_be\_u32}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00168}00168\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00169}00169\ \textcolor{comment}{///\ @brief\ Read\ a\ 64-\/bit\ unsigned\ integer\ in\ big\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00170}00170\ \textcolor{comment}{///\ @param\ p\ Pointer\ to\ a\ buffer\ containing\ at\ least\ 8\ bytes}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00171}00171\ \textcolor{comment}{///\ @return\ The\ 64-\/bit\ unsigned\ integer}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00172}\mbox{\hyperlink{core_8h_a150e220651832c537f784fba6e530bc7}{00172}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint64\_t\ \mbox{\hyperlink{core_8h_a150e220651832c537f784fba6e530bc7}{read\_be\_u64}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00173}00173\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00174}00174\ \textcolor{comment}{///\ @brief\ Read\ a\ 16-\/bit\ unsigned\ integer\ in\ little\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00175}00175\ \textcolor{comment}{///\ @param\ p\ Pointer\ to\ a\ buffer\ containing\ at\ least\ 2\ bytes}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00176}00176\ \textcolor{comment}{///\ @return\ The\ 16-\/bit\ unsigned\ integer}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00177}\mbox{\hyperlink{core_8h_a1b7d538cbdbb21cf4699118beb45da9f}{00177}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint16\_t\ \mbox{\hyperlink{core_8h_a1b7d538cbdbb21cf4699118beb45da9f}{read\_le\_u16}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00178}00178\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00179}00179\ \textcolor{comment}{///\ @brief\ Read\ a\ 32-\/bit\ unsigned\ integer\ in\ little\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00180}00180\ \textcolor{comment}{///\ @param\ p\ Pointer\ to\ a\ buffer\ containing\ at\ least\ 4\ bytes}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00181}00181\ \textcolor{comment}{///\ @return\ The\ 32-\/bit\ unsigned\ integer}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00182}\mbox{\hyperlink{core_8h_ae19cf2dc6177e2dad2c3f46165a7b1b8}{00182}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint32\_t\ \mbox{\hyperlink{core_8h_ae19cf2dc6177e2dad2c3f46165a7b1b8}{read\_le\_u32}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00183}00183\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00184}00184\ \textcolor{comment}{///\ @brief\ Read\ a\ 64-\/bit\ unsigned\ integer\ in\ little\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00185}00185\ \textcolor{comment}{///\ @param\ p\ Pointer\ to\ a\ buffer\ containing\ at\ least\ 8\ bytes}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00186}00186\ \textcolor{comment}{///\ @return\ The\ 64-\/bit\ unsigned\ integer}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00187}\mbox{\hyperlink{core_8h_ac92232f9a68f86f70f658e910462d9f7}{00187}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ uint64\_t\ \mbox{\hyperlink{core_8h_ac92232f9a68f86f70f658e910462d9f7}{read\_le\_u64}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00188}00188\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00189}00189\ \textcolor{comment}{///\ @brief\ Write\ a\ 16-\/bit\ unsigned\ integer\ in\ big\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00190}00190\ \textcolor{comment}{///\ @param\ p\ The\ buffer\ to\ be\ written\ to}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00191}00191\ \textcolor{comment}{///\ @param\ v\ The\ integer\ to\ be\ converted}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00192}\mbox{\hyperlink{core_8h_a9d1a1c1e0ff4fc976851897afa950e44}{00192}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a9d1a1c1e0ff4fc976851897afa950e44}{write\_be\_u16}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p,\ uint16\_t\ v);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00193}00193\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00194}00194\ \textcolor{comment}{///\ @brief\ Write\ a\ 32-\/bit\ unsigned\ integer\ in\ big\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00195}00195\ \textcolor{comment}{///\ @param\ p\ The\ buffer\ to\ be\ written\ to}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00196}00196\ \textcolor{comment}{///\ @param\ v\ The\ integer\ to\ be\ converted}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00197}\mbox{\hyperlink{core_8h_a374662ee5049fcc5c08ffb945cc1fd30}{00197}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a374662ee5049fcc5c08ffb945cc1fd30}{write\_be\_u32}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p,\ uint32\_t\ v);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00198}00198\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00199}00199\ \textcolor{comment}{///\ @brief\ Write\ a\ 64-\/bit\ unsigned\ integer\ in\ big\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00200}00200\ \textcolor{comment}{///\ @param\ p\ The\ buffer\ to\ be\ written\ to}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00201}00201\ \textcolor{comment}{///\ @param\ v\ The\ integer\ to\ be\ converted}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00202}\mbox{\hyperlink{core_8h_a50879eccdead204d431798be504cbc98}{00202}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a50879eccdead204d431798be504cbc98}{write\_be\_u64}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p,\ uint64\_t\ v);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00203}00203\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00204}00204\ \textcolor{comment}{///\ @brief\ Write\ a\ 16-\/bit\ unsigned\ integer\ in\ little\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00205}00205\ \textcolor{comment}{///\ @param\ p\ The\ buffer\ to\ be\ written\ to}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00206}00206\ \textcolor{comment}{///\ @param\ v\ The\ integer\ to\ be\ converted}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00207}\mbox{\hyperlink{core_8h_a085008b3582eb3dd30ef80c90cdf9ba7}{00207}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a085008b3582eb3dd30ef80c90cdf9ba7}{write\_le\_u16}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p,\ uint16\_t\ v);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00208}00208\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00209}00209\ \textcolor{comment}{///\ @brief\ Write\ a\ 32-\/bit\ unsigned\ integer\ in\ little\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00210}00210\ \textcolor{comment}{///\ @param\ p\ The\ buffer\ to\ be\ written\ to}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00211}00211\ \textcolor{comment}{///\ @param\ v\ The\ integer\ to\ be\ converted}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00212}\mbox{\hyperlink{core_8h_adfd0e05cfd26462597bac695a832095d}{00212}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_adfd0e05cfd26462597bac695a832095d}{write\_le\_u32}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p,\ uint32\_t\ v);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00213}00213\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00214}00214\ \textcolor{comment}{///\ @brief\ Write\ a\ 64-\/bit\ unsigned\ integer\ in\ little\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00215}00215\ \textcolor{comment}{///\ @param\ p\ The\ buffer\ to\ be\ written\ to}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00216}00216\ \textcolor{comment}{///\ @param\ v\ The\ integer\ to\ be\ converted}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00217}\mbox{\hyperlink{core_8h_a32a83a1ffa627b785662424f22a16aa7}{00217}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a32a83a1ffa627b785662424f22a16aa7}{write\_le\_u64}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p,\ uint64\_t\ v);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00218}00218\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00219}00219\ \textcolor{comment}{///\ @brief\ Read\ a\ 32-\/bit\ float\ in\ big\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00220}00220\ \textcolor{comment}{///\ @param\ p\ The\ buffer\ to\ be\ read}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00221}00221\ \textcolor{comment}{///\ @return\ The\ float}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00222}\mbox{\hyperlink{core_8h_a268b70d8a95acb3af5751990bb6b3fce}{00222}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{core_8h_a268b70d8a95acb3af5751990bb6b3fce}{read\_be\_f32}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00223}00223\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00224}00224\ \textcolor{comment}{///\ @brief\ Read\ a\ 64-\/bit\ float\ in\ big\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00225}00225\ \textcolor{comment}{///\ @param\ p\ The\ buffer\ to\ be\ read}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00226}00226\ \textcolor{comment}{///\ @return\ The\ float}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00227}\mbox{\hyperlink{core_8h_a11200224381a57518fb24e5dd6f124af}{00227}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{core_8h_a11200224381a57518fb24e5dd6f124af}{read\_be\_f64}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00228}00228\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00229}00229\ \textcolor{comment}{///\ @brief\ Read\ a\ 32-\/bit\ float\ in\ little\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00230}00230\ \textcolor{comment}{///\ @param\ p\ The\ buffer\ to\ be\ read}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00231}00231\ \textcolor{comment}{///\ @return\ The\ float}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00232}\mbox{\hyperlink{core_8h_a4a12d5b3e99b9c91339f27ff5cdeaee5}{00232}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{core_8h_a4a12d5b3e99b9c91339f27ff5cdeaee5}{read\_le\_f32}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00233}00233\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00234}00234\ \textcolor{comment}{///\ @brief\ Read\ a\ 64-\/bit\ float\ in\ little\ endian\ byte\ order}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00235}00235\ \textcolor{comment}{///\ @param\ p\ The\ buffer\ to\ be\ read}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00236}00236\ \textcolor{comment}{///\ @return\ The\ float}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00237}\mbox{\hyperlink{core_8h_a1af1db5fa8e434820befad352e247d67}{00237}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{core_8h_a1af1db5fa8e434820befad352e247d67}{read\_le\_f64}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00238}00238\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00239}00239\ \textcolor{comment}{///\ @brief\ Write\ a\ 32\ bit\ float\ to\ a\ big\ endian\ buffer}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00240}00240\ \textcolor{comment}{///\ @param\ The\ buffer\ to\ be\ written\ to}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00241}00241\ \textcolor{comment}{///\ @param\ f\ The\ float}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00242}\mbox{\hyperlink{core_8h_ad51a6a64ab5dc4ba254a9906f5c72ff7}{00242}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_ad51a6a64ab5dc4ba254a9906f5c72ff7}{write\_be\_f32}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p,\ \textcolor{keywordtype}{float}\ f);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00243}00243\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00244}00244\ \textcolor{comment}{///\ @brief\ Write\ a\ 64\ bit\ ouble\ to\ a\ big\ endian\ buffer}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00245}00245\ \textcolor{comment}{///\ @param\ The\ buffer\ to\ be\ written\ to}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00246}00246\ \textcolor{comment}{///\ @param\ f\ The\ double}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00247}\mbox{\hyperlink{core_8h_a20897c2cca52d3565a5b6fd49d499895}{00247}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a20897c2cca52d3565a5b6fd49d499895}{write\_be\_f64}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p,\ \textcolor{keywordtype}{double}\ f);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00248}00248\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00249}00249\ \textcolor{comment}{///\ @brief\ Write\ a\ 32\ bit\ float\ to\ a\ little\ endian\ buffer}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00250}00250\ \textcolor{comment}{///\ @param\ The\ buffer\ to\ be\ written\ to}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00251}00251\ \textcolor{comment}{///\ @param\ f\ The\ float}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00252}\mbox{\hyperlink{core_8h_a9c8fc375138d7e490b712df49a63ccd1}{00252}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a9c8fc375138d7e490b712df49a63ccd1}{write\_le\_f32}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p,\ \textcolor{keywordtype}{float}\ f);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00253}00253\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00254}00254\ \textcolor{comment}{///\ @brief\ Write\ a\ 64\ bit\ ouble\ to\ a\ little\ endian\ buffer}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00255}00255\ \textcolor{comment}{///\ @param\ The\ buffer\ to\ be\ written\ to}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00256}00256\ \textcolor{comment}{///\ @param\ f\ The\ double}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00257}\mbox{\hyperlink{core_8h_a3088df25759ad329f96b8b68bb1f77b8}{00257}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a3088df25759ad329f96b8b68bb1f77b8}{write\_le\_f64}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *p,\ \textcolor{keywordtype}{double}\ f);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00258}00258\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00259}00259\ \textcolor{comment}{///\ @def\ BIT\_IGNORE}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00260}00260\ \textcolor{comment}{///\ @brief\ Alignment\ granularity\ in\ bits\ (round\ up\ to\ 2\string^BIT\_IGNORE).}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00261}\mbox{\hyperlink{core_8h_af9f2cd9778ea91d02b5bd2a314c6259d}{00261}}\ \textcolor{preprocessor}{\#define\ BIT\_IGNORE\ 4}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00262}00262\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00263}00263\ \textcolor{comment}{///\ @def\ BIT\_SIZE}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00264}00264\ \textcolor{comment}{///\ @brief\ 2\string^BIT\_IGNORE\ -\/\ 1}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00265}\mbox{\hyperlink{core_8h_a6f90ba84959e4dd71225187b8630fe79}{00265}}\ \textcolor{preprocessor}{\#define\ BIT\_SIZE\ ((1u\ <<\ BIT\_IGNORE)\ -\/\ 1u)}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00266}00266\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00267}00267\ \textcolor{comment}{///\ @def\ BIT\_ALIGN(x)}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00268}00268\ \textcolor{comment}{///\ @brief\ Round\ x\ up\ to\ nearest\ aligned\ multiple\ of\ 2\string^BIT\_IGNORE.\ Always}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00269}\mbox{\hyperlink{core_8h_aba22e0f284a06529743c5c700c2dde3c}{00269}}\ \textcolor{preprocessor}{\#define\ BIT\_ALIGN(x)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00270}00270\ \textcolor{preprocessor}{\ \ (((((x)\ +\ BIT\_SIZE)\ \&\ \string~BIT\_SIZE))\ ?\ (((x)\ +\ BIT\_SIZE)\ \&\ \string~BIT\_SIZE)\ :\ 1)}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00271}00271\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00272}00272\ \textcolor{comment}{///\ @def\ REALIGN(a,\ b)}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00273}00273\ \textcolor{comment}{///\ @brief\ True\ if\ a\ and\ b\ land\ in\ different\ aligned\ capacity\ buckets.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00274}\mbox{\hyperlink{core_8h_a2cfa42ee9b53307ef244d6fc8d717e7a}{00274}}\ \textcolor{preprocessor}{\#define\ REALIGN(a,\ b)\ (BIT\_ALIGN(a)\ !=\ BIT\_ALIGN(b))}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00275}00275\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00276}00276\ \textcolor{comment}{///\ @struct\ SVec}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00277}00277\ \textcolor{comment}{///\ @brief\ Minimal\ growable\ byte-\/vector.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00278}\mbox{\hyperlink{structSVec}{00278}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00279}\mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{00279}}\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{element\_size}};\ \textcolor{comment}{///<\ Size\ of\ each\ element\ in\ bytes.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00280}\mbox{\hyperlink{structSVec_a7a49363339d0cf325123987bd941dd84}{00280}}\ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structSVec_a7a49363339d0cf325123987bd941dd84}{list\_size}};\ \ \ \ \textcolor{comment}{///<\ Number\ of\ elements\ stored.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00281}\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{00281}}\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}};\ \textcolor{comment}{///<\ Contiguous\ raw\ byte\ storage}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00282}00282\ \}\ \mbox{\hyperlink{structSVec}{SVec}};}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00283}00283\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00284}00284\ \textcolor{comment}{///\ @brief\ Initialize\ a\ vector\ with\ a\ fixed\ element\ size.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00285}00285\ \textcolor{comment}{///\ @param[out]\ result\ A\ status\ code}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00286}00286\ \textcolor{comment}{///\ @param\ v\ Pointer\ to\ SVec}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00287}00287\ \textcolor{comment}{///\ @param\ elem\_size\ Number\ of\ bytes\ per\ element}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00288}\mbox{\hyperlink{core_8h_a9032db0576bfbb582beba2d56f3cbc14}{00288}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a9032db0576bfbb582beba2d56f3cbc14}{svec\_init}}(\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}}\ *result,\ \mbox{\hyperlink{structSVec}{SVec}}\ *v,\ \textcolor{keywordtype}{size\_t}\ elem\_size);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00289}00289\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00290}00290\ \textcolor{comment}{///\ @brief\ Free\ all\ memory\ owned\ by\ the\ vector.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00291}00291\ \textcolor{comment}{///\ @param[out]\ result\ A\ status\ code}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00292}00292\ \textcolor{comment}{///\ @param\ v\ Pointer\ to\ SVec}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00293}\mbox{\hyperlink{core_8h_ab6e2ae429a976b1719117ab03bd2f4af}{00293}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_ab6e2ae429a976b1719117ab03bd2f4af}{svec\_free}}(\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}}\ *result,\ \mbox{\hyperlink{structSVec}{SVec}}\ *v);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00294}00294\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00295}00295\ \textcolor{comment}{///\ @brief\ Append\ one\ element,\ reallocating\ only\ when\ bucket\ changes.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00296}00296\ \textcolor{comment}{///\ @param[out]\ result\ A\ status\ code}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00297}00297\ \textcolor{comment}{///\ @param\ v\ Pointer\ to\ SVec}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00298}00298\ \textcolor{comment}{///\ @param\ elem\ Pointer\ to\ element\ data}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00299}\mbox{\hyperlink{core_8h_ae4120a038705f5e95bd7249d66ae5baa}{00299}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_ae4120a038705f5e95bd7249d66ae5baa}{svec\_push}}(\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}}\ *result,\ \mbox{\hyperlink{structSVec}{SVec}}\ *v,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *elem);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00300}00300\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00301}00301\ \textcolor{comment}{///\ @brief\ Remove\ the\ last\ element,\ shrinking\ bucket\ only\ if\ needed.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00302}00302\ \textcolor{comment}{///\ @param[out]\ result\ A\ status\ code}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00303}00303\ \textcolor{comment}{///\ @param\ v\ Pointer\ to\ SVec}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00304}00304\ \textcolor{comment}{///\ @param\ out\ Optional\ output\ location}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00305}\mbox{\hyperlink{core_8h_a5c6647d0c513bb66126811a5e813ff7e}{00305}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a5c6647d0c513bb66126811a5e813ff7e}{svec\_pop}}(\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}}\ *result,\ \mbox{\hyperlink{structSVec}{SVec}}\ *v,\ \textcolor{keywordtype}{void}\ *out);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00306}00306\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00307}00307\ \textcolor{comment}{///\ @brief\ Get\ a\ pointer\ to\ element\ at\ index\ i}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00308}00308\ \textcolor{comment}{///\ @param[out]\ result\ A\ status\ code}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00309}00309\ \textcolor{comment}{///\ @param\ v\ Pointer\ to\ SVec}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00310}00310\ \textcolor{comment}{///\ @param\ i\ Index\ to\ read\ from}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00311}00311\ \textcolor{comment}{///\ @return\ A\ pointer\ to\ the\ element}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00312}\mbox{\hyperlink{core_8h_ac4896c48bfd0c023dbc854785f3e1c7b}{00312}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{core_8h_ac4896c48bfd0c023dbc854785f3e1c7b}{svec\_get}}(\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}}\ *result,\ \mbox{\hyperlink{structSVec}{SVec}}\ *v,\ \textcolor{keywordtype}{size\_t}\ i);}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00313}00313\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00314}00314\ \textcolor{comment}{///\ @brief\ Set\ the\ element\ at\ index\ i\ to\ the\ value\ pointed\ to\ by\ elem.}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00315}00315\ \textcolor{comment}{///\ @param[out]\ result\ A\ status\ code}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00316}00316\ \textcolor{comment}{///\ @param\ v\ Pointer\ to\ SVec}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00317}00317\ \textcolor{comment}{///\ @param\ i\ Index\ to\ write\ to}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00318}00318\ \textcolor{comment}{///\ @param\ elem\ Pointer\ to\ source\ data}}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00319}\mbox{\hyperlink{core_8h_a94c039bf8ed5efcf5c7f909bda4c82c4}{00319}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{core_8h_a94c039bf8ed5efcf5c7f909bda4c82c4}{svec\_set}}(\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}}\ *result,\ \mbox{\hyperlink{structSVec}{SVec}}\ *v,\ \textcolor{keywordtype}{size\_t}\ i,}
+\DoxyCodeLine{\Hypertarget{core_8h_source_l00320}00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *elem);}
+
+\end{DoxyCode}

@@ -1,0 +1,155 @@
+\doxysection{gl.\+c}
+\hypertarget{gl_8c_source}{}\label{gl_8c_source}\index{src/gfx/gl.c@{src/gfx/gl.c}}
+\mbox{\hyperlink{gl_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00001}00001\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_8h}{canim/core.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{gfx_8h}{canim/gfx.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00004}00004\ \textcolor{preprocessor}{\#include\ "{}glad/glad.h"{}}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <EGL/egl.h>}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00006}00006\ \textcolor{preprocessor}{\#include\ <GL/gl.h>}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <SDL2/SDL.h>}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00008}00008\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_opengl.h>}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00009}00009\ \textcolor{preprocessor}{\#include\ <SDL2/SDL\_video.h>}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00010}00010\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00011}\mbox{\hyperlink{structGfxDevice}{00011}}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structGfxDevice}{GfxDevice}}\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00012}\mbox{\hyperlink{structGfxDevice_a1052f6b7f4225168ccd2f1520fe3ee21}{00012}}\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structGfxDevice_a1052f6b7f4225168ccd2f1520fe3ee21}{headless}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00013}\mbox{\hyperlink{structGfxDevice_a75095db9ef68d9df08b2a89746e7f19c}{00013}}\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structGfxDevice_a75095db9ef68d9df08b2a89746e7f19c}{width}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00014}\mbox{\hyperlink{structGfxDevice_a6907b7adf1bfc7d0c01353f49960b705}{00014}}\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structGfxDevice_a6907b7adf1bfc7d0c01353f49960b705}{height}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00015}\mbox{\hyperlink{structGfxDevice_acbefc792eab74b41a6c67eaff233eac7}{00015}}\ \ \ SDL\_GLContext\ \mbox{\hyperlink{structGfxDevice_acbefc792eab74b41a6c67eaff233eac7}{glctx}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00016}\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{00016}}\ \ \ SDL\_Window\ *\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00017}\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{00017}}\ \ \ EGLDisplay\ \mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00018}\mbox{\hyperlink{structGfxDevice_addbcf2bd4de972366697cc91ab782a56}{00018}}\ \ \ EGLSurface\ \mbox{\hyperlink{structGfxDevice_addbcf2bd4de972366697cc91ab782a56}{egl\_surface}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00019}\mbox{\hyperlink{structGfxDevice_a91a72779583ff545acf8f51c555f42a6}{00019}}\ \ \ EGLContext\ \mbox{\hyperlink{structGfxDevice_a91a72779583ff545acf8f51c555f42a6}{egl\_context}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00020}00020\ \};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00021}\mbox{\hyperlink{gl_8c_aaaeab43fedb7cb4d71e21c71f0925528}{00021}}\ \mbox{\hyperlink{structGfxDevice}{GfxDevice}}\ *\mbox{\hyperlink{gl_8c_aaaeab43fedb7cb4d71e21c71f0925528}{gl\_create\_device}}(\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}}\ *result,\ \mbox{\hyperlink{structGfxContainer}{GfxContainer}}\ *container,}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00022}00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structGfxInitInfo}{GfxInitInfo}}\ *info)\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00023}00023\ \ \ \mbox{\hyperlink{structGfxDevice}{GfxDevice}}\ *dev\ =\ (\mbox{\hyperlink{structGfxDevice}{GfxDevice}}\ *)calloc(1,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structGfxDevice}{GfxDevice}}));}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00024}00024\ \ \ \textcolor{keywordflow}{if}\ (!dev)\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00025}00025\ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ab63f94f97b8a8ee8e794943e41e69d69}{GFX\_DEVICE\_CALLOC\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00027}00027\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00028}00028\ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_a1052f6b7f4225168ccd2f1520fe3ee21}{headless}}\ =\ info-\/>\mbox{\hyperlink{structGfxInitInfo_a988ae3bb5e024d0c6234517d2a34b6fc}{headless}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00029}00029\ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_a6907b7adf1bfc7d0c01353f49960b705}{height}}\ =\ info-\/>\mbox{\hyperlink{structGfxInitInfo_a84ce6c93bf6a3226d57661d3152d15e3}{height}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00030}00030\ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_a75095db9ef68d9df08b2a89746e7f19c}{width}}\ =\ info-\/>\mbox{\hyperlink{structGfxInitInfo_a1fecf2a585580ab1464f547038169e40}{width}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00031}00031\ \ \ \textcolor{keywordflow}{if}\ (dev-\/>\mbox{\hyperlink{structGfxDevice_a1052f6b7f4225168ccd2f1520fe3ee21}{headless}})\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00032}00032\ \ \ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}}\ =\ eglGetDisplay(EGL\_DEFAULT\_DISPLAY);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}}\ ==\ EGL\_NO\_DISPLAY)\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00034}00034\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00035}00035\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a8418ec7942cd9bb08be892c8a8dc8d64}{EGL\_NO\_DISPLAY\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00036}00036\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{if}\ (!eglInitialize(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}},\ 0,\ 0))\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00040}00040\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00041}00041\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ab3f172bf3485e4db4f7690b04d36b124}{EGL\_DISPLAY\_INIT\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00042}00042\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00044}00044\ \ \ \ \ EGLint\ cfg\_attr[]\ =\ \{EGL\_SURFACE\_TYPE,\ EGL\_PBUFFER\_BIT,\ EGL\_RENDERABLE\_TYPE,}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EGL\_OPENGL\_BIT,\ EGL\_NONE\};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00046}00046\ \ \ \ \ EGLConfig\ cfg;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00047}00047\ \ \ \ \ EGLint\ N;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (!eglChooseConfig(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}},\ cfg\_attr,\ \&cfg,\ 1,\ \&N)\ ||\ N\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00049}00049\ \ \ \ \ \ \ eglTerminate(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00050}00050\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00051}00051\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a46fa8b0540c5d865619f610d3fbdd348}{EGL\_DISPLAY\_CONFIGURATION\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00052}00052\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00054}00054\ \ \ \ \ EGLint\ pb\_attr[]\ =\ \{EGL\_WIDTH,\ info-\/>\mbox{\hyperlink{structGfxInitInfo_a1fecf2a585580ab1464f547038169e40}{width}},\ EGL\_HEIGHT,\ info-\/>\mbox{\hyperlink{structGfxInitInfo_a84ce6c93bf6a3226d57661d3152d15e3}{height}},}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ EGL\_NONE\};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00056}00056\ \ \ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_addbcf2bd4de972366697cc91ab782a56}{egl\_surface}}\ =\ eglCreatePbufferSurface(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}},\ cfg,\ pb\_attr);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00057}00057\ \ \ \ \ \textcolor{keywordflow}{if}\ (dev-\/>\mbox{\hyperlink{structGfxDevice_addbcf2bd4de972366697cc91ab782a56}{egl\_surface}}\ ==\ EGL\_NO\_DISPLAY)\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00058}00058\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ad0d5575af8a05a3df10c20d6f4ffd903}{EGL\_NO\_SURFACE\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00059}00059\ \ \ \ \ \ \ eglTerminate(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00060}00060\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00061}00061\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00063}00063\ \ \ \ \ eglBindAPI(EGL\_OPENGL\_API);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00064}00064\ \ \ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_a91a72779583ff545acf8f51c555f42a6}{egl\_context}}\ =}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00065}00065\ \ \ \ \ \ \ \ \ eglCreateContext(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}},\ cfg,\ EGL\_NO\_CONTEXT,\ NULL);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00066}00066\ \ \ \ \ \textcolor{keywordflow}{if}\ (dev-\/>\mbox{\hyperlink{structGfxDevice_a91a72779583ff545acf8f51c555f42a6}{egl\_context}}\ ==\ EGL\_NO\_CONTEXT)\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00067}00067\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a9173e3b861791fd0ae666d9f906819bc}{EGL\_NO\_CONTEXT\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00068}00068\ \ \ \ \ \ \ eglDestroySurface(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}},\ dev-\/>\mbox{\hyperlink{structGfxDevice_addbcf2bd4de972366697cc91ab782a56}{egl\_surface}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00069}00069\ \ \ \ \ \ \ eglTerminate(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00070}00070\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00071}00071\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00072}00072\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (!eglMakeCurrent(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}},\ dev-\/>\mbox{\hyperlink{structGfxDevice_addbcf2bd4de972366697cc91ab782a56}{egl\_surface}},\ dev-\/>\mbox{\hyperlink{structGfxDevice_addbcf2bd4de972366697cc91ab782a56}{egl\_surface}},}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_a91a72779583ff545acf8f51c555f42a6}{egl\_context}}))\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00075}00075\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ab0b5eea75c1e0d1c5df7b9ff1b67478f}{EGL\_MAKE\_CURRENT\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00076}00076\ \ \ \ \ \ \ eglDestroySurface(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}},\ dev-\/>\mbox{\hyperlink{structGfxDevice_addbcf2bd4de972366697cc91ab782a56}{egl\_surface}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00077}00077\ \ \ \ \ \ \ eglDestroyContext(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}},\ dev-\/>\mbox{\hyperlink{structGfxDevice_a91a72779583ff545acf8f51c555f42a6}{egl\_context}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00078}00078\ \ \ \ \ \ \ eglTerminate(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00079}00079\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00080}00080\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00082}00082\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (SDL\_Init(SDL\_INIT\_VIDEO)\ <\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00084}00084\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779af1c6c61fc97dead8f1907801e5efbcc5}{SDL\_INIT\_VIDEO\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00085}00085\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00086}00086\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00087}00087\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00088}00088\ \ \ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}}\ =\ info-\/>\mbox{\hyperlink{structGfxInitInfo_a94be630c4d591b6f870d1cc7b09e3303}{native\_window}}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ (SDL\_Window\ *)info-\/>\mbox{\hyperlink{structGfxInitInfo_a94be630c4d591b6f870d1cc7b09e3303}{native\_window}}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ SDL\_CreateWindow(\textcolor{stringliteral}{"{}Canim"{}},\ SDL\_WINDOWPOS\_CENTERED,}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_WINDOWPOS\_CENTERED,\ info-\/>\mbox{\hyperlink{structGfxInitInfo_a1fecf2a585580ab1464f547038169e40}{width}},}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ info-\/>\mbox{\hyperlink{structGfxInitInfo_a84ce6c93bf6a3226d57661d3152d15e3}{height}},}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SDL\_WINDOW\_OPENGL\ |\ SDL\_WINDOW\_RESIZABLE);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00094}00094\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}})\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00095}00095\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a17bb6e08ffaa6b8b0ccfa96561fabf9f}{SDL\_WINDOW\_CREATION\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00096}00096\ \ \ \ \ \ \ SDL\_QuitSubSystem(SDL\_INIT\_VIDEO);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00097}00097\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00098}00098\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00099}00099\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00100}00100\ \ \ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_acbefc792eab74b41a6c67eaff233eac7}{glctx}}\ =\ SDL\_GL\_CreateContext(dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dev-\/>\mbox{\hyperlink{structGfxDevice_acbefc792eab74b41a6c67eaff233eac7}{glctx}})\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00102}00102\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a12eac7b0008b0d636a4cc4daac6ec291}{SDL\_GL\_CONTEXT\_CREATION\_ERROR}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00103}00103\ \ \ \ \ \ \ SDL\_DestroyWindow(dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00104}00104\ \ \ \ \ \ \ SDL\_QuitSubSystem(SDL\_INIT\_VIDEO);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00105}00105\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00106}00106\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00107}00107\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00109}00109\ \ \ \ \ SDL\_GL\_MakeCurrent(dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}},\ dev-\/>\mbox{\hyperlink{structGfxDevice_acbefc792eab74b41a6c67eaff233eac7}{glctx}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00110}00110\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00111}00111\ \ \ glViewport(0,\ 0,\ dev-\/>\mbox{\hyperlink{structGfxDevice_a75095db9ef68d9df08b2a89746e7f19c}{width}},\ dev-\/>\mbox{\hyperlink{structGfxDevice_a6907b7adf1bfc7d0c01353f49960b705}{height}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00112}00112\ \ \ glClearColor(1.0f,\ 0.0f,\ 1.0f,\ 1.0f);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00113}00113\ \ \ glClear(GL\_COLOR\_BUFFER\_BIT);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00114}00114\ \ \ \textcolor{keywordflow}{if}\ (dev-\/>\mbox{\hyperlink{structGfxDevice_a1052f6b7f4225168ccd2f1520fe3ee21}{headless}})\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00115}00115\ \ \ \ \ eglSwapBuffers(dev-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}},\ dev-\/>\mbox{\hyperlink{structGfxDevice_addbcf2bd4de972366697cc91ab782a56}{egl\_surface}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00116}00116\ \ \ \ \ gladLoadGLLoader((GLADloadproc)eglGetProcAddress);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00117}00117\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00118}00118\ \ \ \ \ SDL\_GL\_SwapWindow(dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00119}00119\ \ \ \ \ gladLoadGLLoader((GLADloadproc)SDL\_GL\_GetProcAddress);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00120}00120\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00122}00122\ \ \ \textcolor{keywordflow}{return}\ dev;}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00123}00123\ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00124}\mbox{\hyperlink{gl_8c_a61d62c7f3367c638d5908377810a409e}{00124}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{gl_8c_a61d62c7f3367c638d5908377810a409e}{gl\_destroy\_device}}(\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}}\ *result,\ \mbox{\hyperlink{structGfxContainer}{GfxContainer}}\ *container)\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00125}00125\ \ \ \mbox{\hyperlink{structGfxDevice}{GfxDevice}}\ *device\ =\ container-\/>\mbox{\hyperlink{structGfxContainer_ab56e07af4285b06fa21b4d380269a252}{impl}};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00126}00126\ \ \ \textcolor{keywordflow}{if}\ (!device)\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00127}00127\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00128}00128\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00129}00129\ \ \ \textcolor{keywordflow}{if}\ (device-\/>\mbox{\hyperlink{structGfxDevice_a1052f6b7f4225168ccd2f1520fe3ee21}{headless}})\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00130}00130\ \ \ \ \ eglDestroySurface(device-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}},\ device-\/>\mbox{\hyperlink{structGfxDevice_addbcf2bd4de972366697cc91ab782a56}{egl\_surface}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00131}00131\ \ \ \ \ eglDestroyContext(device-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}},\ device-\/>\mbox{\hyperlink{structGfxDevice_a91a72779583ff545acf8f51c555f42a6}{egl\_context}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00132}00132\ \ \ \ \ eglTerminate(device-\/>\mbox{\hyperlink{structGfxDevice_ab67cb4e48ae562fac8f074da678338da}{egl\_display}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00133}00133\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00134}00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (device-\/>\mbox{\hyperlink{structGfxDevice_acbefc792eab74b41a6c67eaff233eac7}{glctx}})\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00135}00135\ \ \ \ \ \ \ SDL\_GL\_DeleteContext(device-\/>\mbox{\hyperlink{structGfxDevice_acbefc792eab74b41a6c67eaff233eac7}{glctx}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00136}00136\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00137}00137\ \ \ \ \ \textcolor{keywordflow}{if}\ (device-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}})\ \{}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00138}00138\ \ \ \ \ \ \ SDL\_DestroyWindow(device-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}});}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00139}00139\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00140}00140\ \ \ \ \ SDL\_QuitSubSystem(SDL\_INIT\_VIDEO);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00141}00141\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00142}00142\ \ \ free(device);}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00143}00143\ \};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00145}\mbox{\hyperlink{gl_8c_aecdcdb91e1ee3fad619f4b0be7721649}{00145}}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structGfxAPI}{GfxAPI}}\ \mbox{\hyperlink{gl_8c_aecdcdb91e1ee3fad619f4b0be7721649}{GFX\_GL\_API}}\ =\ \{.gfx\_create\_device\ =\ \mbox{\hyperlink{gl_8c_aaaeab43fedb7cb4d71e21c71f0925528}{gl\_create\_device}},}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .gfx\_destroy\_device\ =\ \mbox{\hyperlink{gl_8c_a61d62c7f3367c638d5908377810a409e}{gl\_destroy\_device}}\};}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00148}00148\ \_\_attribute\_\_((visibility(\textcolor{stringliteral}{"{}default"{}})))\ const\ \mbox{\hyperlink{structGfxAPI}{GfxAPI}}\ *GFX\_API\_ENTRY\ =}
+\DoxyCodeLine{\Hypertarget{gl_8c_source_l00149}00149\ \ \ \ \ \&\mbox{\hyperlink{gl_8c_aecdcdb91e1ee3fad619f4b0be7721649}{GFX\_GL\_API}};}
+
+\end{DoxyCode}

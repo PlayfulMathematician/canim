@@ -1,0 +1,66 @@
+\doxysection{loader.\+c}
+\hypertarget{loader_8c_source}{}\label{loader_8c_source}\index{src/loader/loader.c@{src/loader/loader.c}}
+\mbox{\hyperlink{loader_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00001}00001\ \textcolor{comment}{//\ SPDX-\/License-\/Identifier:\ MIT}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00002}00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{loader_8h}{canim/loader.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00003}00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{core_8h}{canim/core.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00004}00004\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00005}00005\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00006}00006\ \textcolor{preprocessor}{\#ifdef\ CANIM\_PLATFORM\_POSIX}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00007}00007\ \textcolor{preprocessor}{\#include\ <dlfcn.h>}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00008}00008\ \textcolor{preprocessor}{\#define\ LIB\_HANDLE\ void\ *}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00009}00009\ \textcolor{preprocessor}{\#define\ LIB\_LOAD(name)\ dlopen(name,\ RTLD\_NOW\ |\ RTLD\_LOCAL)}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00010}00010\ \textcolor{preprocessor}{\#define\ LIB\_SYM(h,\ sym)\ dlsym(h,\ sym)}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00011}00011\ \textcolor{preprocessor}{\#define\ LIB\_CLOSE(h)\ dlclose(h)}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00012}00012\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00013}00013\ \textcolor{preprocessor}{\#ifdef\ CANIM\_PLATFORM\_LINUX}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00014}00014\ \textcolor{preprocessor}{\#define\ LIB\_EXT\ "{}.so"{}}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00015}00015\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00016}00016\ \textcolor{preprocessor}{\#ifdef\ CANIM\_PLATFORM\_MAC}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00017}00017\ \textcolor{preprocessor}{\#define\ LIB\_EXT\ "{}.dylib"{}}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00018}00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00019}00019\ \textcolor{preprocessor}{\#ifdef\ CANIM\_PLATFORM\_WINDOWS}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <windows.h>}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00021}00021\ \textcolor{preprocessor}{\#define\ LIB\_HANDLE\ HMODULE}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00022}00022\ \textcolor{preprocessor}{\#define\ LIB\_LOAD(name)\ LoadLibraryA(name)}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00023}00023\ \textcolor{preprocessor}{\#define\ LIB\_SYM(h,\ sym)\ GetProcAddress(h,\ sym)}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00024}00024\ \textcolor{preprocessor}{\#define\ LIB\_CLOSE(h)\ FreeLibrary(h)}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00025}00025\ \textcolor{preprocessor}{\#define\ LIB\_EXT\ "{}.dll"{}}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00026}00026\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00027}\mbox{\hyperlink{loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb}{00027}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb}{gfx\_backend\_libname}}(\mbox{\hyperlink{gfx_8h_ad12ab8ab33cdd70d32813abd51be10fd}{GfxBackend}}\ backend)\ \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00028}00028\ \ \ \textcolor{keywordflow}{switch}\ (backend)\ \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00029}00029\ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{gfx_8h_ad12ab8ab33cdd70d32813abd51be10fda0de0b74275a2b9b3ba351fd537a91888}{CANIM\_GFX\_GL}}:}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}libgl"{}}\ LIB\_EXT;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00032}00032\ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00033}00033\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00034}00034\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00035}00035\ \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00036}\mbox{\hyperlink{loader_8c_a6c04f97ea86cef300b5218ac73914c0a}{00036}}\ \mbox{\hyperlink{structGfxContainer}{GfxContainer}}\ *\mbox{\hyperlink{loader_8c_a6c04f97ea86cef300b5218ac73914c0a}{gfx\_load\_backend}}(\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}}\ *result,\ \mbox{\hyperlink{gfx_8h_ad12ab8ab33cdd70d32813abd51be10fd}{GfxBackend}}\ backend,}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00037}00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structGfxInitInfo}{GfxInitInfo}}\ *info)\ \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00038}00038\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *libname\ =\ \mbox{\hyperlink{loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb}{gfx\_backend\_libname}}(backend);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00039}00039\ \ \ LIB\_HANDLE\ handle\ =\ LIB\_LOAD(libname);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00040}00040\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structGfxAPI}{GfxAPI}}\ *\textcolor{keyword}{const}\ *entry\ =}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00041}00041\ \ \ \ \ \ \ (\textcolor{keyword}{const}\ \mbox{\hyperlink{structGfxAPI}{GfxAPI}}\ *\textcolor{keyword}{const}\ *)LIB\_SYM(handle,\ \textcolor{stringliteral}{"{}GFX\_API\_ENTRY"{}});}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00042}00042\ \ \ \mbox{\hyperlink{structGfxContainer}{GfxContainer}}\ *gfx\ =\ calloc(1,\ \textcolor{keyword}{sizeof}(*gfx));}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00043}00043\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structGfxAPI}{GfxAPI}}\ *api\ =\ *entry;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00044}00044\ \ \ gfx-\/>\mbox{\hyperlink{structGfxContainer_ae8c3b3289e273cbf686708aeadc1c43f}{api}}\ =\ *api;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00045}00045\ \ \ gfx-\/>\mbox{\hyperlink{structGfxContainer_ab56e07af4285b06fa21b4d380269a252}{impl}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00046}00046\ \ \ gfx-\/>\mbox{\hyperlink{structGfxContainer_a99f8974c8599dcb2794d8d30f589eede}{backend}}\ =\ backend;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00047}00047\ \ \ \mbox{\hyperlink{structGfxDevice}{GfxDevice}}\ *dev\ =\ gfx-\/>\mbox{\hyperlink{structGfxContainer_ae8c3b3289e273cbf686708aeadc1c43f}{api}}.\mbox{\hyperlink{structGfxAPI_a1b95b4e0ab16c9c47ed407d7ca35e9a1}{gfx\_create\_device}}(result,\ gfx,\ info);}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00048}00048\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{core_8h_a835d919d30e7be9247ab52328b99f57f}{IS\_AN\_ERROR}}(*result))\ \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00050}00050\ \ \ \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00051}00051\ \ \ gfx-\/>\mbox{\hyperlink{structGfxContainer_a42e364b9084279da5e7955ae2f6c2abf}{handle}}\ =\ (\textcolor{keywordtype}{void}\ *)handle;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00052}00052\ \ \ gfx-\/>\mbox{\hyperlink{structGfxContainer_ab56e07af4285b06fa21b4d380269a252}{impl}}\ =\ dev;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00053}00053\ \ \ *result\ =\ \mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00054}00054\ \ \ \textcolor{keywordflow}{return}\ gfx;}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00055}00055\ \}}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00057}\mbox{\hyperlink{loader_8c_a69bc35936320f682963d277201bab0e0}{00057}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{loader_8c_a69bc35936320f682963d277201bab0e0}{gfx\_unload\_backend}}(\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{CanimResult}}\ *result,\ \mbox{\hyperlink{structGfxContainer}{GfxContainer}}\ *gfx)\ \{}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00058}00058\ \ \ LIB\_CLOSE((LIB\_HANDLE)gfx-\/>\mbox{\hyperlink{structGfxContainer_a42e364b9084279da5e7955ae2f6c2abf}{handle}});}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00059}00059\ \ \ *result\ =\ \mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{\Hypertarget{loader_8c_source_l00060}00060\ \}}
+
+\end{DoxyCode}

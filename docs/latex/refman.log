@@ -1,0 +1,2249 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2026/dev/Arch Linux) (preloaded format=pdflatex 2025.11.13)  27 NOV 2025 16:30
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**refman
+(./refman.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)
+(/usr/share/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/share/texmf-dist/tex/latex/base/bk10.clo
+File: bk10.clo 2024/06/29 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count196
+\c@chapter=\count197
+\c@section=\count198
+\c@subsection=\count199
+\c@subsubsection=\count266
+\c@paragraph=\count267
+\c@subparagraph=\count268
+\c@figure=\count269
+\c@table=\count270
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen141
+)
+(/usr/share/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+package info suppressed
+) (./doxygen.sty
+Package: doxygen 
+
+(/usr/share/texmf-dist/tex/latex/base/alltt.sty
+Package: alltt 2024/07/07 v2.0g defines alltt environment
+)
+(/usr/share/texmf-dist/tex/latex/tools/array.sty
+Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
+\col@sep=\dimen142
+\ar@mcellbox=\box52
+\extrarowheight=\dimen143
+\NC@list=\toks17
+\extratabsurround=\skip51
+\backup@length=\skip52
+\ar@cellbox=\box53
+)
+(/usr/share/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count271
+\calc@Bcount=\count272
+\calc@Adimen=\dimen144
+\calc@Bdimen=\dimen145
+\calc@Askip=\skip53
+\calc@Bskip=\skip54
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count273
+\calc@Cskip=\skip55
+)
+(/usr/share/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count274
+\float@exts=\toks18
+\float@box=\box54
+\@float@everytoks=\toks19
+\@floatcapt=\box55
+)
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks20
+\verbatim@line=\toks21
+\verbatim@in@stream=\read2
+)
+(/usr/share/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box56
+\sift@deathcycles=\count275
+\@vwid@loff=\dimen146
+\@vwid@roff=\dimen147
+)
+(/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+
+(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2024/04/13 v1.2c Graphics/color driver for pdftex
+)
+(/usr/share/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(/usr/share/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
+\everycr=\toks22
+\minrowclearance=\skip56
+\rownum=\count276
+)
+(/usr/share/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
+\LTleft=\skip57
+\LTright=\skip58
+\LTpre=\skip59
+\LTpost=\skip60
+\LTchunksize=\count277
+\LTcapwidth=\dimen148
+\LT@head=\box57
+\LT@firsthead=\box58
+\LT@foot=\box59
+\LT@lastfoot=\box60
+\LT@gbox=\box61
+\LT@cols=\count278
+\LT@rows=\count279
+\c@LT@tables=\count280
+\c@LT@chunks=\count281
+\LT@p@ftn=\toks23
+)
+(/usr/share/texmf-dist/tex/latex/xltabular/xltabular.sty
+Package: xltabular 2025/02/28 v0.2i `xltabular' package (hv,RN)
+
+(/usr/share/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+\TX@col@width=\dimen149
+\TX@old@table=\dimen150
+\TX@old@col=\dimen151
+\TX@target=\dimen152
+\TX@delta=\dimen153
+\TX@cols=\count282
+\TX@ftn=\toks24
+)
+(/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count283
+)
+(/usr/share/texmf-dist/tex/latex/ltablex/ltablex.sty
+Package: ltablex 2014/08/13 v1.1 Modified tabularx
+))
+(/usr/share/texmf-dist/tex/latex/tabularray/tabularray.sty
+(/usr/share/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2025-01-18 L3 programming layer (loader) 
+
+(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count284
+\l__pdf_internal_box=\box62
+))
+Package: tabularray 2024-02-16 v2024A Typeset tabulars and arrays with LaTeX3
+\l__tblr_a_int=\count285
+\l__tblr_c_int=\count286
+\l__tblr_r_int=\count287
+\l__tblr_d_dim=\dimen154
+\l__tblr_h_dim=\dimen155
+\l__tblr_o_dim=\dimen156
+\l__tblr_p_dim=\dimen157
+\l__tblr_q_dim=\dimen158
+\l__tblr_r_dim=\dimen159
+\l__tblr_s_dim=\dimen160
+\l__tblr_t_dim=\dimen161
+\l__tblr_v_dim=\dimen162
+\l__tblr_w_dim=\dimen163
+\l__tblr_a_box=\box63
+\l__tblr_b_box=\box64
+\l__tblr_c_box=\box65
+\l__tblr_d_box=\box66
+\g__tblr_table_count_int=\count288
+\c@colnum=\count289
+\c@rowcount=\count290
+\c@colcount=\count291
+\abovesep=\dimen164
+\belowsep=\dimen165
+\leftsep=\dimen166
+\rightsep=\dimen167
+\g_tblr_level_int=\count292
+\g__tblr_data_row_key_count_int=\count293
+\g__tblr_data_column_key_count_int=\count294
+\g__tblr_data_cell_key_count_int=\count295
+\g__tblr_array_int=\count296
+\l__tblr_key_count_int=\count297
+\l__tblr_key_quotient_int=\count298
+\l__tblr_key_quotient_two_int=\count299
+\l__tblr_key_remainder_int=\count300
+\g__tblr_data_str_value_count_int=\count301
+\rulewidth=\dimen168
+\l__tblr_strut_dp_dim=\dimen169
+\l__tblr_strut_ht_dim=\dimen170
+\g__tblr_cell_wd_dim=\dimen171
+\g__tblr_cell_ht_dim=\dimen172
+\g__tblr_cell_head_dim=\dimen173
+\g__tblr_cell_foot_dim=\dimen174
+\l__column_target_dim=\dimen175
+\l__tblr_caption_box=\box67
+\l__tblr_caption_left_box=\box68
+\l__tblr_row_head_box=\box69
+\l__tblr_row_foot_box=\box70
+\l__tblr_row_head_foot_dim=\dimen176
+\tablewidth=\dimen177
+\l__tblr_table_firsthead_box=\box71
+\l__tblr_table_middlehead_box=\box72
+\l__tblr_table_lasthead_box=\box73
+\l__tblr_table_firstfoot_box=\box74
+\l__tblr_table_middlefoot_box=\box75
+\l__tblr_table_lastfoot_box=\box76
+\l__tblr_remain_height_dim=\dimen178
+\l__tblr_long_from_int=\count302
+\l__tblr_long_to_int=\count303
+\l__tblr_curr_i_int=\count304
+\l__tblr_prev_i_int=\count305
+\l__tblr_table_page_int=\count306
+\l__tblr_table_head_box=\box77
+\l__tblr_table_foot_box=\box78
+\l__tblr_table_head_foot_dim=\dimen179
+\l__tblr_table_head_body_foot_dim=\dimen180
+\l__tblr_table_box=\box79
+\l__tblr_table_hlines_box=\box80
+\l__tblr_hline_box=\box81
+\l__tblr_row_box=\box82
+\l__tblr_col_o_wd_dim=\dimen181
+\l__tblr_col_b_wd_dim=\dimen182
+\l__tblr_hline_leftskip_dim=\dimen183
+\l__tblr_hline_rightskip_dim=\dimen184
+\l__tblr_row_ht_dim=\dimen185
+\l__tblr_row_dp_dim=\dimen186
+\l__tblr_row_abovesep_dim=\dimen187
+\l__tblr_row_belowsep_dim=\dimen188
+\l__tblr_row_vlines_box=\box83
+\l__tblr_vline_box=\box84
+\l__tblr_cell_box=\box85
+\l__row_upper_dim=\dimen189
+\l__row_lower_dim=\dimen190
+\l__row_vpace_dim=\dimen191
+\l__tblr_vline_aboveskip_dim=\dimen192
+\l__tblr_vline_belowskip_dim=\dimen193
+\l__tblr_cell_wd_dim=\dimen194
+\l__tblr_cell_ht_dim=\dimen195
+\l__tblr_diag_box=\box86
+)
+\g__doxy_nohyper_int=\count307
+
+(/usr/share/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2024/01/20 4.5c verbatim text (tvz,hv)
+
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks25
+)
+\FV@CodeLineNo=\count308
+\FV@InFile=\read3
+\FV@TabBox=\box87
+\c@FancyVerbLine=\count309
+\FV@StepNumber=\count310
+\FV@OutFile=\write3
+)
+(/usr/share/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
+\c@tracingmulticols=\count311
+\mult@box=\box88
+\multicol@leftmargin=\dimen196
+\c@unbalance=\count312
+\c@collectmore=\count313
+\doublecol@number=\count314
+\multicoltolerance=\count315
+\multicolpretolerance=\count316
+\full@width=\dimen197
+\page@free=\dimen198
+\premulticols=\dimen199
+\postmulticols=\dimen256
+\multicolsep=\skip61
+\multicolbaselineskip=\skip62
+\partial@page=\box89
+\last@line=\box90
+\mc@boxedresult=\box91
+\maxbalancingoverflow=\dimen257
+\mult@rightbox=\box92
+\mult@grightbox=\box93
+\mult@firstbox=\box94
+\mult@gfirstbox=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\@tempa=\box103
+\@tempa=\box104
+\@tempa=\box105
+\@tempa=\box106
+\@tempa=\box107
+\@tempa=\box108
+\@tempa=\box109
+\@tempa=\box110
+\@tempa=\box111
+\@tempa=\box112
+\@tempa=\box113
+\@tempa=\box114
+\@tempa=\box115
+\@tempa=\box116
+\@tempa=\box117
+\@tempa=\box118
+\@tempa=\box119
+\@tempa=\box120
+\@tempa=\box121
+\@tempa=\box122
+\@tempa=\box123
+\@tempa=\box124
+\@tempa=\box125
+\@tempa=\box126
+\@tempa=\box127
+\@tempa=\box128
+\@tempa=\box129
+\@tempa=\box130
+\@tempa=\box131
+\c@minrows=\count317
+\c@columnbadness=\count318
+\c@finalcolumnbadness=\count319
+\last@try=\dimen258
+\multicolovershoot=\dimen259
+\multicolundershoot=\dimen260
+\mult@nat@firstbox=\box132
+\colbreak@box=\box133
+\mc@col@check@num=\count320
+)
+(/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip63
+\multirow@cntb=\count321
+\multirow@dima=\skip64
+\bigstrutjot=\dimen261
+)
+(/usr/share/texmf-dist/tex/latex/hanging/hanging.sty
+Package: hanging 2009/09/02 v1.2b hanging paragraphs and punctuation
+\h@ngcommawd=\skip65
+\h@ngfstopwd=\skip66
+\h@ngquotewd=\skip67
+\h@ngdquotewd=\skip68
+\h@ngquerywd=\skip69
+\h@ngexclwd=\skip70
+\h@ngcolonwd=\skip71
+\h@ngscolonwd=\skip72
+)
+(/usr/share/texmf-dist/tex/generic/iftex/ifpdf.sty
+Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
+)
+(/usr/share/texmf-dist/tex/latex/adjustbox/adjustbox.sty
+Package: adjustbox 2025/02/26 v1.3c Adjusting TeX boxes (trim, clip, ...)
+
+(/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks26
+\XKV@tempa@toks=\toks27
+)
+\XKV@depth=\count322
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/share/texmf-dist/tex/latex/adjustbox/adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(/usr/share/texmf-dist/tex/latex/adjustbox/trimclip.sty
+Package: trimclip 2025/02/21 v1.2a Trim and clip general TeX material
+
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+)
+\Gin@req@height=\dimen262
+\Gin@req@width=\dimen263
+)
+(/usr/share/texmf-dist/tex/latex/collectbox/collectbox.sty
+Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
+\collectedbox=\box134
+)
+\tc@llx=\dimen264
+\tc@lly=\dimen265
+\tc@urx=\dimen266
+\tc@ury=\dimen267
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+(/usr/share/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
+File: tc-pdftex.def 2025/02/26 v2.3 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen268
+\adjbox@Height=\dimen269
+\adjbox@Depth=\dimen270
+\adjbox@Totalheight=\dimen271
+\adjbox@pwidth=\dimen272
+\adjbox@pheight=\dimen273
+\adjbox@pdepth=\dimen274
+\adjbox@ptotalheight=\dimen275
+
+(/usr/share/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count323
+))
+(/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks28
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texmf-dist/tex/latex/stackengine/stackengine.sty
+Package: stackengine 2021/07/22 v4.11\ Stacking text and objects in convenient 
+ways
+
+
+! LaTeX Error: File `listofitems.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+\c@@stackindex=\count324
+\@boxshift=\skip73
+\stack@tmplength=\skip74
+\temp@stkl=\skip75
+\@stackedboxwidth=\skip76
+\@addedbox=\box135
+\@anchorbox=\box136
+\@insetbox=\box137
+\se@backgroundbox=\box138
+\stackedbox=\box139
+\@centerbox=\box140
+\c@ROWcellindex@=\count325
+) (/usr/share/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip77
+\enit@outerparindent=\dimen276
+\enit@toks=\toks29
+\enit@inbox=\box141
+\enit@count@id=\count326
+\enitdp@description=\count327
+)
+(/usr/share/texmf-dist/tex/generic/alphalph/alphalph.sty
+Package: alphalph 2019/12/09 v2.6 Convert numbers to letters (HO)
+
+(/usr/share/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+))
+
+! LaTeX Error: File `ulem.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+\xrefbox=\box142
+\xreflength=\skip78
+\CodeWidthChar=\skip79
+\CodeHeightChar=\skip80
+\DoxyCodeWidth=\skip81
+\c@DoxyEnumeratei=\count328
+\c@DoxyEnumerateii=\count329
+\c@DoxyEnumerateiii=\count330
+\c@DoxyEnumerateiv=\count331
+\c@DoxyEnumeratev=\count332
+\c@DoxyEnumeratevi=\count333
+\c@DoxyEnumeratevii=\count334
+\c@DoxyEnumerateviii=\count335
+\c@DoxyEnumerateix=\count336
+\c@DoxyEnumeratex=\count337
+\c@DoxyEnumeratexi=\count338
+\c@DoxyEnumeratexii=\count339
+\enitdp@DoxyEnumerate=\count340
+\enitdp@DoxyItemize=\count341
+\c@subsubsubsection=\count342
+\c@subsubsubsubsection=\count343
+\c@subsubsubsubsubsection=\count344
+\c@subsubsubsubsubsubsection=\count345
+) (/usr/share/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks30
+\inpenc@posthook=\toks31
+)
+(/usr/share/texmf-dist/tex/latex/base/makeidx.sty
+Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
+)
+(/usr/share/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
+)
+(/usr/share/texmf-dist/tex/latex/wasysym/wasysym.sty
+Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
+\symwasy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
+(Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
+)
+(/usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+)
+(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(/usr/share/texmf-dist/tex/latex/psnfss/helvet.sty
+Package: helvet 2020/03/25 PSNFSS-v9.3 (WaS) 
+)
+(/usr/share/texmf-dist/tex/latex/psnfss/courier.sty
+Package: courier 2020/03/25 PSNFSS-v9.3 (WaS) 
+)
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count346
+\Gm@cntv=\count347
+\c@Gm@tempcnt=\count348
+\Gm@bindingoffset=\dimen277
+\Gm@wd@mp=\dimen278
+\Gm@odd@mp=\dimen279
+\Gm@even@mp=\dimen280
+\Gm@layoutwidth=\dimen281
+\Gm@layoutheight=\dimen282
+\Gm@layouthoffset=\dimen283
+\Gm@layoutvoffset=\dimen284
+\Gm@dimlist=\toks32
+)
+(/usr/share/texmf-dist/tex/latex/changepage/changepage.sty
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count349
+\cp@tempcnt=\count350
+LaTeX Info: Redefining \checkoddpage on input line 59.
+)
+(/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+
+\f@nch@headwidth=\skip82
+\f@nch@offset@elh=\skip83
+\f@nch@offset@erh=\skip84
+\f@nch@offset@olh=\skip85
+\f@nch@offset@orh=\skip86
+\f@nch@offset@elf=\skip87
+\f@nch@offset@erf=\skip88
+\f@nch@offset@olf=\skip89
+\f@nch@offset@orf=\skip90
+\f@nch@height=\skip91
+\f@nch@footalignment=\skip92
+\f@nch@widthL=\skip93
+\f@nch@widthC=\skip94
+\f@nch@widthR=\skip95
+\@temptokenb=\toks33
+)
+(/usr/share/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip96
+\bibsep=\skip97
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count351
+)
+(/usr/share/texmf-dist/tex/latex/tocloft/tocloft.sty
+Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
+Package tocloft Info: The document has chapter divisions on input line 51.
+\cftparskip=\skip98
+\cftbeforetoctitleskip=\skip99
+\cftaftertoctitleskip=\skip100
+\cftbeforepartskip=\skip101
+\cftpartnumwidth=\skip102
+\cftpartindent=\skip103
+\cftbeforechapskip=\skip104
+\cftchapindent=\skip105
+\cftchapnumwidth=\skip106
+\cftbeforesecskip=\skip107
+\cftsecindent=\skip108
+\cftsecnumwidth=\skip109
+\cftbeforesubsecskip=\skip110
+\cftsubsecindent=\skip111
+\cftsubsecnumwidth=\skip112
+\cftbeforesubsubsecskip=\skip113
+\cftsubsubsecindent=\skip114
+\cftsubsubsecnumwidth=\skip115
+\cftbeforeparaskip=\skip116
+\cftparaindent=\skip117
+\cftparanumwidth=\skip118
+\cftbeforesubparaskip=\skip119
+\cftsubparaindent=\skip120
+\cftsubparanumwidth=\skip121
+\cftbeforeloftitleskip=\skip122
+\cftafterloftitleskip=\skip123
+\cftbeforefigskip=\skip124
+\cftfigindent=\skip125
+\cftfignumwidth=\skip126
+\c@lofdepth=\count352
+\c@lotdepth=\count353
+\cftbeforelottitleskip=\skip127
+\cftafterlottitleskip=\skip128
+\cftbeforetabskip=\skip129
+\cfttabindent=\skip130
+\cfttabnumwidth=\skip131
+)
+\@indexfile=\write4
+\openout4 = `refman.idx'.
+
+
+Writing index file refman.idx
+(/usr/share/texmf-dist/tex/latex/newunicodechar/newunicodechar.sty
+Package: newunicodechar 2018/04/08 v1.2 Defining Unicode characters
+)
+(/usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
+
+(/usr/share/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(/usr/share/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(/usr/share/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+
+(/usr/share/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count354
+)
+(/usr/share/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen285
+\Hy@linkcounter=\count355
+\Hy@pagecounter=\count356
+
+(/usr/share/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+\Hy@SavedSpaceFactor=\count357
+
+(/usr/share/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4157.
+Package hyperref Info: Link nesting OFF on input line 4162.
+Package hyperref Info: Hyper index ON on input line 4165.
+Package hyperref Info: Plain pages OFF on input line 4172.
+Package hyperref Info: Backreferencing ON on input line 4175.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4424.
+
+(/usr/share/texmf-dist/tex/latex/hyperref/backref.sty
+Package: backref 2023-11-26 v1.44 Bibliographical back referencing
+
+(/usr/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texmf-dist/tex/latex/base/atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+(/usr/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+
+(/usr/share/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+85.
+))
+\c@Hy@tempcnt=\count358
+
+(/usr/share/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4763.
+\XeTeXLinkMargin=\dimen286
+
+(/usr/share/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+)
+\Fld@menulength=\count359
+\Field@Width=\dimen287
+\Fld@charsize=\dimen288
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing ON on input line 6055.
+Package hyperref Info: Link coloring OFF on input line 6062.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
+
+(/usr/share/texmf-dist/tex/latex/base/atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count360
+\c@Item=\count361
+\c@Hfootnote=\count362
+)
+Package hyperref Info: Driver: hpdftex.
+
+(/usr/share/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2024-11-05 v7.01l Hyperref driver for pdfTeX
+\Fld@listcount=\count363
+\c@bookmark@seq@number=\count364
+\Hy@SectionHShift=\skip132
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 179.
+Package hyperref Info: Option `unicode' set `true' on input line 179.
+
+(/usr/share/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(/usr/share/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen289
+\captionmargin=\dimen290
+\caption@leftmargin=\dimen291
+\caption@rightmargin=\dimen292
+\caption@width=\dimen293
+\caption@indent=\dimen294
+\caption@parindent=\dimen295
+\caption@hangindent=\dimen296
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count365
+\c@continuedfloat=\count366
+Package caption Info: changepage package is loaded.
+\caption@adjustwidth@hsize=\dimen297
+\caption@adjustwidth@linewidth=\dimen298
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: longtable package is loaded.
+
+(/usr/share/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+))
+(/usr/share/texmf-dist/tex/latex/etoc/etoc.sty
+Package: etoc 2023/10/29 v1.2d Completely customisable TOCs (JFB)
+\Etoc@toctoks=\toks34
+\c@etoc@tocid=\count367
+\etoc@framed@titlebox=\box143
+\etoc@framed@contentsbox=\box144
+)
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 20
+1.
+
+(/usr/share/texmf-dist/tex/latex/psnfss/t1phv.fd
+File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
+)
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 8.99994pt on input line 201.
+ (./refman.aux
+
+LaTeX Warning: Label `doc-variable-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-variable-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-variable-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-variable-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-typedef-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-enum-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-func-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-func-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-func-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-func-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-func-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-func-members' multiply defined.
+
+
+LaTeX Warning: Label `doc-func-members' multiply defined.
+
+)
+\openout1 = `refman.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 201.
+LaTeX Font Info:    ... okay on input line 201.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 201.
+LaTeX Font Info:    ... okay on input line 201.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 201.
+LaTeX Font Info:    ... okay on input line 201.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 201.
+LaTeX Font Info:    ... okay on input line 201.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 201.
+LaTeX Font Info:    ... okay on input line 201.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 201.
+LaTeX Font Info:    ... okay on input line 201.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 201.
+LaTeX Font Info:    ... okay on input line 201.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 201.
+LaTeX Font Info:    ... okay on input line 201.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 201.
+LaTeX Font Info:    ... okay on input line 201.
+ (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count368
+\scratchdimen=\dimen299
+\scratchbox=\box145
+\nofMPsegments=\count369
+\nofMParguments=\count370
+\everyMPshowfont=\toks35
+\MPscratchCnt=\count371
+\MPscratchDim=\dimen300
+\MPnumerator=\count372
+\makeMPintoPDFobject=\count373
+\everyMPtoPDFconversion=\toks36
+) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+(/usr/share/texmf-dist/tex/latex/ninecolors/ninecolors.sty
+Package: ninecolors 2022-02-13 v2022D Select colors with proper color contrast
+
+(/usr/share/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2024-08-16 L3 Experimental document command parser
+))
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=702.78308pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-31.2056pt
+* \headheight=12.0pt
+* \headsep=18.06749pt
+* \topskip=10.0pt
+* \footskip=25.29494pt
+* \marginparwidth=125.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package backref Info: ** backref set up for natbib ** on input line 201.
+Package hyperref Info: Link coloring ON on input line 201.
+(./refman.out) (./refman.out)
+\@outlinefile=\write5
+\openout5 = `refman.out'.
+
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+\Etoc@tf=\read4
+Package hyperref Info: Option `pageanchor' set `false' on input line 209.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 209.
+
+Package hyperref Info: Option `unicode' set `true' on input line 209.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 12.9599pt on input line 214.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 10.79993pt on input line 216.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 6.29996pt on input line 216.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 216
+.
+ (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 216
+.
+ (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 21
+6.
+
+(/usr/share/texmf-dist/tex/latex/wasysym/uwasy.fd
+File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
+)
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 8.09995pt on input line 218.
+
+
+[1
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts
+/enc/dvips/base/8r.enc}]
+
+[2
+
+]
+\tf@toc=\write6
+\openout6 = `refman.toc'.
+
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 8.99994pt on input line 224.
+
+
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 6.29996pt on input line 224.
+[1]
+
+[2]
+
+[3]
+
+[4]
+
+[5]
+
+[6
+
+]
+Package hyperref Info: Option `pageanchor' set `true' on input line 227.
+ (./todo.tex
+Chapter 1.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 18.66588pt on input line 1.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 18.66588pt on input line 1.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 22.39185pt on input line 1.
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--9
+
+ []
+
+)
+
+[1
+
+]
+
+[2
+
+]
+Chapter 2.
+(./dirs.tex
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 12.9599pt on input line 1.
+)
+
+[3]
+
+[4
+
+]
+Chapter 3.
+(./annotated.tex
+LaTeX Font Info:    Trying to load font information for TS1+phv on input line 3
+.
+ (/usr/share/texmf-dist/tex/latex/psnfss/ts1phv.fd
+File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
+)
+LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
+(Font)              scaled to size 8.99994pt on input line 3.
+)
+
+[5]
+
+[6
+
+]
+Chapter 4.
+(./files.tex)
+
+[7]
+
+[8
+
+]
+Chapter 5.
+(./dir_e329c085c30b4489013b816a7501fa26.tex <./dir_e329c085c30b4489013b816a7501
+fa26_dep.pdf>
+<dir_e329c085c30b4489013b816a7501fa26_dep.pdf, id=1057, 158.5925pt x 154.5775pt
+>
+File: dir_e329c085c30b4489013b816a7501fa26_dep.pdf Graphic file (type pdf)
+<use dir_e329c085c30b4489013b816a7501fa26_dep.pdf>
+Package pdftex.def Info: dir_e329c085c30b4489013b816a7501fa26_dep.pdf  used on 
+input line 7.
+(pdftex.def)             Requested size: 158.0pt x 154.01338pt.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 16.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 8.09995pt on input line 16.
+) (./dir_aebb8dcc11953d78e620bbef0b9e2183.tex <./dir_aebb8dcc11953d78e620bbef0b
+9e2183_dep.pdf>
+<dir_aebb8dcc11953d78e620bbef0b9e2183_dep.pdf, id=1069, 150.5625pt x 194.7275pt
+>
+File: dir_aebb8dcc11953d78e620bbef0b9e2183_dep.pdf Graphic file (type pdf)
+<use dir_aebb8dcc11953d78e620bbef0b9e2183_dep.pdf>
+Package pdftex.def Info: dir_aebb8dcc11953d78e620bbef0b9e2183_dep.pdf  used on 
+input line 7.
+(pdftex.def)             Requested size: 150.0pt x 194.01686pt.
+
+
+[9]) (./dir_c86603f79b902ad390ffc2674fbc4470.tex <./dir_c86603f79b902ad390ffc26
+74fbc4470_dep.pdf>
+<dir_c86603f79b902ad390ffc2674fbc4470_dep.pdf, id=1089, 144.54pt x 194.7275pt>
+File: dir_c86603f79b902ad390ffc2674fbc4470_dep.pdf Graphic file (type pdf)
+<use dir_c86603f79b902ad390ffc2674fbc4470_dep.pdf>
+Package pdftex.def Info: dir_c86603f79b902ad390ffc2674fbc4470_dep.pdf  used on 
+input line 7.
+(pdftex.def)             Requested size: 144.0pt x 194.01091pt.
+) (./dir_d44c64559bbebec7f509842c48db8b23.tex
+
+[10]) (./dir_1f6e0c4656fa8537bb95d4658659e347.tex <./dir_1f6e0c4656fa8537bb95d4
+658659e347_dep.pdf>
+<dir_1f6e0c4656fa8537bb95d4658659e347_dep.pdf, id=1111, 158.5925pt x 194.7275pt
+>
+File: dir_1f6e0c4656fa8537bb95d4658659e347_dep.pdf Graphic file (type pdf)
+<use dir_1f6e0c4656fa8537bb95d4658659e347_dep.pdf>
+Package pdftex.def Info: dir_1f6e0c4656fa8537bb95d4658659e347_dep.pdf  used on 
+input line 7.
+(pdftex.def)             Requested size: 158.0pt x 194.01686pt.
+) (./dir_68267d1309a1af8e8297ef4c3efbcdba.tex <./dir_68267d1309a1af8e8297ef4c3e
+fbcdba_dep.pdf>
+<dir_68267d1309a1af8e8297ef4c3efbcdba_dep.pdf, id=1121, 312.16624pt x 174.6525p
+t>
+File: dir_68267d1309a1af8e8297ef4c3efbcdba_dep.pdf Graphic file (type pdf)
+<use dir_68267d1309a1af8e8297ef4c3efbcdba_dep.pdf>
+Package pdftex.def Info: dir_68267d1309a1af8e8297ef4c3efbcdba_dep.pdf  used on 
+input line 7.
+(pdftex.def)             Requested size: 311.0pt x 174.00447pt.
+
+
+[11])
+
+[12]
+Chapter 6.
+(./structGfxAPI.tex
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 10
+.
+ (/usr/share/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+) <./structGfxAPI__coll__graph.pdf>
+<structGfxAPI__coll__graph.pdf, id=1150, 209.78375pt x 176.66pt>
+File: structGfxAPI__coll__graph.pdf Graphic file (type pdf)
+<use structGfxAPI__coll__graph.pdf>
+Package pdftex.def Info: structGfxAPI__coll__graph.pdf  used on input line 18.
+(pdftex.def)             Requested size: 209.0pt x 175.99913pt.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 10.79993pt on input line 30.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 7.19995pt on input line 43.
+
+Overfull \hbox (17.75642pt too wide) in paragraph at lines 44--45
+[][] $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 ($\OMS/cmsy/m/n/8 ^^C$ \T1/pcr/m/n/8 Gf
+x[]API[]::gfx[]_[]create[]_[]device) ([] $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 , [
+] $\OMS/cmsy/m/n/8 ^^C$\T1/pcr/m/n/8 , const []
+ []
+
+
+
+[13
+
+]) (./structGfxContainer.tex <./structGfxContainer__coll__graph.pdf>
+<structGfxContainer__coll__graph.pdf, id=1196, 242.9075pt x 252.945pt>
+File: structGfxContainer__coll__graph.pdf Graphic file (type pdf)
+<use structGfxContainer__coll__graph.pdf>
+Package pdftex.def Info: structGfxContainer__coll__graph.pdf  used on input lin
+e 13.
+(pdftex.def)             Requested size: 242.0pt x 251.99876pt.
+
+
+[14]) (./structGfxDevice.tex
+
+[15]
+
+[16]) (./structGfxInitInfo.tex
+
+[17]) (./structSVec.tex
+
+[18])
+
+[19]
+
+[20
+
+]
+Chapter 7.
+(./canim_8h.tex <./canim_8h__incl.pdf>
+<canim_8h__incl.pdf, id=1377, 265.99374pt x 329.23pt>
+File: canim_8h__incl.pdf Graphic file (type pdf)
+<use canim_8h__incl.pdf>
+Package pdftex.def Info: canim_8h__incl.pdf  used on input line 10.
+(pdftex.def)             Requested size: 265.0pt x 328.02853pt.
+) (./canim_8h_source.tex
+
+[21]) (./core_8h.tex <./core_8h__incl.pdf>
+<core_8h__incl.pdf, id=1395, 222.8325pt x 158.5925pt>
+File: core_8h__incl.pdf Graphic file (type pdf)
+<use core_8h__incl.pdf>
+Package pdftex.def Info: core_8h__incl.pdf  used on input line 14.
+(pdftex.def)             Requested size: 222.0pt x 158.00162pt.
+ <./core_8h__dep__incl.pdf>
+<core_8h__dep__incl.pdf, id=1403, 795.97375pt x 272.01625pt>
+File: core_8h__dep__incl.pdf Graphic file (type pdf)
+<use core_8h__dep__incl.pdf>
+Package pdftex.def Info: core_8h__dep__incl.pdf  used on input line 21.
+(pdftex.def)             Requested size: 350.0pt x 119.60864pt.
+LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
+(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 35.
+LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
+(Font)              scaled to size 8.09995pt on input line 35.
+
+
+[22]
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 47.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 6.29996pt on input line 47.
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--101
+[] \T1/phv/m/n/10 , [] , [] ,
+ []
+
+
+Underfull \hbox (badness 6300) in paragraph at lines 82--101
+[] \T1/phv/m/n/10 , [] , [] ,
+ []
+
+
+Overfull \hbox (16.04439pt too wide) in paragraph at lines 82--101
+[] \T1/phv/m/n/10 , [] , []
+ []
+
+
+
+[23]
+
+[24]
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 177.
+
+
+[25]
+
+[26]
+
+[27]
+
+[28]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+
+
+Package tabularray Warning: Table width is too small, need 103.7894pt more!
+
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[29]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 649.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 8.99994pt on input line 649.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[30]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[31]
+LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
+(Font)              scaled to size 8.99994pt on input line 733.
+
+Underfull \hbox (badness 10000) detected at line 733
+[][][]
+ []
+
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+Underfull \hbox (badness 10000) detected at line 751
+[][][]
+ []
+
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+Underfull \hbox (badness 10000) detected at line 769
+[][][]
+ []
+
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[32]
+Underfull \hbox (badness 10000) detected at line 787
+[][][]
+ []
+
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+Underfull \hbox (badness 10000) detected at line 805
+[][][]
+ []
+
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+Underfull \hbox (badness 10000) detected at line 823
+[][][]
+ []
+
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[33]
+Underfull \hbox (badness 10000) detected at line 841
+[][][]
+ []
+
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+Underfull \hbox (badness 10000) detected at line 859
+[][][]
+ []
+
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+Underfull \hbox (badness 10000) detected at line 877
+[][][]
+ []
+
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[34]
+Underfull \hbox (badness 10000) detected at line 895
+[][][]
+ []
+
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+Underfull \hbox (badness 10000) detected at line 934
+[][][]
+ []
+
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 941.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[35]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[36]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[37]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[38]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+) (./core_8h_source.tex
+
+[39]
+
+[40]
+
+[41]
+
+[42]) (./gfx_8h.tex <./gfx_8h__incl.pdf>
+<gfx_8h__incl.pdf, id=2249, 265.99374pt x 214.8025pt>
+File: gfx_8h__incl.pdf Graphic file (type pdf)
+<use gfx_8h__incl.pdf>
+Package pdftex.def Info: gfx_8h__incl.pdf  used on input line 9.
+(pdftex.def)             Requested size: 265.0pt x 214.01862pt.
+
+
+[43] <./gfx_8h__dep__incl.pdf>
+<gfx_8h__dep__incl.pdf, id=2318, 476.78125pt x 214.8025pt>
+File: gfx_8h__dep__incl.pdf Graphic file (type pdf)
+<use gfx_8h__dep__incl.pdf>
+Package pdftex.def Info: gfx_8h__dep__incl.pdf  used on input line 16.
+(pdftex.def)             Requested size: 350.0pt x 157.69275pt.
+
+
+[44]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+) (./gfx_8h_source.tex
+
+[45]) (./loader_8h.tex <./loader_8h__incl.pdf>
+<loader_8h__incl.pdf, id=2424, 265.99374pt x 272.01625pt>
+File: loader_8h__incl.pdf Graphic file (type pdf)
+<use loader_8h__incl.pdf>
+Package pdftex.def Info: loader_8h__incl.pdf  used on input line 9.
+(pdftex.def)             Requested size: 265.0pt x 271.02357pt.
+
+
+[46] <./loader_8h__dep__incl.pdf>
+<loader_8h__dep__incl.pdf, id=2467, 331.2375pt x 158.5925pt>
+File: loader_8h__dep__incl.pdf Graphic file (type pdf)
+<use loader_8h__dep__incl.pdf>
+Package pdftex.def Info: loader_8h__dep__incl.pdf  used on input line 16.
+(pdftex.def)             Requested size: 330.0pt x 158.00645pt.
+
+
+[47]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+Underfull \hbox (badness 10000) detected at line 50
+[][][]
+ []
+
+ <./loader_8h_a5c2ee9066b7681dcd16d550adda4dfb2_cgraph.pdf>
+<loader_8h_a5c2ee9066b7681dcd16d550adda4dfb2_cgraph.pdf, id=2519, 343.2825pt x 
+101.37875pt>
+File: loader_8h_a5c2ee9066b7681dcd16d550adda4dfb2_cgraph.pdf Graphic file (type
+ pdf)
+<use loader_8h_a5c2ee9066b7681dcd16d550adda4dfb2_cgraph.pdf>
+Package pdftex.def Info: loader_8h_a5c2ee9066b7681dcd16d550adda4dfb2_cgraph.pdf
+  used on input line 84.
+(pdftex.def)             Requested size: 342.0pt x 100.9995pt.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[48]
+
+[49]) (./loader_8h_source.tex) (./core_8c.tex <./core_8c__incl.pdf>
+<core_8c__incl.pdf, id=2562, 333.245pt x 214.8025pt>
+File: core_8c__incl.pdf Graphic file (type pdf)
+<use core_8c__incl.pdf>
+Package pdftex.def Info: core_8c__incl.pdf  used on input line 10.
+(pdftex.def)             Requested size: 332.0pt x 214.01534pt.
+
+
+[50]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+
+[51]) (./core_8c_source.tex) (./endian_8c.tex <./endian_8c__incl.pdf>
+<endian_8c__incl.pdf, id=2645, 286.06876pt x 214.8025pt>
+File: endian_8c__incl.pdf Graphic file (type pdf)
+<use endian_8c__incl.pdf>
+Package pdftex.def Info: endian_8c__incl.pdf  used on input line 10.
+(pdftex.def)             Requested size: 285.0pt x 214.00223pt.
+
+
+[52]
+
+[53] <./endian_8c_a268b70d8a95acb3af5751990bb6b3fce_cgraph.pdf>
+<endian_8c_a268b70d8a95acb3af5751990bb6b3fce_cgraph.pdf, id=2773, 271.0125pt x 
+101.37875pt>
+File: endian_8c_a268b70d8a95acb3af5751990bb6b3fce_cgraph.pdf Graphic file (type
+ pdf)
+<use endian_8c_a268b70d8a95acb3af5751990bb6b3fce_cgraph.pdf>
+Package pdftex.def Info: endian_8c_a268b70d8a95acb3af5751990bb6b3fce_cgraph.pdf
+  used on input line 85.
+(pdftex.def)             Requested size: 270.0pt x 101.00414pt.
+ <./endian_8c_a11200224381a57518fb24e5dd6f124af_cgraph.pdf>
+<endian_8c_a11200224381a57518fb24e5dd6f124af_cgraph.pdf, id=2784, 271.0125pt x 
+101.37875pt>
+File: endian_8c_a11200224381a57518fb24e5dd6f124af_cgraph.pdf Graphic file (type
+ pdf)
+<use endian_8c_a11200224381a57518fb24e5dd6f124af_cgraph.pdf>
+Package pdftex.def Info: endian_8c_a11200224381a57518fb24e5dd6f124af_cgraph.pdf
+  used on input line 112.
+(pdftex.def)             Requested size: 270.0pt x 101.00414pt.
+
+
+[54] <./endian_8c_a17b82d598240d8fb05f46ece4283e840_icgraph.pdf>
+<endian_8c_a17b82d598240d8fb05f46ece4283e840_icgraph.pdf, id=2807, 271.0125pt x
+ 101.37875pt>
+File: endian_8c_a17b82d598240d8fb05f46ece4283e840_icgraph.pdf Graphic file (typ
+e pdf)
+<use endian_8c_a17b82d598240d8fb05f46ece4283e840_icgraph.pdf>
+Package pdftex.def Info: endian_8c_a17b82d598240d8fb05f46ece4283e840_icgraph.pd
+f  used on input line 154.
+(pdftex.def)             Requested size: 270.0pt x 101.00414pt.
+ <./endian_8c_a150e220651832c537f784fba6e530bc7_icgraph.pdf>
+<endian_8c_a150e220651832c537f784fba6e530bc7_icgraph.pdf, id=2817, 271.0125pt x
+ 101.37875pt>
+File: endian_8c_a150e220651832c537f784fba6e530bc7_icgraph.pdf Graphic file (typ
+e pdf)
+<use endian_8c_a150e220651832c537f784fba6e530bc7_icgraph.pdf>
+Package pdftex.def Info: endian_8c_a150e220651832c537f784fba6e530bc7_icgraph.pd
+f  used on input line 181.
+(pdftex.def)             Requested size: 270.0pt x 101.00414pt.
+
+
+[55] <./endian_8c_a4a12d5b3e99b9c91339f27ff5cdeaee5_cgraph.pdf>
+<endian_8c_a4a12d5b3e99b9c91339f27ff5cdeaee5_cgraph.pdf, id=2838, 264.99pt x 10
+1.37875pt>
+File: endian_8c_a4a12d5b3e99b9c91339f27ff5cdeaee5_cgraph.pdf Graphic file (type
+ pdf)
+<use endian_8c_a4a12d5b3e99b9c91339f27ff5cdeaee5_cgraph.pdf>
+Package pdftex.def Info: endian_8c_a4a12d5b3e99b9c91339f27ff5cdeaee5_cgraph.pdf
+  used on input line 208.
+(pdftex.def)             Requested size: 264.0pt x 101.00723pt.
+ <./endian_8c_a1af1db5fa8e434820befad352e247d67_cgraph.pdf>
+<endian_8c_a1af1db5fa8e434820befad352e247d67_cgraph.pdf, id=2849, 264.99pt x 10
+1.37875pt>
+File: endian_8c_a1af1db5fa8e434820befad352e247d67_cgraph.pdf Graphic file (type
+ pdf)
+<use endian_8c_a1af1db5fa8e434820befad352e247d67_cgraph.pdf>
+Package pdftex.def Info: endian_8c_a1af1db5fa8e434820befad352e247d67_cgraph.pdf
+  used on input line 235.
+(pdftex.def)             Requested size: 264.0pt x 101.00723pt.
+
+
+[56] <./endian_8c_ae19cf2dc6177e2dad2c3f46165a7b1b8_icgraph.pdf>
+<endian_8c_ae19cf2dc6177e2dad2c3f46165a7b1b8_icgraph.pdf, id=2871, 264.99pt x 1
+01.37875pt>
+File: endian_8c_ae19cf2dc6177e2dad2c3f46165a7b1b8_icgraph.pdf Graphic file (typ
+e pdf)
+<use endian_8c_ae19cf2dc6177e2dad2c3f46165a7b1b8_icgraph.pdf>
+Package pdftex.def Info: endian_8c_ae19cf2dc6177e2dad2c3f46165a7b1b8_icgraph.pd
+f  used on input line 277.
+(pdftex.def)             Requested size: 264.0pt x 101.00723pt.
+ <./endian_8c_ac92232f9a68f86f70f658e910462d9f7_icgraph.pdf>
+<endian_8c_ac92232f9a68f86f70f658e910462d9f7_icgraph.pdf, id=2881, 264.99pt x 1
+01.37875pt>
+File: endian_8c_ac92232f9a68f86f70f658e910462d9f7_icgraph.pdf Graphic file (typ
+e pdf)
+<use endian_8c_ac92232f9a68f86f70f658e910462d9f7_icgraph.pdf>
+Package pdftex.def Info: endian_8c_ac92232f9a68f86f70f658e910462d9f7_icgraph.pd
+f  used on input line 304.
+(pdftex.def)             Requested size: 264.0pt x 101.00723pt.
+ <./endian_8c_ad51a6a64ab5dc4ba254a9906f5c72ff7_cgraph.pdf>
+<endian_8c_ad51a6a64ab5dc4ba254a9906f5c72ff7_cgraph.pdf, id=2892, 277.035pt x 1
+01.37875pt>
+File: endian_8c_ad51a6a64ab5dc4ba254a9906f5c72ff7_cgraph.pdf Graphic file (type
+ pdf)
+<use endian_8c_ad51a6a64ab5dc4ba254a9906f5c72ff7_cgraph.pdf>
+Package pdftex.def Info: endian_8c_ad51a6a64ab5dc4ba254a9906f5c72ff7_cgraph.pdf
+  used on input line 330.
+(pdftex.def)             Requested size: 276.0pt x 101.00104pt.
+
+
+[57] <./endian_8c_acbb5b7c722a3159a437f3c0ea631390c_cgraph.pdf>
+<endian_8c_acbb5b7c722a3159a437f3c0ea631390c_cgraph.pdf, id=2912, 277.035pt x 1
+01.37875pt>
+File: endian_8c_acbb5b7c722a3159a437f3c0ea631390c_cgraph.pdf Graphic file (type
+ pdf)
+<use endian_8c_acbb5b7c722a3159a437f3c0ea631390c_cgraph.pdf>
+Package pdftex.def Info: endian_8c_acbb5b7c722a3159a437f3c0ea631390c_cgraph.pdf
+  used on input line 356.
+(pdftex.def)             Requested size: 276.0pt x 101.00104pt.
+
+
+[58] <./endian_8c_a374662ee5049fcc5c08ffb945cc1fd30_icgraph.pdf>
+<endian_8c_a374662ee5049fcc5c08ffb945cc1fd30_icgraph.pdf, id=2935, 277.035pt x 
+101.37875pt>
+File: endian_8c_a374662ee5049fcc5c08ffb945cc1fd30_icgraph.pdf Graphic file (typ
+e pdf)
+<use endian_8c_a374662ee5049fcc5c08ffb945cc1fd30_icgraph.pdf>
+Package pdftex.def Info: endian_8c_a374662ee5049fcc5c08ffb945cc1fd30_icgraph.pd
+f  used on input line 401.
+(pdftex.def)             Requested size: 276.0pt x 101.00104pt.
+ <./endian_8c_a50879eccdead204d431798be504cbc98_icgraph.pdf>
+<endian_8c_a50879eccdead204d431798be504cbc98_icgraph.pdf, id=2945, 277.035pt x 
+101.37875pt>
+File: endian_8c_a50879eccdead204d431798be504cbc98_icgraph.pdf Graphic file (typ
+e pdf)
+<use endian_8c_a50879eccdead204d431798be504cbc98_icgraph.pdf>
+Package pdftex.def Info: endian_8c_a50879eccdead204d431798be504cbc98_icgraph.pd
+f  used on input line 432.
+(pdftex.def)             Requested size: 276.0pt x 101.00104pt.
+
+
+[59] <./endian_8c_a9c8fc375138d7e490b712df49a63ccd1_cgraph.pdf>
+<endian_8c_a9c8fc375138d7e490b712df49a63ccd1_cgraph.pdf, id=2966, 271.0125pt x 
+101.37875pt>
+File: endian_8c_a9c8fc375138d7e490b712df49a63ccd1_cgraph.pdf Graphic file (type
+ pdf)
+<use endian_8c_a9c8fc375138d7e490b712df49a63ccd1_cgraph.pdf>
+Package pdftex.def Info: endian_8c_a9c8fc375138d7e490b712df49a63ccd1_cgraph.pdf
+  used on input line 458.
+(pdftex.def)             Requested size: 270.0pt x 101.00414pt.
+ <./endian_8c_afa17613bc9fe43b4652854aae9bce3f2_cgraph.pdf>
+<endian_8c_afa17613bc9fe43b4652854aae9bce3f2_cgraph.pdf, id=2977, 271.0125pt x 
+101.37875pt>
+File: endian_8c_afa17613bc9fe43b4652854aae9bce3f2_cgraph.pdf Graphic file (type
+ pdf)
+<use endian_8c_afa17613bc9fe43b4652854aae9bce3f2_cgraph.pdf>
+Package pdftex.def Info: endian_8c_afa17613bc9fe43b4652854aae9bce3f2_cgraph.pdf
+  used on input line 484.
+(pdftex.def)             Requested size: 270.0pt x 101.00414pt.
+
+
+[60] <./endian_8c_adfd0e05cfd26462597bac695a832095d_icgraph.pdf>
+<endian_8c_adfd0e05cfd26462597bac695a832095d_icgraph.pdf, id=2999, 271.0125pt x
+ 101.37875pt>
+File: endian_8c_adfd0e05cfd26462597bac695a832095d_icgraph.pdf Graphic file (typ
+e pdf)
+<use endian_8c_adfd0e05cfd26462597bac695a832095d_icgraph.pdf>
+Package pdftex.def Info: endian_8c_adfd0e05cfd26462597bac695a832095d_icgraph.pd
+f  used on input line 529.
+(pdftex.def)             Requested size: 270.0pt x 101.00414pt.
+ <./endian_8c_a32a83a1ffa627b785662424f22a16aa7_icgraph.pdf>
+<endian_8c_a32a83a1ffa627b785662424f22a16aa7_icgraph.pdf, id=3009, 271.0125pt x
+ 101.37875pt>
+File: endian_8c_a32a83a1ffa627b785662424f22a16aa7_icgraph.pdf Graphic file (typ
+e pdf)
+<use endian_8c_a32a83a1ffa627b785662424f22a16aa7_icgraph.pdf>
+Package pdftex.def Info: endian_8c_a32a83a1ffa627b785662424f22a16aa7_icgraph.pd
+f  used on input line 560.
+(pdftex.def)             Requested size: 270.0pt x 101.00414pt.
+) (./endian_8c_source.tex
+
+[61]
+
+[62]) (./svec_8c.tex <./svec_8c__incl.pdf>
+<svec_8c__incl.pdf, id=3152, 401.5pt x 214.8025pt>
+File: svec_8c__incl.pdf Graphic file (type pdf)
+<use svec_8c__incl.pdf>
+Package pdftex.def Info: svec_8c__incl.pdf  used on input line 11.
+(pdftex.def)             Requested size: 350.0pt x 187.26341pt.
+
+
+[63]
+
+[64]
+
+[65]) (./svec_8c_source.tex
+
+[66]) (./gl_8c.tex <./gl_8c__incl.pdf>
+<gl_8c__incl.pdf, id=3431, 897.3525pt x 272.01625pt>
+File: gl_8c__incl.pdf Graphic file (type pdf)
+<use gl_8c__incl.pdf>
+Package pdftex.def Info: gl_8c__incl.pdf  used on input line 16.
+(pdftex.def)             Requested size: 350.0pt x 106.09421pt.
+
+
+[67]
+
+[68]
+
+[69]) (./gl_8c_source.tex
+
+[70]) (./vk_8c.tex <./vk_8c__incl.pdf>
+<vk_8c__incl.pdf, id=3771, 578.16pt x 272.01625pt>
+File: vk_8c__incl.pdf Graphic file (type pdf)
+<use vk_8c__incl.pdf>
+Package pdftex.def Info: vk_8c__incl.pdf  used on input line 12.
+(pdftex.def)             Requested size: 350.0pt x 164.66788pt.
+
+
+[71]
+
+[72]) (./vk_8c_source.tex
+
+[73]) (./loader_8c.tex
+
+[74] <./loader_8c__incl.pdf>
+<loader_8c__incl.pdf, id=4051, 374.39874pt x 329.23pt>
+File: loader_8c__incl.pdf Graphic file (type pdf)
+<use loader_8c__incl.pdf>
+Package pdftex.def Info: loader_8c__incl.pdf  used on input line 11.
+(pdftex.def)             Requested size: 350.0pt x 307.79332pt.
+
+
+[75] <./loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb_icgraph.pdf>
+<loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb_icgraph.pdf, id=4084, 343.2825pt x
+ 101.37875pt>
+File: loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb_icgraph.pdf Graphic file (typ
+e pdf)
+<use loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb_icgraph.pdf>
+Package pdftex.def Info: loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb_icgraph.pd
+f  used on input line 55.
+(pdftex.def)             Requested size: 342.0pt x 100.9995pt.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+
+Underfull \hbox (badness 10000) detected at line 77
+[][][]
+ []
+
+ <./loader_8c_a6c04f97ea86cef300b5218ac73914c0a_cgraph.pdf>
+<loader_8c_a6c04f97ea86cef300b5218ac73914c0a_cgraph.pdf, id=4113, 343.2825pt x 
+101.37875pt>
+File: loader_8c_a6c04f97ea86cef300b5218ac73914c0a_cgraph.pdf Graphic file (type
+ pdf)
+<use loader_8c_a6c04f97ea86cef300b5218ac73914c0a_cgraph.pdf>
+Package pdftex.def Info: loader_8c_a6c04f97ea86cef300b5218ac73914c0a_cgraph.pdf
+  used on input line 111.
+(pdftex.def)             Requested size: 342.0pt x 100.9995pt.
+
+
+[76]
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+> Step: init table outer spec.
+> Step: parse table options.
+> Step: split table.
+> Step: init table inner spec.
+> Step: parse table inner spec.
+> Step: execute table commands.
+> Step: calculate cell and line sizes.
+> Step: build the whole table.
+) (./loader_8c_source.tex
+
+[77])
+
+[78] (./refman.ind
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 22.39185pt on input line 1.
+
+
+
+
+[79
+
+
+
+]
+
+
+
+[80]
+
+
+
+[81]
+
+
+
+[82
+
+]) (./refman.aux)
+ ***********
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+ ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package rerunfilecheck Info: File `refman.out' has not changed.
+(rerunfilecheck)             Checksum: 0D531D79728AE685DE9CAC5C06D6AA04;33367.
+ ) 
+Here is how much of TeX's memory you used:
+ 22453 strings out of 475171
+ 411332 string characters out of 5767094
+ 1065927 words of memory out of 5000000
+ 43531 multiletter control sequences out of 15000+600000
+ 685668 words of font info for 315 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 101i,16n,122p,1499b,1271s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/s
+hare/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts
+/type1/urw/courier/ucrro8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/
+uhvb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/sh
+are/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-dist/fonts
+/type1/urw/helvetic/uhvro8a.pfb>
+Output written on refman.pdf (90 pages, 566866 bytes).
+PDF statistics:
+ 4911 PDF objects out of 5155 (max. 8388607)
+ 4568 compressed objects within 46 object streams
+ 1510 named destinations out of 1728 (max. 500000)
+ 1628 words of extra memory for PDF output out of 10000 (max. 10000000)
+

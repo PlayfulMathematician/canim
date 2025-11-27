@@ -1,0 +1,182 @@
+\doxysection{src/core/svec.c File Reference}
+\hypertarget{svec_8c}{}\label{svec_8c}\index{src/core/svec.c@{src/core/svec.c}}
+{\ttfamily \#include "{}canim/core.\+h"{}}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for svec.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{svec_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{svec_8c_a9032db0576bfbb582beba2d56f3cbc14}{svec\+\_\+init}} (\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}result, \mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}v, size\+\_\+t elem\+\_\+size)
+\item 
+static void \mbox{\hyperlink{svec_8c_ab6e2ae429a976b1719117ab03bd2f4af}{svec\+\_\+free}} (\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}result, \mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}v)
+\item 
+static void \mbox{\hyperlink{svec_8c_ae4120a038705f5e95bd7249d66ae5baa}{svec\+\_\+push}} (\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}result, \mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}v, const void \texorpdfstring{$\ast$}{*}elem)
+\item 
+static void \mbox{\hyperlink{svec_8c_a5c6647d0c513bb66126811a5e813ff7e}{svec\+\_\+pop}} (\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}result, \mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}v, void \texorpdfstring{$\ast$}{*}out)
+\item 
+static void \mbox{\hyperlink{svec_8c_a94c039bf8ed5efcf5c7f909bda4c82c4}{svec\+\_\+set}} (\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}result, \mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}v, size\+\_\+t i, const void \texorpdfstring{$\ast$}{*}elem)
+\item 
+static void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{svec_8c_ac4896c48bfd0c023dbc854785f3e1c7b}{svec\+\_\+get}} (\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}result, \mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}v, size\+\_\+t i)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{svec_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{svec_8c_ab6e2ae429a976b1719117ab03bd2f4af}\index{svec.c@{svec.c}!svec\_free@{svec\_free}}
+\index{svec\_free@{svec\_free}!svec.c@{svec.c}}
+\doxysubsubsection{\texorpdfstring{svec\_free()}{svec\_free()}}
+{\footnotesize\ttfamily \label{svec_8c_ab6e2ae429a976b1719117ab03bd2f4af} 
+void svec\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{svec_8c_source_l00018}{18}} of file \mbox{\hyperlink{svec_8c_source}{svec.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00019\ \ \ free(v-\/>\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}});}
+\DoxyCodeLine{00020\ \ \ v-\/>\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}}\ =\ NULL;}
+\DoxyCodeLine{00021\ \ \ v-\/>\mbox{\hyperlink{structSVec_a7a49363339d0cf325123987bd941dd84}{list\_size}}\ =\ 0;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ *result\ =\ \mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{00024\ \}}
+
+\end{DoxyCode}
+\Hypertarget{svec_8c_ac4896c48bfd0c023dbc854785f3e1c7b}\index{svec.c@{svec.c}!svec\_get@{svec\_get}}
+\index{svec\_get@{svec\_get}!svec.c@{svec.c}}
+\doxysubsubsection{\texorpdfstring{svec\_get()}{svec\_get()}}
+{\footnotesize\ttfamily \label{svec_8c_ac4896c48bfd0c023dbc854785f3e1c7b} 
+void \texorpdfstring{$\ast$}{*} svec\+\_\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}}]{v}{, }\item[{size\+\_\+t}]{i}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{svec_8c_source_l00074}{74}} of file \mbox{\hyperlink{svec_8c_source}{svec.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ *result\ =\ \mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordflow}{return}\ v-\/>\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}}\ +\ i\ *\ v-\/>\mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{element\_size}};}
+\DoxyCodeLine{00077\ \}}
+
+\end{DoxyCode}
+\Hypertarget{svec_8c_a9032db0576bfbb582beba2d56f3cbc14}\index{svec.c@{svec.c}!svec\_init@{svec\_init}}
+\index{svec\_init@{svec\_init}!svec.c@{svec.c}}
+\doxysubsubsection{\texorpdfstring{svec\_init()}{svec\_init()}}
+{\footnotesize\ttfamily \label{svec_8c_a9032db0576bfbb582beba2d56f3cbc14} 
+void svec\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}}]{v}{, }\item[{size\+\_\+t}]{elem\+\_\+size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{svec_8c_source_l00007}{7}} of file \mbox{\hyperlink{svec_8c_source}{svec.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00008\ \ \ \textcolor{keywordflow}{if}\ (elem\_size\ ==\ 0)\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a947000974e3ae28975b1ece6aee26e13}{SVEC\_ZERO\_ELEMENT\_SIZE}};}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00011\ \ \ \}}
+\DoxyCodeLine{00012\ \ \ v-\/>\mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{element\_size}}\ =\ elem\_size;}
+\DoxyCodeLine{00013\ \ \ v-\/>\mbox{\hyperlink{structSVec_a7a49363339d0cf325123987bd941dd84}{list\_size}}\ =\ 0;}
+\DoxyCodeLine{00014\ \ \ v-\/>\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}}\ =\ NULL;}
+\DoxyCodeLine{00015\ \ \ *result\ =\ \mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{00016\ \}}
+
+\end{DoxyCode}
+\Hypertarget{svec_8c_a5c6647d0c513bb66126811a5e813ff7e}\index{svec.c@{svec.c}!svec\_pop@{svec\_pop}}
+\index{svec\_pop@{svec\_pop}!svec.c@{svec.c}}
+\doxysubsubsection{\texorpdfstring{svec\_pop()}{svec\_pop()}}
+{\footnotesize\ttfamily \label{svec_8c_a5c6647d0c513bb66126811a5e813ff7e} 
+void svec\+\_\+pop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}}]{v}{, }\item[{void \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{svec_8c_source_l00048}{48}} of file \mbox{\hyperlink{svec_8c_source}{svec.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{size\_t}\ old\_size\ =\ v-\/>\mbox{\hyperlink{structSVec_a7a49363339d0cf325123987bd941dd84}{list\_size}};}
+\DoxyCodeLine{00050\ \ \ \textcolor{keywordtype}{size\_t}\ new\_size\ =\ old\_size\ -\/\ 1;}
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordflow}{if}\ (out)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ memcpy(out,\ v-\/>\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}}\ +\ (old\_size\ -\/\ 1)\ *\ v-\/>\mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{element\_size}},\ v-\/>\mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{element\_size}});}
+\DoxyCodeLine{00053\ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{core_8h_a2cfa42ee9b53307ef244d6fc8d717e7a}{REALIGN}}(old\_size,\ new\_size))\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ new\_cap\ =\ \mbox{\hyperlink{core_8h_aba22e0f284a06529743c5c700c2dde3c}{BIT\_ALIGN}}(new\_size);}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ *new\_data\ =\ realloc(v-\/>\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}},\ new\_cap\ *\ v-\/>\mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{element\_size}});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{if}\ (!new\_data)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779abb2f5f8a17f56d310c91dfdb93c53d1a}{SVEC\_REALLOC\_FAIL}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ v-\/>\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}}\ =\ new\_data;}
+\DoxyCodeLine{00063\ \ \ \}}
+\DoxyCodeLine{00064\ \ \ v-\/>\mbox{\hyperlink{structSVec_a7a49363339d0cf325123987bd941dd84}{list\_size}}-\/-\/;}
+\DoxyCodeLine{00065\ \ \ *result\ =\ \mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{00066\ \}}
+
+\end{DoxyCode}
+\Hypertarget{svec_8c_ae4120a038705f5e95bd7249d66ae5baa}\index{svec.c@{svec.c}!svec\_push@{svec\_push}}
+\index{svec\_push@{svec\_push}!svec.c@{svec.c}}
+\doxysubsubsection{\texorpdfstring{svec\_push()}{svec\_push()}}
+{\footnotesize\ttfamily \label{svec_8c_ae4120a038705f5e95bd7249d66ae5baa} 
+void svec\+\_\+push (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}}]{v}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{elem}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{svec_8c_source_l00026}{26}} of file \mbox{\hyperlink{svec_8c_source}{svec.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordtype}{size\_t}\ old\_size\ =\ v-\/>\mbox{\hyperlink{structSVec_a7a49363339d0cf325123987bd941dd84}{list\_size}};}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordtype}{size\_t}\ new\_size\ =\ old\_size\ +\ 1;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{core_8h_a2cfa42ee9b53307ef244d6fc8d717e7a}{REALIGN}}(old\_size,\ new\_size))\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ new\_cap\ =\ \mbox{\hyperlink{core_8h_aba22e0f284a06529743c5c700c2dde3c}{BIT\_ALIGN}}(new\_size);}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ *new\_data\ =\ realloc(v-\/>\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}},\ new\_cap\ *\ v-\/>\mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{element\_size}});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (!new\_data)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779abb2f5f8a17f56d310c91dfdb93c53d1a}{SVEC\_REALLOC\_FAIL}};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \ \ \ \ v-\/>\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}}\ =\ new\_data;}
+\DoxyCodeLine{00040\ \ \ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ memcpy(v-\/>\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}}\ +\ old\_size\ *\ v-\/>\mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{element\_size}},\ elem,\ v-\/>\mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{element\_size}});}
+\DoxyCodeLine{00043\ \ \ v-\/>\mbox{\hyperlink{structSVec_a7a49363339d0cf325123987bd941dd84}{list\_size}}++;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ *result\ =\ \mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{00046\ \}}
+
+\end{DoxyCode}
+\Hypertarget{svec_8c_a94c039bf8ed5efcf5c7f909bda4c82c4}\index{svec.c@{svec.c}!svec\_set@{svec\_set}}
+\index{svec\_set@{svec\_set}!svec.c@{svec.c}}
+\doxysubsubsection{\texorpdfstring{svec\_set()}{svec\_set()}}
+{\footnotesize\ttfamily \label{svec_8c_a94c039bf8ed5efcf5c7f909bda4c82c4} 
+void svec\+\_\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\mbox{\hyperlink{structSVec}{SVec}} \texorpdfstring{$\ast$}{*}}]{v}{, }\item[{size\+\_\+t}]{i}{, }\item[{const void \texorpdfstring{$\ast$}{*}}]{elem}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{svec_8c_source_l00068}{68}} of file \mbox{\hyperlink{svec_8c_source}{svec.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ memcpy(v-\/>\mbox{\hyperlink{structSVec_ac80676578e7fa22faa1c0a3d174e1a2f}{data}}\ +\ i\ *\ v-\/>\mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{element\_size}},\ elem,\ v-\/>\mbox{\hyperlink{structSVec_a0d748a2a4877ebdb43d65ebc7bf39dca}{element\_size}});}
+\DoxyCodeLine{00071\ \ \ *result\ =\ \mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{00072\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,562 @@
+\doxysection{src/core/endian.c File Reference}
+\hypertarget{endian_8c}{}\label{endian_8c}\index{src/core/endian.c@{src/core/endian.c}}
+{\ttfamily \#include "{}canim/core.\+h"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for endian.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{endian_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{endian_8c_a627c3c4390e434a20d82c95210ec1b0b}{read\+\_\+be\+\_\+u16}} (const unsigned char \texorpdfstring{$\ast$}{*}p)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{endian_8c_a17b82d598240d8fb05f46ece4283e840}{read\+\_\+be\+\_\+u32}} (const unsigned char \texorpdfstring{$\ast$}{*}p)
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{endian_8c_a150e220651832c537f784fba6e530bc7}{read\+\_\+be\+\_\+u64}} (const unsigned char \texorpdfstring{$\ast$}{*}p)
+\item 
+static uint16\+\_\+t \mbox{\hyperlink{endian_8c_a1b7d538cbdbb21cf4699118beb45da9f}{read\+\_\+le\+\_\+u16}} (const unsigned char \texorpdfstring{$\ast$}{*}p)
+\item 
+static uint32\+\_\+t \mbox{\hyperlink{endian_8c_ae19cf2dc6177e2dad2c3f46165a7b1b8}{read\+\_\+le\+\_\+u32}} (const unsigned char \texorpdfstring{$\ast$}{*}p)
+\item 
+static uint64\+\_\+t \mbox{\hyperlink{endian_8c_ac92232f9a68f86f70f658e910462d9f7}{read\+\_\+le\+\_\+u64}} (const unsigned char \texorpdfstring{$\ast$}{*}p)
+\item 
+static void \mbox{\hyperlink{endian_8c_a9d1a1c1e0ff4fc976851897afa950e44}{write\+\_\+be\+\_\+u16}} (unsigned char \texorpdfstring{$\ast$}{*}p, uint16\+\_\+t v)
+\item 
+static void \mbox{\hyperlink{endian_8c_a374662ee5049fcc5c08ffb945cc1fd30}{write\+\_\+be\+\_\+u32}} (unsigned char \texorpdfstring{$\ast$}{*}p, uint32\+\_\+t v)
+\item 
+static void \mbox{\hyperlink{endian_8c_a50879eccdead204d431798be504cbc98}{write\+\_\+be\+\_\+u64}} (unsigned char \texorpdfstring{$\ast$}{*}p, uint64\+\_\+t v)
+\item 
+static void \mbox{\hyperlink{endian_8c_a085008b3582eb3dd30ef80c90cdf9ba7}{write\+\_\+le\+\_\+u16}} (unsigned char \texorpdfstring{$\ast$}{*}p, uint16\+\_\+t v)
+\item 
+static void \mbox{\hyperlink{endian_8c_adfd0e05cfd26462597bac695a832095d}{write\+\_\+le\+\_\+u32}} (unsigned char \texorpdfstring{$\ast$}{*}p, uint32\+\_\+t v)
+\item 
+static void \mbox{\hyperlink{endian_8c_a32a83a1ffa627b785662424f22a16aa7}{write\+\_\+le\+\_\+u64}} (unsigned char \texorpdfstring{$\ast$}{*}p, uint64\+\_\+t v)
+\item 
+static float \mbox{\hyperlink{endian_8c_a268b70d8a95acb3af5751990bb6b3fce}{read\+\_\+be\+\_\+f32}} (const unsigned char \texorpdfstring{$\ast$}{*}p)
+\item 
+static float \mbox{\hyperlink{endian_8c_a4a12d5b3e99b9c91339f27ff5cdeaee5}{read\+\_\+le\+\_\+f32}} (const unsigned char \texorpdfstring{$\ast$}{*}p)
+\item 
+static void \mbox{\hyperlink{endian_8c_ad51a6a64ab5dc4ba254a9906f5c72ff7}{write\+\_\+be\+\_\+f32}} (unsigned char \texorpdfstring{$\ast$}{*}p, float f)
+\item 
+static void \mbox{\hyperlink{endian_8c_a9c8fc375138d7e490b712df49a63ccd1}{write\+\_\+le\+\_\+f32}} (unsigned char \texorpdfstring{$\ast$}{*}p, float f)
+\item 
+static double \mbox{\hyperlink{endian_8c_a11200224381a57518fb24e5dd6f124af}{read\+\_\+be\+\_\+f64}} (const unsigned char \texorpdfstring{$\ast$}{*}p)
+\item 
+static double \mbox{\hyperlink{endian_8c_a1af1db5fa8e434820befad352e247d67}{read\+\_\+le\+\_\+f64}} (const unsigned char \texorpdfstring{$\ast$}{*}p)
+\item 
+static void \mbox{\hyperlink{endian_8c_acbb5b7c722a3159a437f3c0ea631390c}{write\+\_\+be\+\_\+f64}} (unsigned char \texorpdfstring{$\ast$}{*}p, double d)
+\item 
+static void \mbox{\hyperlink{endian_8c_afa17613bc9fe43b4652854aae9bce3f2}{write\+\_\+le\+\_\+f64}} (unsigned char \texorpdfstring{$\ast$}{*}p, double d)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{endian_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{endian_8c_a268b70d8a95acb3af5751990bb6b3fce}\index{endian.c@{endian.c}!read\_be\_f32@{read\_be\_f32}}
+\index{read\_be\_f32@{read\_be\_f32}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{read\_be\_f32()}{read\_be\_f32()}}
+{\footnotesize\ttfamily \label{endian_8c_a268b70d8a95acb3af5751990bb6b3fce} 
+float read\+\_\+be\+\_\+f32 (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00084}{84}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ uint32\_t\ u\ =\ \mbox{\hyperlink{endian_8c_a17b82d598240d8fb05f46ece4283e840}{read\_be\_u32}}(p);}
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordtype}{float}\ f;}
+\DoxyCodeLine{00087\ \ \ memcpy(\&f,\ \&u,\ \textcolor{keyword}{sizeof}(f));}
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordflow}{return}\ f;}
+\DoxyCodeLine{00089\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{endian_8c_a268b70d8a95acb3af5751990bb6b3fce_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_a11200224381a57518fb24e5dd6f124af}\index{endian.c@{endian.c}!read\_be\_f64@{read\_be\_f64}}
+\index{read\_be\_f64@{read\_be\_f64}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{read\_be\_f64()}{read\_be\_f64()}}
+{\footnotesize\ttfamily \label{endian_8c_a11200224381a57518fb24e5dd6f124af} 
+double read\+\_\+be\+\_\+f64 (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00110}{110}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ uint64\_t\ u\ =\ \mbox{\hyperlink{endian_8c_a150e220651832c537f784fba6e530bc7}{read\_be\_u64}}(p);}
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00113\ \ \ memcpy(\&d,\ \&u,\ \textcolor{keyword}{sizeof}(d));}
+\DoxyCodeLine{00114\ \ \ \textcolor{keywordflow}{return}\ d;}
+\DoxyCodeLine{00115\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{endian_8c_a11200224381a57518fb24e5dd6f124af_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_a627c3c4390e434a20d82c95210ec1b0b}\index{endian.c@{endian.c}!read\_be\_u16@{read\_be\_u16}}
+\index{read\_be\_u16@{read\_be\_u16}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{read\_be\_u16()}{read\_be\_u16()}}
+{\footnotesize\ttfamily \label{endian_8c_a627c3c4390e434a20d82c95210ec1b0b} 
+uint16\+\_\+t read\+\_\+be\+\_\+u16 (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00006}{6}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00006\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00007\ \ \ \textcolor{keywordflow}{return}\ ((uint16\_t)p[0]\ <<\ 010)\ |\ ((uint16\_t)p[1]\ <<\ 000);}
+\DoxyCodeLine{00008\ \}}
+
+\end{DoxyCode}
+\Hypertarget{endian_8c_a17b82d598240d8fb05f46ece4283e840}\index{endian.c@{endian.c}!read\_be\_u32@{read\_be\_u32}}
+\index{read\_be\_u32@{read\_be\_u32}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{read\_be\_u32()}{read\_be\_u32()}}
+{\footnotesize\ttfamily \label{endian_8c_a17b82d598240d8fb05f46ece4283e840} 
+uint32\+\_\+t read\+\_\+be\+\_\+u32 (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00010}{10}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00011\ \ \ \textcolor{keywordflow}{return}\ ((uint32\_t)p[0]\ <<\ 030)\ |\ ((uint32\_t)p[1]\ <<\ 020)\ |}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ ((uint32\_t)p[2]\ <<\ 010)\ |\ ((uint32\_t)p[3]\ <<\ 000);}
+\DoxyCodeLine{00013\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{endian_8c_a17b82d598240d8fb05f46ece4283e840_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_a150e220651832c537f784fba6e530bc7}\index{endian.c@{endian.c}!read\_be\_u64@{read\_be\_u64}}
+\index{read\_be\_u64@{read\_be\_u64}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{read\_be\_u64()}{read\_be\_u64()}}
+{\footnotesize\ttfamily \label{endian_8c_a150e220651832c537f784fba6e530bc7} 
+uint64\+\_\+t read\+\_\+be\+\_\+u64 (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00015}{15}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordflow}{return}\ ((uint64\_t)p[0]\ <<\ 070)\ |\ ((uint64\_t)p[1]\ <<\ 060)\ |}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ ((uint64\_t)p[2]\ <<\ 050)\ |\ ((uint64\_t)p[3]\ <<\ 040)\ |}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ ((uint64\_t)p[4]\ <<\ 030)\ |\ ((uint64\_t)p[5]\ <<\ 020)\ |}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ ((uint64\_t)p[6]\ <<\ 010)\ |\ ((uint64\_t)p[7]\ <<\ 000);}
+\DoxyCodeLine{00020\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{endian_8c_a150e220651832c537f784fba6e530bc7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_a4a12d5b3e99b9c91339f27ff5cdeaee5}\index{endian.c@{endian.c}!read\_le\_f32@{read\_le\_f32}}
+\index{read\_le\_f32@{read\_le\_f32}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{read\_le\_f32()}{read\_le\_f32()}}
+{\footnotesize\ttfamily \label{endian_8c_a4a12d5b3e99b9c91339f27ff5cdeaee5} 
+float read\+\_\+le\+\_\+f32 (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00091}{91}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ uint32\_t\ u\ =\ \mbox{\hyperlink{endian_8c_ae19cf2dc6177e2dad2c3f46165a7b1b8}{read\_le\_u32}}(p);}
+\DoxyCodeLine{00093\ \ \ \textcolor{keywordtype}{float}\ f;}
+\DoxyCodeLine{00094\ \ \ memcpy(\&f,\ \&u,\ \textcolor{keyword}{sizeof}(f));}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordflow}{return}\ f;}
+\DoxyCodeLine{00096\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{endian_8c_a4a12d5b3e99b9c91339f27ff5cdeaee5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_a1af1db5fa8e434820befad352e247d67}\index{endian.c@{endian.c}!read\_le\_f64@{read\_le\_f64}}
+\index{read\_le\_f64@{read\_le\_f64}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{read\_le\_f64()}{read\_le\_f64()}}
+{\footnotesize\ttfamily \label{endian_8c_a1af1db5fa8e434820befad352e247d67} 
+double read\+\_\+le\+\_\+f64 (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00117}{117}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ uint64\_t\ u\ =\ \mbox{\hyperlink{endian_8c_ac92232f9a68f86f70f658e910462d9f7}{read\_le\_u64}}(p);}
+\DoxyCodeLine{00119\ \ \ \textcolor{keywordtype}{double}\ d;}
+\DoxyCodeLine{00120\ \ \ memcpy(\&d,\ \&u,\ \textcolor{keyword}{sizeof}(d));}
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordflow}{return}\ d;}
+\DoxyCodeLine{00122\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{endian_8c_a1af1db5fa8e434820befad352e247d67_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_a1b7d538cbdbb21cf4699118beb45da9f}\index{endian.c@{endian.c}!read\_le\_u16@{read\_le\_u16}}
+\index{read\_le\_u16@{read\_le\_u16}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{read\_le\_u16()}{read\_le\_u16()}}
+{\footnotesize\ttfamily \label{endian_8c_a1b7d538cbdbb21cf4699118beb45da9f} 
+uint16\+\_\+t read\+\_\+le\+\_\+u16 (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00022}{22}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordflow}{return}\ ((uint16\_t)p[1]\ <<\ 010)\ |\ ((uint16\_t)p[0]\ <<\ 000);}
+\DoxyCodeLine{00024\ \}}
+
+\end{DoxyCode}
+\Hypertarget{endian_8c_ae19cf2dc6177e2dad2c3f46165a7b1b8}\index{endian.c@{endian.c}!read\_le\_u32@{read\_le\_u32}}
+\index{read\_le\_u32@{read\_le\_u32}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{read\_le\_u32()}{read\_le\_u32()}}
+{\footnotesize\ttfamily \label{endian_8c_ae19cf2dc6177e2dad2c3f46165a7b1b8} 
+uint32\+\_\+t read\+\_\+le\+\_\+u32 (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00026}{26}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{return}\ ((uint32\_t)p[3]\ <<\ 030)\ |\ ((uint32\_t)p[2]\ <<\ 020)\ |}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ ((uint32\_t)p[1]\ <<\ 010)\ |\ ((uint32\_t)p[0]\ <<\ 000);}
+\DoxyCodeLine{00029\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{endian_8c_ae19cf2dc6177e2dad2c3f46165a7b1b8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_ac92232f9a68f86f70f658e910462d9f7}\index{endian.c@{endian.c}!read\_le\_u64@{read\_le\_u64}}
+\index{read\_le\_u64@{read\_le\_u64}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{read\_le\_u64()}{read\_le\_u64()}}
+{\footnotesize\ttfamily \label{endian_8c_ac92232f9a68f86f70f658e910462d9f7} 
+uint64\+\_\+t read\+\_\+le\+\_\+u64 (\begin{DoxyParamCaption}\item[{const unsigned char \texorpdfstring{$\ast$}{*}}]{p}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00031}{31}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordflow}{return}\ ((uint64\_t)p[7]\ <<\ 070)\ |\ ((uint64\_t)p[6]\ <<\ 060)\ |}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ ((uint64\_t)p[5]\ <<\ 050)\ |\ ((uint64\_t)p[4]\ <<\ 040)\ |}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ ((uint64\_t)p[3]\ <<\ 030)\ |\ ((uint64\_t)p[2]\ <<\ 020)\ |}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ ((uint64\_t)p[1]\ <<\ 010)\ |\ ((uint64\_t)p[0]\ <<\ 000);}
+\DoxyCodeLine{00036\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{endian_8c_ac92232f9a68f86f70f658e910462d9f7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_ad51a6a64ab5dc4ba254a9906f5c72ff7}\index{endian.c@{endian.c}!write\_be\_f32@{write\_be\_f32}}
+\index{write\_be\_f32@{write\_be\_f32}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{write\_be\_f32()}{write\_be\_f32()}}
+{\footnotesize\ttfamily \label{endian_8c_ad51a6a64ab5dc4ba254a9906f5c72ff7} 
+void write\+\_\+be\+\_\+f32 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{float}]{f}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00098}{98}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ uint32\_t\ u;}
+\DoxyCodeLine{00100\ \ \ memcpy(\&u,\ \&f,\ \textcolor{keyword}{sizeof}(u));}
+\DoxyCodeLine{00101\ \ \ \mbox{\hyperlink{endian_8c_a374662ee5049fcc5c08ffb945cc1fd30}{write\_be\_u32}}(p,\ u);}
+\DoxyCodeLine{00102\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{endian_8c_ad51a6a64ab5dc4ba254a9906f5c72ff7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_acbb5b7c722a3159a437f3c0ea631390c}\index{endian.c@{endian.c}!write\_be\_f64@{write\_be\_f64}}
+\index{write\_be\_f64@{write\_be\_f64}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{write\_be\_f64()}{write\_be\_f64()}}
+{\footnotesize\ttfamily \label{endian_8c_acbb5b7c722a3159a437f3c0ea631390c} 
+void write\+\_\+be\+\_\+f64 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{double}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00124}{124}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ uint64\_t\ u;}
+\DoxyCodeLine{00126\ \ \ memcpy(\&u,\ \&d,\ \textcolor{keyword}{sizeof}(u));}
+\DoxyCodeLine{00127\ \ \ \mbox{\hyperlink{endian_8c_a50879eccdead204d431798be504cbc98}{write\_be\_u64}}(p,\ u);}
+\DoxyCodeLine{00128\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{endian_8c_acbb5b7c722a3159a437f3c0ea631390c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_a9d1a1c1e0ff4fc976851897afa950e44}\index{endian.c@{endian.c}!write\_be\_u16@{write\_be\_u16}}
+\index{write\_be\_u16@{write\_be\_u16}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{write\_be\_u16()}{write\_be\_u16()}}
+{\footnotesize\ttfamily \label{endian_8c_a9d1a1c1e0ff4fc976851897afa950e44} 
+void write\+\_\+be\+\_\+u16 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{uint16\+\_\+t}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00038}{38}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ p[0]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 010);}
+\DoxyCodeLine{00040\ \ \ p[1]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 000);}
+\DoxyCodeLine{00041\ \}}
+
+\end{DoxyCode}
+\Hypertarget{endian_8c_a374662ee5049fcc5c08ffb945cc1fd30}\index{endian.c@{endian.c}!write\_be\_u32@{write\_be\_u32}}
+\index{write\_be\_u32@{write\_be\_u32}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{write\_be\_u32()}{write\_be\_u32()}}
+{\footnotesize\ttfamily \label{endian_8c_a374662ee5049fcc5c08ffb945cc1fd30} 
+void write\+\_\+be\+\_\+u32 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{uint32\+\_\+t}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00043}{43}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00044\ \ \ p[0]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 030);}
+\DoxyCodeLine{00045\ \ \ p[1]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 020);}
+\DoxyCodeLine{00046\ \ \ p[2]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 010);}
+\DoxyCodeLine{00047\ \ \ p[3]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 000);}
+\DoxyCodeLine{00048\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{endian_8c_a374662ee5049fcc5c08ffb945cc1fd30_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_a50879eccdead204d431798be504cbc98}\index{endian.c@{endian.c}!write\_be\_u64@{write\_be\_u64}}
+\index{write\_be\_u64@{write\_be\_u64}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{write\_be\_u64()}{write\_be\_u64()}}
+{\footnotesize\ttfamily \label{endian_8c_a50879eccdead204d431798be504cbc98} 
+void write\+\_\+be\+\_\+u64 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{uint64\+\_\+t}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00050}{50}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ p[0]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 070);}
+\DoxyCodeLine{00052\ \ \ p[1]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 060);}
+\DoxyCodeLine{00053\ \ \ p[2]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 050);}
+\DoxyCodeLine{00054\ \ \ p[3]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 040);}
+\DoxyCodeLine{00055\ \ \ p[4]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 030);}
+\DoxyCodeLine{00056\ \ \ p[5]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 020);}
+\DoxyCodeLine{00057\ \ \ p[6]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 010);}
+\DoxyCodeLine{00058\ \ \ p[7]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 000);}
+\DoxyCodeLine{00059\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{endian_8c_a50879eccdead204d431798be504cbc98_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_a9c8fc375138d7e490b712df49a63ccd1}\index{endian.c@{endian.c}!write\_le\_f32@{write\_le\_f32}}
+\index{write\_le\_f32@{write\_le\_f32}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{write\_le\_f32()}{write\_le\_f32()}}
+{\footnotesize\ttfamily \label{endian_8c_a9c8fc375138d7e490b712df49a63ccd1} 
+void write\+\_\+le\+\_\+f32 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{float}]{f}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00104}{104}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ uint32\_t\ u;}
+\DoxyCodeLine{00106\ \ \ memcpy(\&u,\ \&f,\ \textcolor{keyword}{sizeof}(u));}
+\DoxyCodeLine{00107\ \ \ \mbox{\hyperlink{endian_8c_adfd0e05cfd26462597bac695a832095d}{write\_le\_u32}}(p,\ u);}
+\DoxyCodeLine{00108\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{endian_8c_a9c8fc375138d7e490b712df49a63ccd1_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_afa17613bc9fe43b4652854aae9bce3f2}\index{endian.c@{endian.c}!write\_le\_f64@{write\_le\_f64}}
+\index{write\_le\_f64@{write\_le\_f64}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{write\_le\_f64()}{write\_le\_f64()}}
+{\footnotesize\ttfamily \label{endian_8c_afa17613bc9fe43b4652854aae9bce3f2} 
+void write\+\_\+le\+\_\+f64 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{double}]{d}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00130}{130}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ uint64\_t\ u;}
+\DoxyCodeLine{00132\ \ \ memcpy(\&u,\ \&d,\ \textcolor{keyword}{sizeof}(u));}
+\DoxyCodeLine{00133\ \ \ \mbox{\hyperlink{endian_8c_a32a83a1ffa627b785662424f22a16aa7}{write\_le\_u64}}(p,\ u);}
+\DoxyCodeLine{00134\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{endian_8c_afa17613bc9fe43b4652854aae9bce3f2_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_a085008b3582eb3dd30ef80c90cdf9ba7}\index{endian.c@{endian.c}!write\_le\_u16@{write\_le\_u16}}
+\index{write\_le\_u16@{write\_le\_u16}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{write\_le\_u16()}{write\_le\_u16()}}
+{\footnotesize\ttfamily \label{endian_8c_a085008b3582eb3dd30ef80c90cdf9ba7} 
+void write\+\_\+le\+\_\+u16 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{uint16\+\_\+t}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00061}{61}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ p[0]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 000);}
+\DoxyCodeLine{00063\ \ \ p[1]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 010);}
+\DoxyCodeLine{00064\ \}}
+
+\end{DoxyCode}
+\Hypertarget{endian_8c_adfd0e05cfd26462597bac695a832095d}\index{endian.c@{endian.c}!write\_le\_u32@{write\_le\_u32}}
+\index{write\_le\_u32@{write\_le\_u32}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{write\_le\_u32()}{write\_le\_u32()}}
+{\footnotesize\ttfamily \label{endian_8c_adfd0e05cfd26462597bac695a832095d} 
+void write\+\_\+le\+\_\+u32 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{uint32\+\_\+t}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00066}{66}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ p[0]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 000);}
+\DoxyCodeLine{00068\ \ \ p[1]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 010);}
+\DoxyCodeLine{00069\ \ \ p[2]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 020);}
+\DoxyCodeLine{00070\ \ \ p[3]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 030);}
+\DoxyCodeLine{00071\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{endian_8c_adfd0e05cfd26462597bac695a832095d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{endian_8c_a32a83a1ffa627b785662424f22a16aa7}\index{endian.c@{endian.c}!write\_le\_u64@{write\_le\_u64}}
+\index{write\_le\_u64@{write\_le\_u64}!endian.c@{endian.c}}
+\doxysubsubsection{\texorpdfstring{write\_le\_u64()}{write\_le\_u64()}}
+{\footnotesize\ttfamily \label{endian_8c_a32a83a1ffa627b785662424f22a16aa7} 
+void write\+\_\+le\+\_\+u64 (\begin{DoxyParamCaption}\item[{unsigned char \texorpdfstring{$\ast$}{*}}]{p}{, }\item[{uint64\+\_\+t}]{v}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{endian_8c_source_l00073}{73}} of file \mbox{\hyperlink{endian_8c_source}{endian.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ p[0]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 000);}
+\DoxyCodeLine{00075\ \ \ p[1]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 010);}
+\DoxyCodeLine{00076\ \ \ p[2]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 020);}
+\DoxyCodeLine{00077\ \ \ p[3]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 030);}
+\DoxyCodeLine{00078\ \ \ p[4]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 040);}
+\DoxyCodeLine{00079\ \ \ p[5]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 050);}
+\DoxyCodeLine{00080\ \ \ p[6]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 060);}
+\DoxyCodeLine{00081\ \ \ p[7]\ =\ (\textcolor{keywordtype}{unsigned}\ char)(v\ >>\ 070);}
+\DoxyCodeLine{00082\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{endian_8c_a32a83a1ffa627b785662424f22a16aa7_icgraph}
+\end{center}
+\end{figure}

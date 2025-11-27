@@ -1,0 +1,127 @@
+\doxysection{src/gfx/vk.c File Reference}
+\hypertarget{vk_8c}{}\label{vk_8c}\index{src/gfx/vk.c@{src/gfx/vk.c}}
+{\ttfamily \#include "{}canim/core.\+h"{}}\newline
+{\ttfamily \#include "{}canim/gfx.\+h"{}}\newline
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+vulkan.\+h$>$}\newline
+{\ttfamily \#include $<$vulkan/vulkan.\+h$>$}\newline
+Include dependency graph for vk.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vk_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structGfxDevice}{Gfx\+Device}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structGfxDevice}{Gfx\+Device}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{vk_8c_aa39c0acadbfeffb950cb165ff56decf8}{vk\+\_\+create\+\_\+device}} (\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}result, \mbox{\hyperlink{structGfxContainer}{Gfx\+Container}} \texorpdfstring{$\ast$}{*}container, const \mbox{\hyperlink{structGfxInitInfo}{Gfx\+Init\+Info}} \texorpdfstring{$\ast$}{*}info)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{vk_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{vk_8c_aa39c0acadbfeffb950cb165ff56decf8}\index{vk.c@{vk.c}!vk\_create\_device@{vk\_create\_device}}
+\index{vk\_create\_device@{vk\_create\_device}!vk.c@{vk.c}}
+\doxysubsubsection{\texorpdfstring{vk\_create\_device()}{vk\_create\_device()}}
+{\footnotesize\ttfamily \label{vk_8c_aa39c0acadbfeffb950cb165ff56decf8} 
+\mbox{\hyperlink{structGfxDevice}{Gfx\+Device}} \texorpdfstring{$\ast$}{*} vk\+\_\+create\+\_\+device (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\mbox{\hyperlink{structGfxContainer}{Gfx\+Container}} \texorpdfstring{$\ast$}{*}}]{container}{, }\item[{const \mbox{\hyperlink{structGfxInitInfo}{Gfx\+Init\+Info}} \texorpdfstring{$\ast$}{*}}]{info}{}\end{DoxyParamCaption})}
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]FIX \end{DoxyRefDesc}
+
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]FIX \end{DoxyRefDesc}
+
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]FIX \end{DoxyRefDesc}
+
+
+Definition at line \mbox{\hyperlink{vk_8c_source_l00015}{15}} of file \mbox{\hyperlink{vk_8c_source}{vk.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \mbox{\hyperlink{structGfxDevice}{GfxDevice}}\ *dev\ =\ calloc(1,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structGfxDevice}{GfxDevice}}));}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordflow}{if}\ (!dev)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779ab63f94f97b8a8ee8e794943e41e69d69}{GFX\_DEVICE\_CALLOC\_ERROR}};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00021\ \ \ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_a1052f6b7f4225168ccd2f1520fe3ee21}{headless}}\ =\ info-\/>\mbox{\hyperlink{structGfxInitInfo_a988ae3bb5e024d0c6234517d2a34b6fc}{headless}};}
+\DoxyCodeLine{00024\ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_a75095db9ef68d9df08b2a89746e7f19c}{width}}\ =\ info-\/>\mbox{\hyperlink{structGfxInitInfo_a1fecf2a585580ab1464f547038169e40}{width}};}
+\DoxyCodeLine{00025\ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_a6907b7adf1bfc7d0c01353f49960b705}{height}}\ =\ info-\/>\mbox{\hyperlink{structGfxInitInfo_a84ce6c93bf6a3226d57661d3152d15e3}{height}};}
+\DoxyCodeLine{00026\ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}}\ =\ NULL;}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{if}\ (!info-\/>\mbox{\hyperlink{structGfxInitInfo_a988ae3bb5e024d0c6234517d2a34b6fc}{headless}})\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}}\ =\ SDL\_CreateWindow(}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Canim\ Vulkan"{}},\ SDL\_WINDOWPOS\_CENTERED,\ SDL\_WINDOWPOS\_CENTERED,}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ info-\/>\mbox{\hyperlink{structGfxInitInfo_a1fecf2a585580ab1464f547038169e40}{width}},\ info-\/>\mbox{\hyperlink{structGfxInitInfo_a84ce6c93bf6a3226d57661d3152d15e3}{height}},\ SDL\_WINDOW\_VULKAN\ |\ SDL\_WINDOW\_SHOWN);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}})\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ *result\ =\ \mbox{\hyperlink{core_8h_a8f984988f81057e8d0320d6c1e799779a17bb6e08ffaa6b8b0ccfa96561fabf9f}{SDL\_WINDOW\_CREATION\_ERROR}};}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \}}
+\DoxyCodeLine{00038\ \ \ uint32\_t\ extCount\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ **extNames\ =\ NULL;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{if}\ (!info-\/>\mbox{\hyperlink{structGfxInitInfo_a988ae3bb5e024d0c6234517d2a34b6fc}{headless}})\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (!SDL\_Vulkan\_GetInstanceExtensions(dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}},\ \&extCount,\ NULL))\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ SDL\_DestroyWindow(dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ *result\ =\ 0x03ffffff;\ \textcolor{comment}{///\ @todo\ FIX}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00047\ \ \ \ \ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ extNames\ =\ malloc(\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}\ *)\ *\ extCount);}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{if}\ (!extNames)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ SDL\_DestroyWindow(dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}});}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ free(dev);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ *result\ =\ 0x03ffffff;\ \textcolor{comment}{///\ @todo\ FIX}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ SDL\_Vulkan\_GetInstanceExtensions(dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}},\ \&extCount,\ extNames);}
+\DoxyCodeLine{00059\ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ VkApplicationInfo\ app\ =\ \{.sType\ =\ VK\_STRUCTURE\_TYPE\_APPLICATION\_INFO,}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .pApplicationName\ =\ \textcolor{stringliteral}{"{}Canim"{}},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .applicationVersion\ =\ VK\_MAKE\_VERSION(1,\ 0,\ 0),}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .pEngineName\ =\ \textcolor{stringliteral}{"{}Canim"{}},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .engineVersion\ =\ VK\_MAKE\_VERSION(1,\ 0,\ 0),}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .apiVersion\ =\ VK\_API\_VERSION\_1\_3\};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ VkInstanceCreateInfo\ ci\ =\ \{.sType\ =\ VK\_STRUCTURE\_TYPE\_INSTANCE\_CREATE\_INFO,}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .pApplicationInfo\ =\ \&app,}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .enabledLayerCount\ =\ 0,}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ppEnabledLayerNames\ =\ NULL,}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .enabledExtensionCount\ =\ extCount,}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ppEnabledExtensionNames\ =\ extNames\};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ VkResult\ vkres\ =\ vkCreateInstance(\&ci,\ NULL,\ \&dev-\/>\mbox{\hyperlink{structGfxDevice_ae98ce112ffa7435f1918f946f9f40dae}{inst}});}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ free(extNames);}
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordflow}{if}\ (vkres\ !=\ VK\_SUCCESS)\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{if}\ (dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}})}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ SDL\_DestroyWindow(dev-\/>\mbox{\hyperlink{structGfxDevice_a9a28b3e2438b330d8f2722de6b73c7ab}{win}});}
+\DoxyCodeLine{00081\ \ \ \ \ free(dev);}
+\DoxyCodeLine{00082\ \ \ \ \ *result\ =\ 0x03ffffff;\ \textcolor{comment}{///\ @todo\ FIX}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00085\ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ *result\ =\ \mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordflow}{return}\ dev;}
+\DoxyCodeLine{00089\ \}}
+
+\end{DoxyCode}

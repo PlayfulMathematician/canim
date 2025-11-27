@@ -1,0 +1,142 @@
+\doxysection{src/loader/loader.c File Reference}
+\hypertarget{loader_8c}{}\label{loader_8c}\index{src/loader/loader.c@{src/loader/loader.c}}
+{\ttfamily \#include "{}canim/loader.\+h"{}}\newline
+{\ttfamily \#include "{}canim/core.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for loader.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{loader_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb}{gfx\+\_\+backend\+\_\+libname}} (\mbox{\hyperlink{gfx_8h_ad12ab8ab33cdd70d32813abd51be10fd}{Gfx\+Backend}} backend)
+\item 
+\mbox{\hyperlink{structGfxContainer}{Gfx\+Container}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{loader_8c_a6c04f97ea86cef300b5218ac73914c0a}{gfx\+\_\+load\+\_\+backend}} (\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}result, \mbox{\hyperlink{gfx_8h_ad12ab8ab33cdd70d32813abd51be10fd}{Gfx\+Backend}} backend, const \mbox{\hyperlink{structGfxInitInfo}{Gfx\+Init\+Info}} \texorpdfstring{$\ast$}{*}info)
+\begin{DoxyCompactList}\small\item\em This loads a backend and makes a graphics container. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{loader_8c_a69bc35936320f682963d277201bab0e0}{gfx\+\_\+unload\+\_\+backend}} (\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}result, \mbox{\hyperlink{structGfxContainer}{Gfx\+Container}} \texorpdfstring{$\ast$}{*}gfx)
+\begin{DoxyCompactList}\small\item\em This unloads a backend. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{loader_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb}\index{loader.c@{loader.c}!gfx\_backend\_libname@{gfx\_backend\_libname}}
+\index{gfx\_backend\_libname@{gfx\_backend\_libname}!loader.c@{loader.c}}
+\doxysubsubsection{\texorpdfstring{gfx\_backend\_libname()}{gfx\_backend\_libname()}}
+{\footnotesize\ttfamily \label{loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb} 
+const char \texorpdfstring{$\ast$}{*} gfx\+\_\+backend\+\_\+libname (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{gfx_8h_ad12ab8ab33cdd70d32813abd51be10fd}{Gfx\+Backend}}}]{backend}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{loader_8c_source_l00027}{27}} of file \mbox{\hyperlink{loader_8c_source}{loader.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordflow}{switch}\ (backend)\ \{}
+\DoxyCodeLine{00029\ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{gfx_8h_ad12ab8ab33cdd70d32813abd51be10fda0de0b74275a2b9b3ba351fd537a91888}{CANIM\_GFX\_GL}}:}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}libgl"{}}\ LIB\_EXT;}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00034\ \ \ \}}
+\DoxyCodeLine{00035\ \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{loader_8c_a6c04f97ea86cef300b5218ac73914c0a}\index{loader.c@{loader.c}!gfx\_load\_backend@{gfx\_load\_backend}}
+\index{gfx\_load\_backend@{gfx\_load\_backend}!loader.c@{loader.c}}
+\doxysubsubsection{\texorpdfstring{gfx\_load\_backend()}{gfx\_load\_backend()}}
+{\footnotesize\ttfamily \label{loader_8c_a6c04f97ea86cef300b5218ac73914c0a} 
+\mbox{\hyperlink{structGfxContainer}{Gfx\+Container}} \texorpdfstring{$\ast$}{*} gfx\+\_\+load\+\_\+backend (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\mbox{\hyperlink{gfx_8h_ad12ab8ab33cdd70d32813abd51be10fd}{Gfx\+Backend}}}]{backend}{, }\item[{const \mbox{\hyperlink{structGfxInitInfo}{Gfx\+Init\+Info}} \texorpdfstring{$\ast$}{*}}]{info}{}\end{DoxyParamCaption})}
+
+
+
+This loads a backend and makes a graphics container. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & This is the result of the output \\
+\hline
+{\em backend} & This is the gfx api \\
+\hline
+{\em info} & The relevant info to create the container \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A gfx container 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{loader_8c_source_l00036}{36}} of file \mbox{\hyperlink{loader_8c_source}{loader.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *libname\ =\ \mbox{\hyperlink{loader_8c_ac3fb853a7190bf77fcb4843e97ee00cb}{gfx\_backend\_libname}}(backend);}
+\DoxyCodeLine{00039\ \ \ LIB\_HANDLE\ handle\ =\ LIB\_LOAD(libname);}
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structGfxAPI}{GfxAPI}}\ *\textcolor{keyword}{const}\ *entry\ =}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ (\textcolor{keyword}{const}\ \mbox{\hyperlink{structGfxAPI}{GfxAPI}}\ *\textcolor{keyword}{const}\ *)LIB\_SYM(handle,\ \textcolor{stringliteral}{"{}GFX\_API\_ENTRY"{}});}
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{structGfxContainer}{GfxContainer}}\ *gfx\ =\ calloc(1,\ \textcolor{keyword}{sizeof}(*gfx));}
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structGfxAPI}{GfxAPI}}\ *api\ =\ *entry;}
+\DoxyCodeLine{00044\ \ \ gfx-\/>\mbox{\hyperlink{structGfxContainer_ae8c3b3289e273cbf686708aeadc1c43f}{api}}\ =\ *api;}
+\DoxyCodeLine{00045\ \ \ gfx-\/>\mbox{\hyperlink{structGfxContainer_ab56e07af4285b06fa21b4d380269a252}{impl}}\ =\ NULL;}
+\DoxyCodeLine{00046\ \ \ gfx-\/>\mbox{\hyperlink{structGfxContainer_a99f8974c8599dcb2794d8d30f589eede}{backend}}\ =\ backend;}
+\DoxyCodeLine{00047\ \ \ \mbox{\hyperlink{structGfxDevice}{GfxDevice}}\ *dev\ =\ gfx-\/>\mbox{\hyperlink{structGfxContainer_ae8c3b3289e273cbf686708aeadc1c43f}{api}}.\mbox{\hyperlink{structGfxAPI_a1b95b4e0ab16c9c47ed407d7ca35e9a1}{gfx\_create\_device}}(result,\ gfx,\ info);}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{core_8h_a835d919d30e7be9247ab52328b99f57f}{IS\_AN\_ERROR}}(*result))\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00050\ \ \ \}}
+\DoxyCodeLine{00051\ \ \ gfx-\/>\mbox{\hyperlink{structGfxContainer_a42e364b9084279da5e7955ae2f6c2abf}{handle}}\ =\ (\textcolor{keywordtype}{void}\ *)handle;}
+\DoxyCodeLine{00052\ \ \ gfx-\/>\mbox{\hyperlink{structGfxContainer_ab56e07af4285b06fa21b4d380269a252}{impl}}\ =\ dev;}
+\DoxyCodeLine{00053\ \ \ *result\ =\ \mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordflow}{return}\ gfx;}
+\DoxyCodeLine{00055\ \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{loader_8c_a6c04f97ea86cef300b5218ac73914c0a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{loader_8c_a69bc35936320f682963d277201bab0e0}\index{loader.c@{loader.c}!gfx\_unload\_backend@{gfx\_unload\_backend}}
+\index{gfx\_unload\_backend@{gfx\_unload\_backend}!loader.c@{loader.c}}
+\doxysubsubsection{\texorpdfstring{gfx\_unload\_backend()}{gfx\_unload\_backend()}}
+{\footnotesize\ttfamily \label{loader_8c_a69bc35936320f682963d277201bab0e0} 
+void gfx\+\_\+unload\+\_\+backend (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{core_8h_aaeb4fc212dddd39a799c71ef43434c3a}{Canim\+Result}} \texorpdfstring{$\ast$}{*}}]{result}{, }\item[{\mbox{\hyperlink{structGfxContainer}{Gfx\+Container}} \texorpdfstring{$\ast$}{*}}]{gfx}{}\end{DoxyParamCaption})}
+
+
+
+This unloads a backend. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em result} & This is the result of the output \\
+\hline
+{\em gfx} & This is the container \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{loader_8c_source_l00057}{57}} of file \mbox{\hyperlink{loader_8c_source}{loader.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ LIB\_CLOSE((LIB\_HANDLE)gfx-\/>\mbox{\hyperlink{structGfxContainer_a42e364b9084279da5e7955ae2f6c2abf}{handle}});}
+\DoxyCodeLine{00059\ \ \ *result\ =\ \mbox{\hyperlink{core_8h_aa90cac659d18e8ef6294c7ae337f6b58}{SUCCESS}};}
+\DoxyCodeLine{00060\ \}}
+
+\end{DoxyCode}
