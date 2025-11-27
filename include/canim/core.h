@@ -45,8 +45,8 @@
 
 /// @brief This are all of the error codes
 enum {
-  GL_GFX_DEVICE_CALLOC_ERROR =
-      (uint32_t)0x03000000, ///< When using calloc to allocate memory for OpenGL
+  GFX_DEVICE_CALLOC_ERROR =
+      (uint32_t)0x03000000, ///< When using calloc to allocate memory for a
                             ///< GfxDevice, calloc failed
   EGL_NO_DISPLAY_ERROR,     ///< When creating an EGL display, no display was
                             ///< created

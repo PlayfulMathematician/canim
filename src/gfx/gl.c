@@ -22,7 +22,7 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
                             const GfxInitInfo *info) {
   GfxDevice *dev = (GfxDevice *)calloc(1, sizeof(GfxDevice));
   if (!dev) {
-    *result = GL_GFX_DEVICE_CALLOC_ERROR;
+    *result = GFX_DEVICE_CALLOC_ERROR;
     return NULL;
   }
   dev->headless = info->headless;
@@ -145,6 +145,5 @@ void gl_destroy_device(CanimResult *result, GfxContainer *container) {
 const GfxAPI GFX_GL_API = {.gfx_create_device = gl_create_device,
                            .gfx_destroy_device = gl_destroy_device};
 
-/* Symbol visible to the loader */
 __attribute__((visibility("default"))) const GfxAPI *GFX_API_ENTRY =
     &GFX_GL_API;

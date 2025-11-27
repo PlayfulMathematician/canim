@@ -7,9 +7,9 @@ void print_error(CanimResult error) {
     return;
   }
   switch (error) {
-  case GL_GFX_DEVICE_CALLOC_ERROR:
-    fprintf(stderr, "When using calloc to allocate memory for OpenGL "
-                    "GfxDevice, calloc failed\n");
+  case GFX_DEVICE_CALLOC_ERROR:
+    fprintf(stderr, "When using calloc to allocate memory for"
+                    "a GfxDevice, calloc failed\n");
     break;
   case EGL_NO_DISPLAY_ERROR:
     fprintf(stderr, "When creating an EGL display, no display was created\n");
