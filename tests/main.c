@@ -18,6 +18,7 @@ int main(void) {
     while (SDL_PollEvent(&e)) {
       // no handling needed
     }
+
     SDL_Delay(16);
   }
   if (!gfx->impl) {
