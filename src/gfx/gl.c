@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 #include "canim/core.h"
 #include "canim/gfx.h"
 #include "glad/glad.h"

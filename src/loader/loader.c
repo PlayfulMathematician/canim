@@ -1,4 +1,4 @@
-
+// SPDX-License-Identifier: MIT
 #include "canim/loader.h"
 #include "canim/core.h"
 #include <stdio.h>
@@ -22,7 +22,7 @@
 #define LIB_LOAD(name) LoadLibraryA(name)
 #define LIB_SYM(h, sym) GetProcAddress(h, sym)
 #define LIB_CLOSE(h) FreeLibrary(h)
-
+#define LIB_EXT ".dll"
 #endif
 const char *gfx_backend_libname(GfxBackend backend) {
   switch (backend) {
@@ -37,9 +37,6 @@ GfxContainer *gfx_load_backend(CanimResult *result, GfxBackend backend,
                                const GfxInitInfo *info) {
   const char *libname = gfx_backend_libname(backend);
   LIB_HANDLE handle = LIB_LOAD(libname);
-  if (!handle) {
-    fprintf(stderr, dlerror());
-  }
   const GfxAPI *const *entry =
       (const GfxAPI *const *)LIB_SYM(handle, "GFX_API_ENTRY");
   GfxContainer *gfx = calloc(1, sizeof(*gfx));
@@ -51,9 +48,13 @@ GfxContainer *gfx_load_backend(CanimResult *result, GfxBackend backend,
   if (IS_AN_ERROR(*result)) {
     return NULL;
   }
+  gfx->handle = (void *)handle;
   gfx->impl = dev;
   *result = SUCCESS;
   return gfx;
 }
 
-void gfx_unload_backend(CanimResult *result, GfxContainer *gfx) {}
+void gfx_unload_backend(CanimResult *result, GfxContainer *gfx) {
+  LIB_CLOSE((LIB_HANDLE)gfx->handle);
+  *result = SUCCESS;
+}
