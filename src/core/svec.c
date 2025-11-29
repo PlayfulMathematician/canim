@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: AGPL-3.0
 #include "canim/core.h"
 #include <stddef.h>
 #include <stdlib.h>

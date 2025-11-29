@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: AGPL-3.0
 #include "canim/core.h"
 #include "canim/gfx.h"
 #include <SDL2/SDL.h>
@@ -25,9 +25,12 @@ GfxDevice *vk_create_device(CanimResult *result, GfxContainer *container,
   dev->height = info->height;
   dev->win = NULL;
   if (!info->headless) {
-    dev->win = SDL_CreateWindow(
-        "Canim Vulkan", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        info->width, info->height, SDL_WINDOW_VULKAN | SDL_WINDOW_SHOWN);
+    dev->win = info->native_window
+                   ? info->native_window
+                   : SDL_CreateWindow("Canim Vulkan", SDL_WINDOWPOS_CENTERED,
+                                      SDL_WINDOWPOS_CENTERED, info->width,
+                                      info->height,
+                                      SDL_WINDOW_VULKAN | SDL_WINDOW_SHOWN);
 
     if (!dev->win) {
       free(dev);
