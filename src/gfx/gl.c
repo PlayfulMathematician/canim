@@ -108,9 +108,6 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
 
     SDL_GL_MakeCurrent(dev->win, dev->glctx);
   }
-  glViewport(0, 0, dev->width, dev->height);
-  glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
   if (dev->headless) {
     eglSwapBuffers(dev->egl_display, dev->egl_surface);
     gladLoadGLLoader((GLADloadproc)eglGetProcAddress);
@@ -118,6 +115,10 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
     SDL_GL_SwapWindow(dev->win);
     gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress);
   }
+  printf("A");
+  glViewport(0, 0, dev->width, dev->height);
+  glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
+  glClear(GL_COLOR_BUFFER_BIT);
 
   return dev;
 }

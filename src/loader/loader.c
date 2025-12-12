@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: AGPL-3.0
 #include "canim/loader.h"
 #include "canim/core.h"
+#include "canim/gfx.h"
 #include <stdio.h>
+
 #include <stdlib.h>
 #ifdef CANIM_PLATFORM_POSIX
 #include <dlfcn.h>
@@ -27,7 +29,7 @@
 const char *gfx_backend_libname(GfxBackend backend) {
   switch (backend) {
   case CANIM_GFX_GL:
-    return "libgl" LIB_EXT;
+    return "libcanim_gl" LIB_EXT;
 
   default:
     return NULL;

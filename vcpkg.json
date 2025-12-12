@@ -1,0 +1,13 @@
+
+  {
+  "name": "canim",
+  "version": "0.1.0",
+  "dependencies": [
+    {
+      "name": "sdl2",
+      "default-features": false
+    },
+    "glad"
+  ]
+}
+

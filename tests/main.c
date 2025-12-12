@@ -1,5 +1,5 @@
+#include "canim/canim.h"
 #include <SDL2/SDL.h>
-#include <canim/canim.h>
 #include <unistd.h>
 
 int main(void) {
