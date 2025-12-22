@@ -17,6 +17,4 @@
 .clangd/
 .idea/
 .vscode/
-/tests/a.out
-/tests/test_*
 /docs

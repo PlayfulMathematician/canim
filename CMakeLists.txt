@@ -6,4 +6,8 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_subdirectory(src)
+install(
+    DIRECTORY include/
+    DESTINATION include
+)
 

@@ -70,7 +70,9 @@ enum {
                        ///< something failed
   SVEC_ZERO_ELEMENT_SIZE, ///< When initializing an SVec, the element size was
                           ///< set to zero
-  SVEC_REALLOC_FAIL ///< When reallocating space for an SVec, something failed
+  REALLOC_FAIL,           ///< When using realloc, a failure occurred
+  FSEEK_FAILURE,          ///< When using fseek, a failure occurred,
+  MALLOC_FAIL,            ///< When using malloc, a failure occurred
 };
 
 /// @brief Result code used across Canim operations.

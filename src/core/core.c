@@ -53,8 +53,14 @@ void print_error(CanimResult error) {
     fprintf(stderr,
             "When initializing an SVec, the element size was set to zero\n");
     break;
-  case SVEC_REALLOC_FAIL:
-    fprintf(stderr, "When reallocating space for an SVec, something failed.\n");
+  case REALLOC_FAIL:
+    fprintf(stderr, "When using realloc something failed.\n");
+    break;
+  case FSEEK_FAILURE:
+    fprintf(stderr, "When using fseek, failure occurred\n.");
+    break;
+  case MALLOC_FAIL:
+    fprintf(stderr, "When using malloc, failure occurred\n");
     break;
 
   default:

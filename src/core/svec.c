@@ -33,7 +33,7 @@ static inline void svec_push(CanimResult *result, SVec *v, const void *elem) {
     void *new_data = realloc(v->data, new_cap * v->element_size);
 
     if (!new_data) {
-      *result = SVEC_REALLOC_FAIL;
+      *result = REALLOC_FAIL;
       return;
     }
     v->data = new_data;
@@ -56,7 +56,7 @@ static inline void svec_pop(CanimResult *result, SVec *v, void *out) {
     void *new_data = realloc(v->data, new_cap * v->element_size);
 
     if (!new_data) {
-      *result = SVEC_REALLOC_FAIL;
+      *result = REALLOC_FAIL;
       return;
     }
     v->data = new_data;
