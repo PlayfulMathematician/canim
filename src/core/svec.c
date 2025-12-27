@@ -4,18 +4,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-static inline void svec_init(CanimResult *result, SVec *v, size_t elem_size) {
+CANIM_API void svec_init(CanimResult *result, SVec *v, size_t elem_size) {
   if (elem_size == 0) {
     *result = SVEC_ZERO_ELEMENT_SIZE;
     return;
   }
   v->element_size = elem_size;
   v->list_size = 0;
-  v->data = NULL;
+  v->data = malloc(elem_size);
+  if (!v->data) {
+    *result = MALLOC_FAIL;
+    return;
+  }
   *result = SUCCESS;
 }
 
-static inline void svec_free(CanimResult *result, SVec *v) {
+CANIM_API void svec_free(CanimResult *result, SVec *v) {
   free(v->data);
   v->data = NULL;
   v->list_size = 0;
@@ -23,7 +27,7 @@ static inline void svec_free(CanimResult *result, SVec *v) {
   *result = SUCCESS;
 }
 
-static inline void svec_push(CanimResult *result, SVec *v, const void *elem) {
+CANIM_API void svec_push(CanimResult *result, SVec *v, const void *elem) {
 
   size_t old_size = v->list_size;
   size_t new_size = old_size + 1;
@@ -45,7 +49,7 @@ static inline void svec_push(CanimResult *result, SVec *v, const void *elem) {
   *result = SUCCESS;
 }
 
-static inline void svec_pop(CanimResult *result, SVec *v, void *out) {
+CANIM_API void svec_pop(CanimResult *result, SVec *v, void *out) {
   size_t old_size = v->list_size;
   size_t new_size = old_size - 1;
   if (out) {
@@ -65,13 +69,13 @@ static inline void svec_pop(CanimResult *result, SVec *v, void *out) {
   *result = SUCCESS;
 }
 
-static inline void svec_set(CanimResult *result, SVec *v, size_t i,
-                            const void *elem) {
+CANIM_API void svec_set(CanimResult *result, SVec *v, size_t i,
+                        const void *elem) {
   memcpy(v->data + i * v->element_size, elem, v->element_size);
   *result = SUCCESS;
 }
 
-static inline void *svec_get(CanimResult *result, SVec *v, size_t i) {
+CANIM_API void *svec_get(CanimResult *result, SVec *v, size_t i) {
   *result = SUCCESS;
   return v->data + i * v->element_size;
 }
