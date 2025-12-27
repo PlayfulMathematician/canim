@@ -83,37 +83,43 @@ typedef uint32_t CanimResult;
 void print_error(CanimResult error);
 
 /// @def CANIM_PLATFORM_WINDOWS
-/// @brief Defined on Windows (_WIN32).
-#ifdef _WIN32
+/// @brief Defined on Windows platforms (_WIN32 or __CYGWIN__).
+#if defined(_WIN32) || defined(__CYGWIN__)
 #define CANIM_PLATFORM_WINDOWS 1
-#define CANIM_PLATFORM_KNOWN 1
 #endif
 
 /// @def CANIM_PLATFORM_MAC
-/// @brief Defined on macOS (__APPLE__).
-#ifdef __APPLE__
+/// @brief Defined on macOS platforms (__APPLE__).
+#if defined(__APPLE__) && !defined(CANIM_PLATFORM_WINDOWS)
 #define CANIM_PLATFORM_MAC 1
-#define CANIM_PLATFORM_KNOWN 1
 #endif
 
 /// @def CANIM_PLATFORM_LINUX
-/// @brief Defined on Linux (__linux__).
-#ifdef __linux__
+/// @brief Defined on Linux platforms (__linux__).
+#if defined(__linux__) && !defined(CANIM_PLATFORM_WINDOWS)
 #define CANIM_PLATFORM_LINUX 1
-#define CANIM_PLATFORM_KNOWN 1
 #endif
 
-/// @def CANIM_PLATFORM_POSIX
-/// @brief Defined on POSIX platforms (macOS or Linux).
-#if defined(CANIM_PLATFORM_LINUX) || defined(CANIM_PLATFORM_MAC)
-#define CANIM_PLATFORM_POSIX 1
+/// @def CANIM_PLATFORM_KNOWN
+/// @brief Defined if exactly one supported primary platform is detected.
+#if (defined(CANIM_PLATFORM_WINDOWS) + defined(CANIM_PLATFORM_MAC) +           \
+     defined(CANIM_PLATFORM_LINUX)) == 1
 #define CANIM_PLATFORM_KNOWN 1
 #endif
 
 /// @def CANIM_PLATFORM_UNKNOWN
-/// @brief Defined if no known platform could be detected.
+/// @brief Defined if no supported (or multiple conflicting) platforms are
+/// detected.
 #ifndef CANIM_PLATFORM_KNOWN
 #define CANIM_PLATFORM_UNKNOWN 1
+#endif
+
+/// @def CANIM_PLATFORM_POSIX
+/// @brief Defined on platforms providing a POSIX-compatible API
+///        (Linux, macOS, or Cygwin).
+#if defined(CANIM_PLATFORM_LINUX) || defined(CANIM_PLATFORM_MAC) ||            \
+    defined(__CYGWIN__)
+#define CANIM_PLATFORM_POSIX 1
 #endif
 
 /// @def max
