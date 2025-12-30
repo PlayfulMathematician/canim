@@ -3,6 +3,9 @@ set(CANIM_CORE_SRC
     core/endian.c
     core/svec.c
     loader/loader.c
+    io/pdf.c
+    io/zlib.c
+    io/ffmpeg.c
 )
 
 add_library(canim SHARED
