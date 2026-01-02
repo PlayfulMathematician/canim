@@ -1,15 +1,98 @@
 // SPDX-License-Identifier: AGPL-3.0
 #pragma once
-
 /// @file core.h
 /// @brief This is everything core to Canim that is shared between subsystems
-
 #include <stdint.h>
 #include <sys/types.h>
-/// @def CANIM_API
-/// @brief Meant for a visibility label to all parts of the Canim API
-#define CANIM_API __attribute__((visibility("default")))
+#if defined(_WIN32) || defined(_WIN64)
+#define CANIM_PLATFORM_WINDOWS 1
+#elif defined(__APPLE__) && defined(__MACH__)
+#define CANIM_PLATFORM_MACOS 1
+#elif defined(__linux__)
+#define CANIM_PLATFORM_LINUX 1
+#else
+#error "Unsupported platform for Canim"
+#endif
 
+#if defined(CANIM_PLATFORM_LINUX) || defined(CANIM_PLATFORM_MACOS)
+#define CANIM_POSIX 1
+#endif
+
+#if defined(__x86_64__) || defined(_M_X64)
+#define CANIM_ARCH_X86_64 1
+#elif defined(__aarch64__) || defined(_M_ARM64)
+#define CANIM_ARCH_ARM64 1
+#else
+#define CANIM_ARCH_UNKNOWN 1
+#endif
+
+#if defined(__clang__)
+#define CANIM_COMPILER_CLANG 1
+#elif defined(__GNUC__)
+#define CANIM_COMPILER_GCC 1
+#elif defined(_MSC_VER)
+#define CANIM_COMPILER_MSVC 1
+#else
+#error "Unsupported compiler for Canim"
+#endif
+
+#if !defined(CANIM_DEBUG) && !defined(CANIM_RELEASE)
+#error "Build mode not defined (CANIM_DEBUG or CANIM_RELEASE)"
+#endif
+
+#if defined(CANIM_DEBUG) && defined(CANIM_RELEASE)
+#error "Both CANIM_DEBUG and CANIM_RELEASE are defined"
+#endif
+#if defined(CANIM_PLATFORM_WINDOWS)
+#if defined(CANIM_BUILD_DLL)
+#define CANIM_API __declspec(dllexport)
+#elif defined(CANIM_USE_DLL)
+#define CANIM_API __declspec(dllimport)
+#else
+#define CANIM_API
+#endif
+#else
+#define CANIM_API __attribute__((visibility("default")))
+#endif
+
+#if defined(CANIM_COMPILER_MSVC)
+#define CANIM_FORCE_INLINE __forceinline
+#define CANIM_NO_INLINE __declspec(noinline)
+#elif defined(CANIM_COMPILER_GCC) || defined(CANIM_COMPILER_CLANG)
+#define CANIM_FORCE_INLINE inline __attribute__((always_inline))
+#define CANIM_NO_INLINE __attribute__((noinline))
+#else
+#define CANIM_FORCE_INLINE inline
+#define CANIM_NO_INLINE
+#endif
+
+#if !defined(__STDC_VERSION__) || (__STDC_VERSION__ < 201112L)
+#error "Canim requires C11 or newer"
+#endif
+
+#if defined(CANIM_COMPILER_GCC) || defined(CANIM_COMPILER_CLANG)
+#define CANIM_LIKELY(x) __builtin_expect(!!(x), 1)
+#define CANIM_UNLIKELY(x) __builtin_expect(!!(x), 0)
+#else
+#define CANIM_LIKELY(x) (x)
+#define CANIM_UNLIKELY(x) (x)
+#endif
+
+#define CANIM_UNUSED(x) ((void)(x))
+#if defined(CANIM_COMPILER_MSVC)
+#define CANIM_ALIGN(n) __declspec(align(n))
+#else
+#define CANIM_ALIGN(n) __attribute__((aligned(n)))
+#endif
+/// @def CANIM_CPU_LE
+/// @brief Indicates whether the CPU is little endian
+#if defined(__BYTE_ORDER__) && defined(__ORDER_LITTLE_ENDIAN__)
+#define CANIM_CPU_LE (__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__)
+#elif defined(CANIM_PLATFORM_WINDOWS)
+#define CANIM_CPU_LE 1
+#else
+#error "Cannot determine cpu endianness"
+#endif
 /// @def STATUS_TYPE_SHIFT
 /// @brief The bit shift applied to the value of an error to get it's type
 #define STATUS_TYPE_SHIFT 24
@@ -82,46 +165,6 @@ typedef uint32_t CanimResult;
 /// @param error The error to be printed.
 void print_error(CanimResult error);
 
-/// @def CANIM_PLATFORM_WINDOWS
-/// @brief Defined on Windows platforms (_WIN32 or __CYGWIN__).
-#if defined(_WIN32) || defined(__CYGWIN__)
-#define CANIM_PLATFORM_WINDOWS 1
-#endif
-
-/// @def CANIM_PLATFORM_MAC
-/// @brief Defined on macOS platforms (__APPLE__).
-#if defined(__APPLE__) && !defined(CANIM_PLATFORM_WINDOWS)
-#define CANIM_PLATFORM_MAC 1
-#endif
-
-/// @def CANIM_PLATFORM_LINUX
-/// @brief Defined on Linux platforms (__linux__).
-#if defined(__linux__) && !defined(CANIM_PLATFORM_WINDOWS)
-#define CANIM_PLATFORM_LINUX 1
-#endif
-
-/// @def CANIM_PLATFORM_KNOWN
-/// @brief Defined if exactly one supported primary platform is detected.
-#if (defined(CANIM_PLATFORM_WINDOWS) + defined(CANIM_PLATFORM_MAC) +           \
-     defined(CANIM_PLATFORM_LINUX)) == 1
-#define CANIM_PLATFORM_KNOWN 1
-#endif
-
-/// @def CANIM_PLATFORM_UNKNOWN
-/// @brief Defined if no supported (or multiple conflicting) platforms are
-/// detected.
-#ifndef CANIM_PLATFORM_KNOWN
-#define CANIM_PLATFORM_UNKNOWN 1
-#endif
-
-/// @def CANIM_PLATFORM_POSIX
-/// @brief Defined on platforms providing a POSIX-compatible API
-///        (Linux, macOS, or Cygwin).
-#if defined(CANIM_PLATFORM_LINUX) || defined(CANIM_PLATFORM_MAC) ||            \
-    defined(__CYGWIN__)
-#define CANIM_PLATFORM_POSIX 1
-#endif
-
 /// @def max
 /// @brief A max macro
 #ifndef max
@@ -139,30 +182,6 @@ void print_error(CanimResult error);
 /// @def BUFFER_SIZE
 /// @brief The size of a buffer
 #define BUFFER_SIZE 4096
-
-/// @def POPEN
-/// @brief A cross platform alias for opening a pipe.
-#ifdef CANIM_PLATFORM_WINDOWS
-#define POPEN _popen
-#else
-#define POPEN popen
-#endif
-
-/// @def PCLOSE
-/// @brief A cross platform alias for closing a pipe.
-#ifdef CANIM_PLATFORM_WINDOWS
-#define PCLOSE _pclose
-#else
-#define PCLOSE pclose
-#endif
-
-/// @def WB
-/// @brief Correct mode for writing in binary files on each platform
-#ifdef CANIM_PLATFORM_WINDOWS
-#define WB "wb"
-#else
-#define WB "w"
-#endif
 
 /// @brief Read a 16-bit unsigned integer in big endian byte order
 /// @param p Pointer to a buffer containing at least 2 bytes

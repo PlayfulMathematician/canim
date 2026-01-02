@@ -2,10 +2,8 @@
 #include "canim/loader.h"
 #include "canim/core.h"
 #include "canim/gfx.h"
-#include <stdio.h>
-
 #include <stdlib.h>
-#ifdef CANIM_PLATFORM_POSIX
+#ifdef CANIM_POSIX
 #include <dlfcn.h>
 #define LIB_HANDLE void *
 #define LIB_LOAD(name) dlopen(name, RTLD_NOW | RTLD_LOCAL)
@@ -30,7 +28,6 @@ const char *gfx_backend_libname(GfxBackend backend) {
   switch (backend) {
   case CANIM_GFX_GL:
     return "libcanim_gl" LIB_EXT;
-
   default:
     return NULL;
   }

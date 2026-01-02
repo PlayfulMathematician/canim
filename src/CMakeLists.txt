@@ -11,7 +11,12 @@ set(CANIM_CORE_SRC
 add_library(canim SHARED
     ${CANIM_CORE_SRC}
 )
-
+target_compile_definitions(canim 
+  PUBLIC 
+    CANIM_BUILD 
+    $<$<CONFIG:Debug>:CANIM_DEBUG>
+    $<$<NOT:$<CONFIG:Debug>>:CANIM_RELEASE>
+)
 target_include_directories(canim
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
@@ -32,6 +37,14 @@ set_target_properties(canim PROPERTIES
 add_library(canim_gl SHARED
     gfx/gl.c
 )
+
+target_compile_definitions(canim_gl 
+  PUBLIC
+    CANIM_BUILD 
+    $<$<CONFIG:Debug>:CANIM_DEBUG>
+    $<$<NOT:$<CONFIG:Debug>>:CANIM_RELEASE>
+)
+
 
 target_link_libraries(canim_gl
     PUBLIC

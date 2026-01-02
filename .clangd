@@ -2,5 +2,5 @@ CompileFlags:
   Add:
     - -I./include
   Remove:
-    - -I/usr/local/include
-
+    - -I/usr/local/includ
+  CompilationDatabase: . 

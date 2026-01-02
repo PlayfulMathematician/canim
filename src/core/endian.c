@@ -3,82 +3,70 @@
 #include <stdint.h>
 #include <string.h>
 
-CANIM_API uint16_t read_be_u16(const unsigned char *p) {
-  return ((uint16_t)p[0] << 010) | ((uint16_t)p[1] << 000);
+#if defined(CANIM_COMPILER_CLANG) || defined(CANIM_COMPILER_GCC)
+#define CANIM_BSWAP16 __builtin_bswap16
+#define CANIM_BSWAP32 __builtin_bswap32
+#define CANIM_BSWAP64 __builtin_bswap64
+#endif
+
+CANIM_API uint16_t canim_read_be_u16(const unsigned char *p) {
+  uint16_t x;
+  memcpy(&x, p, sizeof x);
+#if CANIM_CPU_LE
+  return CANIM_BSWAP16(x);
+#else
+  return x;
+#endif
 }
 
-CANIM_API uint32_t read_be_u32(const unsigned char *p) {
-  return ((uint32_t)p[0] << 030) | ((uint32_t)p[1] << 020) |
-         ((uint32_t)p[2] << 010) | ((uint32_t)p[3] << 000);
+CANIM_API uint16_t canim_read_le_u16(const unsigned char *p) {
+  uint16_t x;
+  memcpy(&x, p, sizeof x);
+#if CANIM_CPU_LE
+  return x;
+#else
+  return CANIM_BSWAP16(x);
+#endif
 }
 
-CANIM_API uint64_t read_be_u64(const unsigned char *p) {
-  return ((uint64_t)p[0] << 070) | ((uint64_t)p[1] << 060) |
-         ((uint64_t)p[2] << 050) | ((uint64_t)p[3] << 040) |
-         ((uint64_t)p[4] << 030) | ((uint64_t)p[5] << 020) |
-         ((uint64_t)p[6] << 010) | ((uint64_t)p[7] << 000);
+CANIM_API uint32_t canim_read_be_u32(const unsigned char *p) {
+  uint32_t x;
+  memcpy(&x, p, sizeof x);
+#if CANIM_CPU_LE
+  return CANIM_BSWAP32(x);
+#else
+  return x;
+#endif
 }
 
-CANIM_API uint16_t read_le_u16(const unsigned char *p) {
-  return ((uint16_t)p[1] << 010) | ((uint16_t)p[0] << 000);
+CANIM_API uint32_t canim_read_le_u32(const unsigned char *p) {
+  uint32_t x;
+  memcpy(&x, p, sizeof x);
+#if CANIM_CPU_LE
+  return x;
+#else
+  return CANIM_BSWAP32(x);
+#endif
 }
 
-CANIM_API uint32_t read_le_u32(const unsigned char *p) {
-  return ((uint32_t)p[3] << 030) | ((uint32_t)p[2] << 020) |
-         ((uint32_t)p[1] << 010) | ((uint32_t)p[0] << 000);
+CANIM_API uint64_t canim_read_be_u64(const unsigned char *p) {
+  uint64_t x;
+  memcpy(&x, p, sizeof x);
+#if CANIM_CPU_LE
+  return CANIM_BSWAP64(x);
+#else
+  return x;
+#endif
 }
 
-CANIM_API uint64_t read_le_u64(const unsigned char *p) {
-  return ((uint64_t)p[7] << 070) | ((uint64_t)p[6] << 060) |
-         ((uint64_t)p[5] << 050) | ((uint64_t)p[4] << 040) |
-         ((uint64_t)p[3] << 030) | ((uint64_t)p[2] << 020) |
-         ((uint64_t)p[1] << 010) | ((uint64_t)p[0] << 000);
-}
-
-CANIM_API void write_be_u16(unsigned char *p, uint16_t v) {
-  p[0] = (unsigned char)(v >> 010);
-  p[1] = (unsigned char)(v >> 000);
-}
-
-CANIM_API void write_be_u32(unsigned char *p, uint32_t v) {
-  p[0] = (unsigned char)(v >> 030);
-  p[1] = (unsigned char)(v >> 020);
-  p[2] = (unsigned char)(v >> 010);
-  p[3] = (unsigned char)(v >> 000);
-}
-
-CANIM_API void write_be_u64(unsigned char *p, uint64_t v) {
-  p[0] = (unsigned char)(v >> 070);
-  p[1] = (unsigned char)(v >> 060);
-  p[2] = (unsigned char)(v >> 050);
-  p[3] = (unsigned char)(v >> 040);
-  p[4] = (unsigned char)(v >> 030);
-  p[5] = (unsigned char)(v >> 020);
-  p[6] = (unsigned char)(v >> 010);
-  p[7] = (unsigned char)(v >> 000);
-}
-
-CANIM_API void write_le_u16(unsigned char *p, uint16_t v) {
-  p[0] = (unsigned char)(v >> 000);
-  p[1] = (unsigned char)(v >> 010);
-}
-
-CANIM_API void write_le_u32(unsigned char *p, uint32_t v) {
-  p[0] = (unsigned char)(v >> 000);
-  p[1] = (unsigned char)(v >> 010);
-  p[2] = (unsigned char)(v >> 020);
-  p[3] = (unsigned char)(v >> 030);
-}
-
-CANIM_API void write_le_u64(unsigned char *p, uint64_t v) {
-  p[0] = (unsigned char)(v >> 000);
-  p[1] = (unsigned char)(v >> 010);
-  p[2] = (unsigned char)(v >> 020);
-  p[3] = (unsigned char)(v >> 030);
-  p[4] = (unsigned char)(v >> 040);
-  p[5] = (unsigned char)(v >> 050);
-  p[6] = (unsigned char)(v >> 060);
-  p[7] = (unsigned char)(v >> 070);
+CANIM_API uint64_t canim_read_le_u64(const unsigned char *p) {
+  uint64_t x;
+  memcpy(&x, p, sizeof x);
+#if CANIM_CPU_LE
+  return x;
+#else
+  return CANIM_BSWAP64(x);
+#endif
 }
 
 CANIM_API float read_be_f32(const unsigned char *p) {

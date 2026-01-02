@@ -115,7 +115,6 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
     SDL_GL_SwapWindow(dev->win);
     gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress);
   }
-  printf("A");
   glViewport(0, 0, dev->width, dev->height);
   glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
