@@ -32,8 +32,9 @@ const char *gfx_backend_libname(GfxBackend backend) {
     return NULL;
   }
 }
-GfxContainer *gfx_load_backend(CanimResult *result, GfxBackend backend,
-                               const GfxInitInfo *info) {
+CANIM_API GfxContainer *canim_gfx_load_backend(CanimResult *result,
+                                               GfxBackend backend,
+                                               const GfxInitInfo *info) {
   const char *libname = gfx_backend_libname(backend);
   LIB_HANDLE handle = LIB_LOAD(libname);
   const GfxAPI *const *entry =
@@ -53,7 +54,8 @@ GfxContainer *gfx_load_backend(CanimResult *result, GfxBackend backend,
   return gfx;
 }
 
-void gfx_unload_backend(CanimResult *result, GfxContainer *gfx) {
+CANIM_API void canim_gfx_unload_backend(CanimResult *result,
+                                        GfxContainer *gfx) {
   LIB_CLOSE((LIB_HANDLE)gfx->handle);
   *result = SUCCESS;
 }

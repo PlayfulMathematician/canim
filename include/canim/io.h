@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: AGPL-3.0
+#pragma once
 #include "canim/core.h"
 #include <stdbool.h>
 #include <stddef.h>
@@ -6,11 +8,11 @@
 /// @param[out] result A status code
 /// @param f Pointer to the file
 /// @return The length of the file
-static long get_length(CanimResult *result, FILE *f);
-
-/// @brief Find XRef
-static long find_xref(CanimResult *result, FILE *f);
-
+CANIM_API long canim_get_file_length(CanimResult *result, FILE *f);
+CANIM_API unsigned char *canim_decompress_flate(CanimResult *result,
+                                                unsigned char *input,
+                                                size_t input_len,
+                                                size_t *output_len);
 typedef struct {
   uint8_t major;
   uint8_t minor;

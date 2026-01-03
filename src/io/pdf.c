@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0
 #include "canim/core.h"
 #include "canim/io.h"
 #include <stdio.h>
@@ -52,5 +53,5 @@ PdfXrefTable *get_xref_table(CanimResult *result, FILE *f) {
   unsigned int start;
   unsigned int count;
   fscanf(f, "%u %u", &start, &count);
-  // finish this
+  // TODO: finish this
 }

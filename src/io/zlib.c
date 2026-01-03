@@ -1,11 +1,13 @@
+// SPDX-License-Identifier: AGPL-3.0
 #include "zlib.h"
 #include "canim/core.h"
 #include "canim/io.h"
 #include <stdbool.h>
 #include <stdlib.h>
-static unsigned char *decompress_flate(CanimResult *result,
-                                       unsigned char *input, size_t input_len,
-                                       size_t *output_len) {
+CANIM_API unsigned char *canim_decompress_flate(CanimResult *result,
+                                                unsigned char *input,
+                                                size_t input_len,
+                                                size_t *output_len) {
   unsigned char *buf;
   buf = malloc(8 * input_len);
   if (buf == NULL) {
