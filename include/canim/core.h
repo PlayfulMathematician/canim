@@ -186,102 +186,52 @@ void print_error(CanimResult error);
 /// @brief Read a 16-bit unsigned integer in big endian byte order
 /// @param p Pointer to a buffer containing at least 2 bytes
 /// @return The 16-bit unsigned integer
-CANIM_API uint16_t read_be_u16(const unsigned char *p);
+CANIM_API uint16_t canim_read_be_u16(const unsigned char *p);
 
 /// @brief Read a 32-bit unsigned integer in big endian byte order
 /// @param p Pointer to a buffer containing at least 4 bytes
 /// @return The 32-bit unsigned integer
-CANIM_API uint32_t read_be_u32(const unsigned char *p);
+CANIM_API uint32_t canim_read_be_u32(const unsigned char *p);
 
 /// @brief Read a 64-bit unsigned integer in big endian byte order
 /// @param p Pointer to a buffer containing at least 8 bytes
 /// @return The 64-bit unsigned integer
-CANIM_API uint64_t read_be_u64(const unsigned char *p);
+CANIM_API uint64_t canim_read_be_u64(const unsigned char *p);
 
 /// @brief Read a 16-bit unsigned integer in little endian byte order
 /// @param p Pointer to a buffer containing at least 2 bytes
 /// @return The 16-bit unsigned integer
-CANIM_API uint16_t read_le_u16(const unsigned char *p);
+CANIM_API uint16_t canim_read_le_u16(const unsigned char *p);
 
 /// @brief Read a 32-bit unsigned integer in little endian byte order
 /// @param p Pointer to a buffer containing at least 4 bytes
 /// @return The 32-bit unsigned integer
-CANIM_API uint32_t read_le_u32(const unsigned char *p);
+CANIM_API uint32_t canim_read_le_u32(const unsigned char *p);
 
 /// @brief Read a 64-bit unsigned integer in little endian byte order
 /// @param p Pointer to a buffer containing at least 8 bytes
 /// @return The 64-bit unsigned integer
-CANIM_API uint64_t read_le_u64(const unsigned char *p);
-
-/// @brief Write a 16-bit unsigned integer in big endian byte order
-/// @param p The buffer to be written to
-/// @param v The integer to be converted
-CANIM_API void write_be_u16(unsigned char *p, uint16_t v);
-
-/// @brief Write a 32-bit unsigned integer in big endian byte order
-/// @param p The buffer to be written to
-/// @param v The integer to be converted
-CANIM_API void write_be_u32(unsigned char *p, uint32_t v);
-
-/// @brief Write a 64-bit unsigned integer in big endian byte order
-/// @param p The buffer to be written to
-/// @param v The integer to be converted
-CANIM_API void write_be_u64(unsigned char *p, uint64_t v);
-
-/// @brief Write a 16-bit unsigned integer in little endian byte order
-/// @param p The buffer to be written to
-/// @param v The integer to be converted
-CANIM_API void write_le_u16(unsigned char *p, uint16_t v);
-
-/// @brief Write a 32-bit unsigned integer in little endian byte order
-/// @param p The buffer to be written to
-/// @param v The integer to be converted
-CANIM_API void write_le_u32(unsigned char *p, uint32_t v);
-
-/// @brief Write a 64-bit unsigned integer in little endian byte order
-/// @param p The buffer to be written to
-/// @param v The integer to be converted
-CANIM_API void write_le_u64(unsigned char *p, uint64_t v);
+CANIM_API uint64_t canim_read_le_u64(const unsigned char *p);
 
 /// @brief Read a 32-bit float in big endian byte order
 /// @param p The buffer to be read
 /// @return The float
-CANIM_API float read_be_f32(const unsigned char *p);
+CANIM_API float canim_read_be_f32(const unsigned char *p);
 
 /// @brief Read a 64-bit float in big endian byte order
 /// @param p The buffer to be read
 /// @return The float
-CANIM_API double read_be_f64(const unsigned char *p);
+CANIM_API double canim_read_be_f64(const unsigned char *p);
 
 /// @brief Read a 32-bit float in little endian byte order
 /// @param p The buffer to be read
 /// @return The float
-CANIM_API float read_le_f32(const unsigned char *p);
+CANIM_API float canim_read_le_f32(const unsigned char *p);
 
 /// @brief Read a 64-bit float in little endian byte order
 /// @param p The buffer to be read
 /// @return The float
-CANIM_API double read_le_f64(const unsigned char *p);
-
-/// @brief Write a 32 bit float to a big endian buffer
-/// @param The buffer to be written to
-/// @param f The float
-CANIM_API void write_be_f32(unsigned char *p, float f);
-
-/// @brief Write a 64 bit ouble to a big endian buffer
-/// @param The buffer to be written to
-/// @param f The double
-CANIM_API void write_be_f64(unsigned char *p, double f);
-
-/// @brief Write a 32 bit float to a little endian buffer
-/// @param The buffer to be written to
-/// @param f The float
-CANIM_API void write_le_f32(unsigned char *p, float f);
-
-/// @brief Write a 64 bit ouble to a little endian buffer
-/// @param The buffer to be written to
-/// @param f The double
-CANIM_API void write_le_f64(unsigned char *p, double f);
+CANIM_API double canim_read_le_f64(const unsigned char *p);
 
 /// @def BIT_IGNORE
 /// @brief Alignment granularity in bits (round up to 2^BIT_IGNORE).
@@ -299,49 +249,3 @@ CANIM_API void write_le_f64(unsigned char *p, double f);
 /// @def REALIGN(a, b)
 /// @brief True if a and b land in different aligned capacity buckets.
 #define REALIGN(a, b) (BIT_ALIGN(a) != BIT_ALIGN(b))
-
-/// @struct SVec
-/// @brief Minimal growable byte-vector.
-typedef struct {
-  size_t element_size; ///< Size of each element in bytes.
-  size_t list_size;    ///< Number of elements stored.
-  unsigned char *data; ///< Contiguous raw byte storage
-} SVec;
-
-/// @brief Initialize a vector with a fixed element size.
-/// @param[out] result A status code
-/// @param v Pointer to SVec
-/// @param elem_size Number of bytes per element
-CANIM_API void svec_init(CanimResult *result, SVec *v, size_t elem_size);
-
-/// @brief Free all memory owned by the vector.
-/// @param[out] result A status code
-/// @param v Pointer to SVec
-CANIM_API void svec_free(CanimResult *result, SVec *v);
-
-/// @brief Append one element, reallocating only when bucket changes.
-/// @param[out] result A status code
-/// @param v Pointer to SVec
-/// @param elem Pointer to element data
-CANIM_API void svec_push(CanimResult *result, SVec *v, const void *elem);
-
-/// @brief Remove the last element, shrinking bucket only if needed.
-/// @param[out] result A status code
-/// @param v Pointer to SVec
-/// @param out Optional output location
-CANIM_API void svec_pop(CanimResult *result, SVec *v, void *out);
-
-/// @brief Get a pointer to element at index i
-/// @param[out] result A status code
-/// @param v Pointer to SVec
-/// @param i Index to read from
-/// @return A pointer to the element
-CANIM_API void *svec_get(CanimResult *result, SVec *v, size_t i);
-
-/// @brief Set the element at index i to the value pointed to by elem.
-/// @param[out] result A status code
-/// @param v Pointer to SVec
-/// @param i Index to write to
-/// @param elem Pointer to source data
-CANIM_API void svec_set(CanimResult *result, SVec *v, size_t i,
-                        const void *elem);

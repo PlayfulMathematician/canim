@@ -69,54 +69,30 @@ CANIM_API uint64_t canim_read_le_u64(const unsigned char *p) {
 #endif
 }
 
-CANIM_API float read_be_f32(const unsigned char *p) {
-  uint32_t u = read_be_u32(p);
+CANIM_API float canim_read_be_f32(const unsigned char *p) {
+  uint32_t u = canim_read_be_u32(p);
   float f;
   memcpy(&f, &u, sizeof(f));
   return f;
 }
 
-CANIM_API float read_le_f32(const unsigned char *p) {
-  uint32_t u = read_le_u32(p);
+CANIM_API float canim_read_le_f32(const unsigned char *p) {
+  uint32_t u = canim_read_le_u32(p);
   float f;
   memcpy(&f, &u, sizeof(f));
   return f;
 }
 
-CANIM_API void write_be_f32(unsigned char *p, float f) {
-  uint32_t u;
-  memcpy(&u, &f, sizeof(u));
-  write_be_u32(p, u);
-}
-
-CANIM_API void write_le_f32(unsigned char *p, float f) {
-  uint32_t u;
-  memcpy(&u, &f, sizeof(u));
-  write_le_u32(p, u);
-}
-
-CANIM_API double read_be_f64(const unsigned char *p) {
-  uint64_t u = read_be_u64(p);
+CANIM_API double canim_read_be_f64(const unsigned char *p) {
+  uint64_t u = canim_read_be_u64(p);
   double d;
   memcpy(&d, &u, sizeof(d));
   return d;
 }
 
-CANIM_API double read_le_f64(const unsigned char *p) {
-  uint64_t u = read_le_u64(p);
+CANIM_API double canim_read_le_f64(const unsigned char *p) {
+  uint64_t u = canim_read_le_u64(p);
   double d;
   memcpy(&d, &u, sizeof(d));
   return d;
-}
-
-CANIM_API void write_be_f64(unsigned char *p, double d) {
-  uint64_t u;
-  memcpy(&u, &d, sizeof(u));
-  write_be_u64(p, u);
-}
-
-CANIM_API void write_le_f64(unsigned char *p, double d) {
-  uint64_t u;
-  memcpy(&u, &d, sizeof(u));
-  write_le_u64(p, u);
 }

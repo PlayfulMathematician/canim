@@ -6,6 +6,7 @@ set(CANIM_CORE_SRC
     io/pdf.c
     io/zlib.c
     io/ffmpeg.c
+    math/math_utils.c
 )
 
 add_library(canim SHARED
