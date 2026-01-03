@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 static long find_xref(CanimResult *result, FILE *f) {
-  long length = get_length(result, f);
+  long length = canim_get_file_length(result, f);
   if (IS_AN_ERROR(*result)) {
     return 0;
   }
@@ -31,7 +31,7 @@ static long find_xref(CanimResult *result, FILE *f) {
   return starting + strstr(buf, "startxref") - buf;
 }
 
-PdfVersion get_pdf_version(CanimResult *result, FILE *f) {
+CANIM_API PdfVersion canim_get_pdf_version(CanimResult *result, FILE *f) {
   long cur = ftell(f);
   fseek(f, 0, SEEK_SET);
   char buf[9];
