@@ -155,6 +155,7 @@ enum {
                           ///< set to zero
   REALLOC_FAIL,           ///< When using realloc, a failure occurred
   FSEEK_FAILURE,          ///< When using fseek, a failure occurred,
+  FTELL_FAILURE,          ///< When using ftell, a failure occured
   MALLOC_FAIL,            ///< When using malloc, a failure occurred
 };
 

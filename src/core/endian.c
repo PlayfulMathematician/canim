@@ -7,6 +7,26 @@
 #define CANIM_BSWAP16 __builtin_bswap16
 #define CANIM_BSWAP32 __builtin_bswap32
 #define CANIM_BSWAP64 __builtin_bswap64
+#else
+static inline uint16_t CANIM_BSWAP16(uint16_t x) {
+  return (uint16_t)((x << 8) | (x >> 8));
+}
+
+static inline uint32_t CANIM_BSWAP32(uint32_t x) {
+  return ((x & 0x000000FFu) << 24) | ((x & 0x0000FF00u) << 8) |
+         ((x & 0x00FF0000u) >> 8) | ((x & 0xFF000000u) >> 24);
+}
+
+static inline uint64_t CANIM_BSWAP64(uint64_t x) {
+  return ((x & 0x00000000000000FFull) << 56) |
+         ((x & 0x000000000000FF00ull) << 40) |
+         ((x & 0x0000000000FF0000ull) << 24) |
+         ((x & 0x00000000FF000000ull) << 8) |
+         ((x & 0x000000FF00000000ull) >> 8) |
+         ((x & 0x0000FF0000000000ull) >> 24) |
+         ((x & 0x00FF000000000000ull) >> 40) |
+         ((x & 0xFF00000000000000ull) >> 56);
+}
 #endif
 
 CANIM_API uint16_t canim_read_be_u16(const unsigned char *p) {

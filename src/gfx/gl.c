@@ -8,7 +8,7 @@
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_video.h>
 #include <stdlib.h>
-struct GfxDevice {
+struct CanimGfxDevice {
   bool headless;
   int width;
   int height;
@@ -18,9 +18,10 @@ struct GfxDevice {
   EGLSurface egl_surface;
   EGLContext egl_context;
 };
-GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
-                            const GfxInitInfo *info) {
-  GfxDevice *dev = (GfxDevice *)calloc(1, sizeof(GfxDevice));
+CanimGfxDevice *gl_create_device(CanimResult *result,
+                                 CanimGfxContainer *container,
+                                 const CanimGfxInitInfo *info) {
+  CanimGfxDevice *dev = (CanimGfxDevice *)calloc(1, sizeof(CanimGfxDevice));
   if (!dev) {
     *result = GFX_DEVICE_CALLOC_ERROR;
     return NULL;
@@ -121,8 +122,8 @@ GfxDevice *gl_create_device(CanimResult *result, GfxContainer *container,
 
   return dev;
 }
-void gl_destroy_device(CanimResult *result, GfxContainer *container) {
-  GfxDevice *device = container->impl;
+void gl_destroy_device(CanimResult *result, CanimGfxContainer *container) {
+  CanimGfxDevice *device = container->impl;
   if (!device) {
     return;
   }
@@ -142,8 +143,8 @@ void gl_destroy_device(CanimResult *result, GfxContainer *container) {
   free(device);
 };
 
-const GfxAPI GFX_GL_API = {.gfx_create_device = gl_create_device,
-                           .gfx_destroy_device = gl_destroy_device};
+const CanimGfxAPI GFX_GL_API = {.gfx_create_device = gl_create_device,
+                                .gfx_destroy_device = gl_destroy_device};
 
-__attribute__((visibility("default"))) const GfxAPI *GFX_API_ENTRY =
+__attribute__((visibility("default"))) const CanimGfxAPI *GFX_API_ENTRY =
     &GFX_GL_API;

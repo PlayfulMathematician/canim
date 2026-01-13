@@ -2,6 +2,12 @@
 #pragma once
 #include "canim/core.h"
 #include <stdbool.h>
+
+/// @brief This clamps a value
+/// @param x The value to be clamped
+/// @param lo The minimum
+/// @param hi The maximum
+/// @return The clamped value
 CANIM_API double canim_clamp(double x, double lo, double hi);
 CANIM_API double canim_lerp(double a, double b, double t);
 CANIM_API bool canim_nearly_equal(double a, double b);
