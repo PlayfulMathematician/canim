@@ -1,6 +1,6 @@
 - [ ] Add more betterer docstrings 
 - [ ] MEMORY
-- [ ] Endianness 
+- [x] Endianness 
 - [ ] Actually start working on math 
 - [ ] Actually make the engine 
 
