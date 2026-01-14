@@ -2,6 +2,7 @@
 #pragma once
 /// @file core.h
 /// @brief This is everything core to Canim that is shared between subsystems
+#include <stdbool.h>
 #include <stdint.h>
 #include <sys/types.h>
 #if defined(_WIN32) || defined(_WIN64)
@@ -97,6 +98,8 @@
 /// @brief The bit shift applied to the value of an error to get it's type
 #define STATUS_TYPE_SHIFT 24
 
+typedef double CanimNumber;
+typedef unsigned char CanimByte;
 /// @def STATUS_TYPE_MASK
 /// @brief The mask applied to the an error to eliminate it's subtype.
 #define STATUS_TYPE_MASK 0xFF000000
@@ -172,9 +175,9 @@ void print_error(CanimResult error);
 #define max(a, b) (((a) > (b)) ? (a) : (b))
 #endif
 
-/// @def EPSILON
+/// @def CANIM_EPSILON
 /// @brief Tolerance for floating-point comparisons.
-#define EPSILON 0.000001
+#define CANIM_EPSILON 0.000001
 
 /// @def null
 /// @brief I do not want to capitalize NULL

@@ -7,7 +7,8 @@
       "name": "sdl2",
       "default-features": false
     },
-    "glad"
+    "glad",
+    "stb"
   ]
 }
 

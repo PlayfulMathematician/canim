@@ -1,4 +1,5 @@
-// SPDX-License-Identifier: AGPL-3.0
+// SPDX-License-Identifier: MIT
+
 #include "canim/loader.h"
 #include "canim/core.h"
 #include "canim/gfx.h"

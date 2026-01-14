@@ -5,7 +5,7 @@ set(CANIM_CORE_SRC
     io/pdf.c
     io/zlib.c
     math/math_utils.c
-
+    io/image_stb.c
 )
 
 add_library(canim SHARED
@@ -21,11 +21,16 @@ target_include_directories(canim
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
+    PRIVATE
+              ${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/include
+
 )
+
 
 target_link_libraries(canim
     PRIVATE
-        m
+
+        m 
 )
 
 set_target_properties(canim PROPERTIES
