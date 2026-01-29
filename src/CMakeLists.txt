@@ -6,6 +6,7 @@ set(CANIM_CORE_SRC
     io/zlib.c
     math/math_utils.c
     io/image_stb.c
+    arena/arena.c
 )
 
 add_library(canim SHARED

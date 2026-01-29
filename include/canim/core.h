@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <sys/types.h>
+#include <wchar.h>
 #if defined(_WIN32) || defined(_WIN64)
 #define CANIM_PLATFORM_WINDOWS 1
 #elif defined(__APPLE__) && defined(__MACH__)
@@ -100,6 +101,17 @@
 
 typedef double CanimNumber;
 typedef unsigned char CanimByte;
+typedef uint8_t CanimU8;
+typedef uint16_t CanimU16;
+typedef uint32_t CanimU32;
+typedef uint64_t CanimU64;
+typedef int8_t CanimS8;
+typedef int16_t CanimS16;
+typedef int32_t CanimS32;
+typedef int64_t CanimS64;
+typedef double CanimDouble;
+typedef float CanimFloat;
+
 /// @def STATUS_TYPE_MASK
 /// @brief The mask applied to the an error to eliminate it's subtype.
 #define STATUS_TYPE_MASK 0xFF000000
@@ -190,52 +202,52 @@ void print_error(CanimResult error);
 /// @brief Read a 16-bit unsigned integer in big endian byte order
 /// @param p Pointer to a buffer containing at least 2 bytes
 /// @return The 16-bit unsigned integer
-CANIM_API uint16_t canim_read_be_u16(const unsigned char *p);
+CANIM_API CanimU16 canim_read_be_u16(const CanimByte *p);
 
 /// @brief Read a 32-bit unsigned integer in big endian byte order
 /// @param p Pointer to a buffer containing at least 4 bytes
 /// @return The 32-bit unsigned integer
-CANIM_API uint32_t canim_read_be_u32(const unsigned char *p);
+CANIM_API CanimU32 canim_read_be_u32(const CanimByte *p);
 
 /// @brief Read a 64-bit unsigned integer in big endian byte order
 /// @param p Pointer to a buffer containing at least 8 bytes
 /// @return The 64-bit unsigned integer
-CANIM_API uint64_t canim_read_be_u64(const unsigned char *p);
+CANIM_API CanimU64 canim_read_be_u64(const CanimByte *p);
 
 /// @brief Read a 16-bit unsigned integer in little endian byte order
 /// @param p Pointer to a buffer containing at least 2 bytes
 /// @return The 16-bit unsigned integer
-CANIM_API uint16_t canim_read_le_u16(const unsigned char *p);
+CANIM_API CanimU16 canim_read_le_u16(const CanimByte *p);
 
 /// @brief Read a 32-bit unsigned integer in little endian byte order
 /// @param p Pointer to a buffer containing at least 4 bytes
 /// @return The 32-bit unsigned integer
-CANIM_API uint32_t canim_read_le_u32(const unsigned char *p);
+CANIM_API CanimU32 canim_read_le_u32(const CanimByte *p);
 
 /// @brief Read a 64-bit unsigned integer in little endian byte order
 /// @param p Pointer to a buffer containing at least 8 bytes
 /// @return The 64-bit unsigned integer
-CANIM_API uint64_t canim_read_le_u64(const unsigned char *p);
+CANIM_API CanimU64 canim_read_le_u64(const CanimByte *p);
 
 /// @brief Read a 32-bit float in big endian byte order
 /// @param p The buffer to be read
 /// @return The float
-CANIM_API float canim_read_be_f32(const unsigned char *p);
+CANIM_API CanimFloat canim_read_be_f32(const CanimByte *p);
 
 /// @brief Read a 64-bit float in big endian byte order
 /// @param p The buffer to be read
 /// @return The float
-CANIM_API double canim_read_be_f64(const unsigned char *p);
+CANIM_API CanimDouble canim_read_be_f64(const CanimByte *p);
 
 /// @brief Read a 32-bit float in little endian byte order
 /// @param p The buffer to be read
 /// @return The float
-CANIM_API float canim_read_le_f32(const unsigned char *p);
+CANIM_API CanimFloat canim_read_le_f32(const CanimByte *p);
 
 /// @brief Read a 64-bit float in little endian byte order
 /// @param p The buffer to be read
 /// @return The float
-CANIM_API double canim_read_le_f64(const unsigned char *p);
+CANIM_API CanimDouble canim_read_le_f64(const CanimByte *p);
 
 /// @def BIT_IGNORE
 /// @brief Alignment granularity in bits (round up to 2^BIT_IGNORE).
