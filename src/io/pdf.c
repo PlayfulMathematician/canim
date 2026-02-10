@@ -5,9 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-static long find_xref(CanimResult *result, FILE *f) {
-  long length = canim_get_file_length(result, f);
-  if (IS_AN_ERROR(*result)) {
+static long find_xref(CanimResult *c_result, FILE *f) {
+  long length = canim_get_file_length(c_result, f);
+  if (canim_is_error(c_result)) {
     return 0;
   }
   long starting;
@@ -18,7 +18,7 @@ static long find_xref(CanimResult *result, FILE *f) {
   }
   long buf_size = length - starting;
   if (fseek(f, starting, SEEK_SET) == -1) {
-    *result = FSEEK_FAILURE;
+    CANIM_RESULT_FATAL(CANIM_RESULT_CODE_FILE);
     return 0;
   }
   char buf[BUFFER_SIZE + 1];
@@ -32,7 +32,7 @@ static long find_xref(CanimResult *result, FILE *f) {
   return starting + strstr(buf, "startxref") - buf;
 }
 
-CANIM_API PdfVersion canim_get_pdf_version(CanimResult *result, FILE *f) {
+CANIM_API PdfVersion canim_get_pdf_version(CanimResult *c_result, FILE *f) {
   long cur = ftell(f);
   fseek(f, 0, SEEK_SET);
   char buf[9];
@@ -45,9 +45,9 @@ CANIM_API PdfVersion canim_get_pdf_version(CanimResult *result, FILE *f) {
   return version;
 }
 
-PdfXrefTable *get_xref_table(CanimResult *result, FILE *f) {
-  long xref_loc = find_xref(result, f);
-  if (IS_AN_ERROR(*result)) {
+PdfXrefTable *get_xref_table(CanimResult *c_result, FILE *f) {
+  long xref_loc = find_xref(c_result, f);
+  if (canim_is_error(c_result)) {
     return NULL;
   }
   fseek(f, xref_loc, SEEK_SET);

@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: AGPL-3.0
+// SPDX-License-Identifier: GPL-3.0
 #pragma once
 /// @file core.h
 /// @brief This is everything core to Canim that is shared between subsystems
@@ -140,46 +140,79 @@ typedef float CanimFloat;
 /// @brief True if code is an error (NONFATAL or FATAL).
 #define IS_AN_ERROR(x)                                                         \
   ((STATUS_TYPE((x)) == FATAL) || (STATUS_TYPE((x)) == NONFATAL))
+/// @brief Result code used across Canim operations.
+typedef uint32_t CanimResultCode;
 
-/// @brief This are all of the error codes
+/// @brief The status of the result
+typedef uint32_t CanimResultStatus;
+/// @brief Additional info about the result
+typedef char *CanimResultAdditionalInfo;
+/// @brief The line number
+typedef int CanimResultLine;
+/// @brief This where the result occured
+typedef char *CanimResultFile;
+typedef struct {
+  CanimResultCode code;
+  CanimResultStatus status;
+  CanimResultAdditionalInfo additional_info;
+  CanimResultLine line;
+  CanimResultFile file;
+} CanimResult;
+
+/// @brief These are all the result statuses
 enum {
-  GFX_DEVICE_CALLOC_ERROR =
-      (uint32_t)0x03000000, ///< When using calloc to allocate memory for a
-                            ///< GfxDevice, calloc failed
-  EGL_NO_DISPLAY_ERROR,     ///< When creating an EGL display, no display was
-                            ///< created
-  EGL_DISPLAY_INIT_ERROR, ///< When initializing an EGL display something failed
-  EGL_DISPLAY_CONFIGURATION_ERROR, ///< When configuring an EGL display
-                                   ///< something failed.
-  EGL_NO_SURFACE_ERROR,      ///< When creating an EGL surface, no surface was
-                             ///< created
-  EGL_NO_CONTEXT_ERROR,      ///< When creating an EGL context, no context was
-                             ///< created.
-  EGL_MAKE_CURRENT_ERROR,    ///< When the making the EGL context, surface and
-                             ///< display the current one, something failed.
-  SDL_INIT_VIDEO_ERROR,      ///< When initializing SDL video, something failed
-  SDL_WINDOW_CREATION_ERROR, ///< When making a window with SDL2, something
-                             ///< failed
-  SDL_GL_CONTEXT_CREATION_ERROR, ///< When making an OpenGL context with SDL,
-                                 ///< something failed.
-  SDL_GLAD_LOAD_ERROR, ///< When loading OpenGL functions with GLAD, using SDL,
-                       ///< something failed
-  EGL_GLAD_LOAD_ERROR, ///< When loading OpenGL functions with GLAD, using EGL,
-                       ///< something failed
-  SVEC_ZERO_ELEMENT_SIZE, ///< When initializing an SVec, the element size was
-                          ///< set to zero
-  REALLOC_FAIL,           ///< When using realloc, a failure occurred
-  FSEEK_FAILURE,          ///< When using fseek, a failure occurred,
-  FTELL_FAILURE,          ///< When using ftell, a failure occured
-  MALLOC_FAIL,            ///< When using malloc, a failure occurred
+  CANIM_RESULT_STATUS_SUCCESS =
+      (CanimResultStatus)0, ///< Whenever there is a success
+  CANIM_RESULT_STATUS_DEPRECATED,
+  CANIM_RESULT_STATUS_TODO,
+  CANIM_RESULT_STATUS_UNREACHABLE,
+  CANIM_RESULT_STATUS_INCOMPATIBILITY,
+  CANIM_RESULT_STATUS_FATAL,
+  CANIM_RESULT_STATUS_NOT_FATAL
 };
 
-/// @brief Result code used across Canim operations.
-typedef uint32_t CanimResult;
+/// @brief These are all the result codes
+enum {
+  CANIM_RESULT_CODE_OTHER = (CanimResultCode)0xffffffff,
+  CANIM_RESULT_CODE_SUCCESS = (CanimResultCode)0,
+  CANIM_RESULT_CODE_MEMORY,
+  CANIM_RESULT_CODE_MATH,
+  CANIM_RESULT_CODE_FILE,
+  CANIM_RESULT_CODE_LOADING,
+  CANIM_RESULT_CODE_PARSING,
+  CANIM_RESULT_CODE_GFX,
+};
 
-/// @brief Print out the error
-/// @param error The error to be printed.
-void print_error(CanimResult error);
+/// @remark It is important to have your result point be c_result, otherwise I
+/// will be sad. And my macros will fail
+/// NO MORE MACROS
+#define CANIM_RESULT_EXTENDED(code_val, stat, info_str)                        \
+  do {                                                                         \
+    c_result->code = (code_val);                                               \
+    c_result->status = (stat);                                                 \
+    c_result->additional_info = (info_str);                                    \
+    c_result->line = __LINE__;                                                 \
+    c_result->file = __FILE__;                                                 \
+  } while (0)
+/// @todo Document these macros
+#define CANIM_RESULT_SUCCESS()                                                 \
+  CANIM_RESULT_EXTENDED(CANIM_RESULT_CODE_SUCCESS,                             \
+                        CANIM_RESULT_STATUS_SUCCESS, NULL)
+#define CANIM_RESULT_FATAL_EXT(code_val, info_str)                             \
+  CANIM_RESULT_EXTENDED(code_val, CANIM_RESULT_STATUS_FATAL, info_str)
+#define CANIM_RESULT_FATAL(code_val) CANIM_RESULT_FATAL_EXT(code_val, NULL)
+#define CANIM_RESULT_NOT_FATAL_EXT(code_val, info_str)                         \
+  CANIM_RESULT_EXTENDED(code_val, CANIM_RESULT_STATUS_NOT_FATAL, info_str)
+#define CANIM_RESULT_NOT_FATAL(code_val)                                       \
+  CANIM_RESULT_NOT_FATAL_EXT(code_val, NULL)
+
+/// @brief Checks if is error
+/// @param The result pointer
+/// @return If the result is an error
+CANIM_API bool canim_is_error(CanimResult *c_result);
+/// @brief Print out the result
+/// @param result The result to be printed.
+CANIM_API void print_error(CanimResult *c_result);
 
 /// @def max
 /// @brief A max macro

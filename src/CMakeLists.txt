@@ -3,7 +3,7 @@ set(CANIM_CORE_SRC
     core/endian.c
     loader/loader.c
     io/pdf.c
-    io/zlib.c
+    io/utils.c
     math/math_utils.c
     io/image_stb.c
     arena/arena.c

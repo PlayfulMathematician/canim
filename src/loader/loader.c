@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #ifdef CANIM_POSIX
 #include <dlfcn.h>
-#define LIB_HANDLE void *
 #define LIB_LOAD(name) dlopen(name, RTLD_NOW | RTLD_LOCAL)
 #define LIB_SYM(h, sym) dlsym(h, sym)
 #define LIB_CLOSE(h) dlclose(h)
@@ -19,7 +18,6 @@
 #endif
 #ifdef CANIM_PLATFORM_WINDOWS
 #include <windows.h>
-#define LIB_HANDLE HMODULE
 #define LIB_LOAD(name) LoadLibraryA(name)
 #define LIB_SYM(h, sym) GetProcAddress(h, sym)
 #define LIB_CLOSE(h) FreeLibrary(h)
@@ -34,29 +32,46 @@ const char *gfx_backend_libname(CanimGfxBackend backend) {
   }
 }
 CANIM_API CanimGfxContainer *
-canim_gfx_load_backend(CanimResult *result, CanimGfxBackend backend,
+canim_gfx_load_backend(CanimResult *c_result, CanimGfxBackend backend,
                        const CanimGfxInitInfo *info) {
+#ifdef CANIM_POSIX
+  dlerror();
+#endif
   const char *libname = gfx_backend_libname(backend);
-  LIB_HANDLE handle = LIB_LOAD(libname);
+  void *handle = LIB_LOAD(libname);
   const CanimGfxAPI *const *entry =
       (const CanimGfxAPI *const *)LIB_SYM(handle, "GFX_API_ENTRY");
+#ifdef CANIM_POSIX
+  char *err = dlerror();
+  if (err != NULL) {
+    CANIM_RESULT_FATAL_EXT(CANIM_RESULT_CODE_LOADING, err);
+    return NULL;
+  }
+  dlclose(handle);
+  return NULL;
+#endif
   CanimGfxContainer *gfx = calloc(1, sizeof(*gfx));
+  if (!gfx) {
+    LIB_CLOSE(handle);
+    CANIM_RESULT_FATAL(CANIM_RESULT_CODE_MEMORY);
+    return NULL;
+  }
   const CanimGfxAPI *api = *entry;
   gfx->api = *api;
   gfx->impl = NULL;
   gfx->backend = backend;
-  CanimGfxDevice *dev = gfx->api.gfx_create_device(result, gfx, info);
-  if (IS_AN_ERROR(*result)) {
+  CanimGfxDevice *dev = gfx->api.gfx_create_device(c_result, gfx, info);
+  if (canim_is_error(c_result)) {
     return NULL;
   }
   gfx->handle = (void *)handle;
   gfx->impl = dev;
-  *result = SUCCESS;
+  CANIM_RESULT_SUCCESS();
   return gfx;
 }
 
-CANIM_API void canim_gfx_unload_backend(CanimResult *result,
+CANIM_API void canim_gfx_unload_backend(CanimResult *c_result,
                                         CanimGfxContainer *gfx) {
-  LIB_CLOSE((LIB_HANDLE)gfx->handle);
-  *result = SUCCESS;
+  LIB_CLOSE(gfx->handle);
+  CANIM_RESULT_SUCCESS();
 }
