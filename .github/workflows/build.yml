@@ -21,9 +21,6 @@ jobs:
 
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgJsonPath: './vcpkg.json'
-
       - name: Configure
         run: >
           cmake -B build
@@ -38,3 +35,8 @@ jobs:
       - name: Test
         run: ctest --test-dir build --output-on-failure
 
+      - name: Upload build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-${{ matrix.build_type }}
+          path: build
