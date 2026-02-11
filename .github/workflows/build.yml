@@ -1,0 +1,40 @@
+name: CMake Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        build_type: [Debug, Release]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Ninja
+        run: sudo apt-get update && sudo apt-get install -y ninja-build
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgJsonGlob: '**/vcpkg.json'
+
+      - name: Configure
+        run: >
+          cmake -B build
+          -S .
+          -G Ninja
+          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake
+
+      - name: Build
+        run: cmake --build build --config ${{ matrix.build_type }}
+
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+
