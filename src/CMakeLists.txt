@@ -7,6 +7,8 @@ set(CANIM_CORE_SRC
     math/math_utils.c
     io/image_stb.c
     arena/arena.c
+    math/vec2.c 
+    math/vec3.c
 )
 
 add_library(canim SHARED

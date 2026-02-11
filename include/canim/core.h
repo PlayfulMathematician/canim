@@ -212,7 +212,7 @@ enum {
 CANIM_API bool canim_is_error(CanimResult *c_result);
 /// @brief Print out the result
 /// @param result The result to be printed.
-CANIM_API void print_error(CanimResult *c_result);
+CANIM_API void canim_print_error(CanimResult *c_result);
 
 /// @def max
 /// @brief A max macro
