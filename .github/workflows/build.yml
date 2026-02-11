@@ -16,13 +16,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install Ninja
-        run: sudo apt-get update && sudo apt-get install -y ninja-build
+      - name: Install system OpenGL
+        run: sudo apt-get update && sudo apt-get install -y \
+        libgl1-mesa-dev \
+        libglu1-mesa-dev \
+        freeglut3-dev \
+        ninja-build
 
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
         with:
-          vcpkgJsonGlob: '**/vcpkg.json'
+          vcpkgJsonGlob: './vcpkg.json'
 
       - name: Configure
         run: >
