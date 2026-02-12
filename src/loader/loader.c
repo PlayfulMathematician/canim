@@ -13,7 +13,7 @@
 #ifdef CANIM_PLATFORM_LINUX
 #define LIB_EXT ".so"
 #endif
-#ifdef CANIM_PLATFORM_MAC
+#ifdef CANIM_PLATFORM_MACOS
 #define LIB_EXT ".dylib"
 #endif
 #ifdef CANIM_PLATFORM_WINDOWS
@@ -45,10 +45,9 @@ canim_gfx_load_backend(CanimResult *c_result, CanimGfxBackend backend,
   char *err = dlerror();
   if (err != NULL) {
     CANIM_RESULT_FATAL_EXT(CANIM_RESULT_CODE_LOADING, err);
+    dlclose(handle);
     return NULL;
   }
-  dlclose(handle);
-  return NULL;
 #endif
   CanimGfxContainer *gfx = calloc(1, sizeof(*gfx));
   if (!gfx) {

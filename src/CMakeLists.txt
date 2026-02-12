@@ -68,13 +68,15 @@ target_link_libraries(canim_gl
     PRIVATE
         SDL2::SDL2
         glad::glad
-        OpenGL::GL
         m
 )
 
-if (EGL_FOUND)
-  target_link_libraries(canim_gl PRIVATE EGL::EGL)
-  target_compile_definitions(canim_gl PRIVATE CANIM_HAVE_EGL=1)
+if (APPLE)
+  target_link_libraries(canim_gl "-framework OpenGL")
+elseif(UNIX)
+  target_link_libraries(canim_gl PRIVATE EGL::EGL OpenGL::GL)
+else()
+  message(FATAL_ERROR "Canim is not supported on Windows")
 endif()
 
 set_target_properties(canim_gl PROPERTIES
