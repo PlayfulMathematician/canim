@@ -202,3 +202,33 @@ CANIM_API CanimVec3 canim_cross_vec3(CanimVec3 a, CanimVec3 b);
 #define canim_lerp_vec(a, b, t)                                                \
   _Generic((a), CanimVec2: canim_lerp_vec2, CanimVec3: canim_lerp_vec3)(       \
       (a), (b), (t))
+
+/// @struct CanimTri3
+/// @brief This stores 3 dimensional triangles
+typedef struct {
+  CanimVec3 points[3];
+} CanimTri3;
+
+/// @struct CanimTri2
+/// @brief This stores 2 dimensional triangles
+typedef struct {
+  CanimVec2 points[3];
+} CanimTri2;
+
+/// @brief This outputs true if the triangle3d is wound counter clockwise
+/// @param tri
+/// @return If it is counter clockwise
+CANIM_API bool canim_tri3_is_ccw(CanimTri3 tri);
+
+/// @brief This outputs true if the triangle2d is wound counter clockwise
+/// @param tri
+/// @return If it is counter clockwise
+CANIM_API bool canim_tri2_is_ccw(CanimTri2 tri);
+
+/// @brief This outputs true if the triangle (generic) is wound counter
+/// clockwise
+/// @param tri The triangle
+/// @return If it is counter clockwise
+#define canim_tri_is_ccw(tri)                                                  \
+  _Generic((tri), CanimTri2: canim_tri2_is_ccw, CanimTri3: canim_tri3_is_ccw)( \
+      (a))

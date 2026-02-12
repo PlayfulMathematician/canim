@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: GPL
 #include "canim/core.h"
 #include "canim/math.h"
 #include <math.h>

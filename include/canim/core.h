@@ -16,6 +16,9 @@
 #error "Unsupported platform for Canim"
 #endif
 
+#ifdef CANIM_PLATFORM_WINDOWS
+#error "I do not want to support windows"
+#endif
 #if defined(CANIM_PLATFORM_LINUX) || defined(CANIM_PLATFORM_MACOS)
 #define CANIM_POSIX 1
 #endif
