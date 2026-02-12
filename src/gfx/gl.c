@@ -3,7 +3,6 @@
 #include "canim/core.h"
 #include "canim/gfx.h"
 #include "glad/glad.h"
-#include <OpenGL/CGLCurrent.h>
 #include <stdio.h>
 #ifdef CANIM_PLATFORM_LINUX
 #include <EGL/egl.h>
@@ -11,6 +10,8 @@
 
 #include <GL/gl.h>
 #ifdef CANIM_PLATFORM_MACOS
+
+#include <OpenGL/CGLCurrent.h>
 #include <OpenGL/CGLTypes.h>
 #include <OpenGL/OpenGL.h>
 #include <OpenGL/gl.h>
