@@ -71,13 +71,14 @@ target_link_libraries(canim_gl
         m
 )
 
-if (APPLE)
+  if (APPLE)
   target_link_libraries(canim_gl "-framework OpenGL")
-elseif(UNIX)
-  target_link_libraries(canim_gl PRIVATE EGL::EGL OpenGL::GL)
-else()
+  elseif(UNIX)
+  target_link_libraries(canim_gl PRIVATE OpenGL::GL EGL)
+
+  else()
   message(FATAL_ERROR "Canim is not supported on Windows")
-endif()
+  endif()
 
 set_target_properties(canim_gl PROPERTIES
     OUTPUT_NAME "canim_gl"
