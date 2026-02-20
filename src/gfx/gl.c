@@ -188,18 +188,36 @@ CanimGfxDevice *gl_create_device(CanimResult *c_result,
     }
 #endif
 #ifdef CANIM_PLATFORM_LINUX
-    eglSwapBuffers(dev->egl_display, dev->egl_surface);
     gladLoadGLLoader((GLADloadproc)eglGetProcAddress);
 #endif
   } else {
-    SDL_GL_SwapWindow(dev->sdl_win);
     gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress);
   }
   glViewport(0, 0, dev->width, dev->height);
   glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT);
+  if (dev->headless) {
+#ifdef CANIM_PLATFORM_LINUX
+    eglSwapBuffers(dev->egl_display, dev->egl_surface);
+#endif
+  } else {
+    SDL_GL_SwapWindow(dev->sdl_win);
+  }
 
   return dev;
+}
+
+void gl_swap_buffers(CanimResult *c_result, CanimGfxContainer *container) {
+  CanimGfxDevice *dev = container->impl;
+  if (dev->headless) {
+#ifdef CANIM_PLATFORM_LINUX
+    eglSwapBuffers(dev->egl_display, dev->egl_surface);
+#endif
+  } else {
+    SDL_GL_SwapWindow(dev->sdl_win);
+  }
+
+  CANIM_RESULT_SUCCESS();
 }
 void gl_destroy_device(CanimResult *result, CanimGfxContainer *container) {
   CanimGfxDevice *device = container->impl;
@@ -229,7 +247,8 @@ void gl_destroy_device(CanimResult *result, CanimGfxContainer *container) {
 };
 
 const CanimGfxAPI GFX_GL_API = {.gfx_create_device = gl_create_device,
-                                .gfx_destroy_device = gl_destroy_device};
+                                .gfx_destroy_device = gl_destroy_device,
+                                .gfx_swap_buffers = gl_swap_buffers};
 
 __attribute__((visibility("default"))) const CanimGfxAPI *GFX_API_ENTRY =
     &GFX_GL_API;

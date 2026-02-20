@@ -44,6 +44,11 @@ struct CanimGfxAPI {
   /// @param[out] CanimResult* This is the error status
   /// @param CanimGfxContainer* This is the graphics container
   void (*gfx_destroy_device)(CanimResult *, CanimGfxContainer *);
+
+  /// @brief This swaps swaps buffer
+  /// @param[out] CanimResult* This is the status
+  /// @param CanimGfxContainer* The graphics container
+  void (*gfx_swap_buffers)(CanimResult *, CanimGfxContainer *);
 };
 
 /// @struct GfxContainer
