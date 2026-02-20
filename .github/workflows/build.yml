@@ -40,5 +40,5 @@ jobs:
         with:
           name: build-${{ matrix.build_type }}
           path: |
-            build/canim/libcanim.so
-            build/canim/libcanim_gl.so
+            build/lib/libcanim.so
+            build/lib/libcanim_gl.so
