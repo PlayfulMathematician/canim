@@ -49,6 +49,12 @@ struct CanimGfxAPI {
   /// @param[out] CanimResult* This is the status
   /// @param CanimGfxContainer* The graphics container
   void (*gfx_swap_buffers)(CanimResult *, CanimGfxContainer *);
+
+  /// @brief This checks if the system should close
+  /// @param[out] CanimResult* This is the status
+  /// @param CanimGfxContainer* This is the graphics container
+  /// @param close A bool pointerto keep track of whether or not to close
+  void (*gfx_should_close)(CanimResult *, CanimGfxContainer *, bool *);
 };
 
 /// @struct GfxContainer

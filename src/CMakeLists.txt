@@ -9,6 +9,7 @@ set(CANIM_CORE_SRC
     arena/arena.c
     math/vec2.c
     math/vec3.c
+    log/log.c
 )
 
 add_library(canim SHARED ${CANIM_CORE_SRC})
