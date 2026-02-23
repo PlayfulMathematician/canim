@@ -98,10 +98,6 @@
 #else
 #error "Cannot determine cpu endianness"
 #endif
-/// @def STATUS_TYPE_SHIFT
-/// @brief The bit shift applied to the value of an error to get it's type
-#define STATUS_TYPE_SHIFT 24
-
 typedef double CanimNumber;
 typedef unsigned char CanimByte;
 typedef uint8_t CanimU8;
@@ -114,108 +110,6 @@ typedef int32_t CanimS32;
 typedef int64_t CanimS64;
 typedef double CanimDouble;
 typedef float CanimFloat;
-
-/// @def STATUS_TYPE_MASK
-/// @brief The mask applied to the an error to eliminate it's subtype.
-#define STATUS_TYPE_MASK 0xFF000000
-
-/// @def SUCCESS
-/// @brief This is the status code for success
-#define SUCCESS 0x00
-
-/// @def NOOP
-/// @brief No operation performed.
-#define NOOP 0x01
-
-/// @def NONFATAL
-/// @brief Non-fatal error (unused)
-#define NONFATAL 0x02
-
-/// @def FATAL
-/// @brief Fatal error.
-#define FATAL 0x03
-
-/// @def STATUS_TYPE
-/// @brief Extracts the status type (SUCCESS/NOOP/NONFATAL/FATAL).
-#define STATUS_TYPE(code) (((code) & STATUS_TYPE_MASK) >> STATUS_TYPE_SHIFT)
-
-/// @def IS_AN_ERROR
-/// @brief True if code is an error (NONFATAL or FATAL).
-#define IS_AN_ERROR(x)                                                         \
-  ((STATUS_TYPE((x)) == FATAL) || (STATUS_TYPE((x)) == NONFATAL))
-/// @brief Result code used across Canim operations.
-typedef uint32_t CanimResultCode;
-
-/// @brief The status of the result
-typedef uint32_t CanimResultStatus;
-/// @brief Additional info about the result
-typedef char *CanimResultAdditionalInfo;
-/// @brief The line number
-typedef int CanimResultLine;
-/// @brief This where the result occured
-typedef char *CanimResultFile;
-typedef struct {
-  CanimResultCode code;
-  CanimResultStatus status;
-  CanimResultAdditionalInfo additional_info;
-  CanimResultLine line;
-  CanimResultFile file;
-} CanimResult;
-
-/// @brief These are all the result statuses
-enum {
-  CANIM_RESULT_STATUS_SUCCESS =
-      (CanimResultStatus)0, ///< Whenever there is a success
-  CANIM_RESULT_STATUS_DEPRECATED,
-  CANIM_RESULT_STATUS_TODO,
-  CANIM_RESULT_STATUS_UNREACHABLE,
-  CANIM_RESULT_STATUS_INCOMPATIBILITY,
-  CANIM_RESULT_STATUS_FATAL,
-  CANIM_RESULT_STATUS_NOT_FATAL
-};
-
-/// @brief These are all the result codes
-enum {
-  CANIM_RESULT_CODE_OTHER = (CanimResultCode)0xffffffff,
-  CANIM_RESULT_CODE_SUCCESS = (CanimResultCode)0,
-  CANIM_RESULT_CODE_MEMORY,
-  CANIM_RESULT_CODE_MATH,
-  CANIM_RESULT_CODE_FILE,
-  CANIM_RESULT_CODE_LOADING,
-  CANIM_RESULT_CODE_PARSING,
-  CANIM_RESULT_CODE_GFX,
-};
-
-/// @remark It is important to have your result point be c_result, otherwise I
-/// will be sad. And my macros will fail
-/// NO MORE MACROS
-#define CANIM_RESULT_EXTENDED(code_val, stat, info_str)                        \
-  do {                                                                         \
-    c_result->code = (code_val);                                               \
-    c_result->status = (stat);                                                 \
-    c_result->additional_info = (info_str);                                    \
-    c_result->line = __LINE__;                                                 \
-    c_result->file = __FILE__;                                                 \
-  } while (0)
-/// @todo Document these macros
-#define CANIM_RESULT_SUCCESS()                                                 \
-  CANIM_RESULT_EXTENDED(CANIM_RESULT_CODE_SUCCESS,                             \
-                        CANIM_RESULT_STATUS_SUCCESS, NULL)
-#define CANIM_RESULT_FATAL_EXT(code_val, info_str)                             \
-  CANIM_RESULT_EXTENDED(code_val, CANIM_RESULT_STATUS_FATAL, info_str)
-#define CANIM_RESULT_FATAL(code_val) CANIM_RESULT_FATAL_EXT(code_val, NULL)
-#define CANIM_RESULT_NOT_FATAL_EXT(code_val, info_str)                         \
-  CANIM_RESULT_EXTENDED(code_val, CANIM_RESULT_STATUS_NOT_FATAL, info_str)
-#define CANIM_RESULT_NOT_FATAL(code_val)                                       \
-  CANIM_RESULT_NOT_FATAL_EXT(code_val, NULL)
-
-/// @brief Checks if is error
-/// @param The result pointer
-/// @return If the result is an error
-CANIM_API bool canim_is_error(CanimResult *c_result);
-/// @brief Print out the result
-/// @param result The result to be printed.
-CANIM_API void canim_print_error(CanimResult *c_result);
 
 /// @def max
 /// @brief A max macro

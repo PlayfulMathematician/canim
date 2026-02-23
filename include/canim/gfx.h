@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
 #pragma once
 #include "canim/core.h"
+#include "canim/log.h"
 #include <stdbool.h>
-
 /// @enum GfxBackend
 /// @brief This is a list of available backends
 typedef enum {
@@ -34,27 +34,27 @@ typedef struct {
 /// freedom and you can't stop me
 struct CanimGfxAPI {
   /// @brief This constructs a graphics device
-  /// @param[out] CanimResult* This is the error status
+  /// @param[out] CanimLogger* This is the error status
   /// @param CanimGfxContainer* This is the container
   /// @param CanimGfxInitInfo* This is the initialization info
   /// @return A graphics device
-  CanimGfxDevice *(*gfx_create_device)(CanimResult *, CanimGfxContainer *,
+  CanimGfxDevice *(*gfx_create_device)(CanimLogger *, CanimGfxContainer *,
                                        const CanimGfxInitInfo *);
   /// @brief This destroys a graphics device
-  /// @param[out] CanimResult* This is the error status
+  /// @param[out] CanimLogger* This is the error status
   /// @param CanimGfxContainer* This is the graphics container
-  void (*gfx_destroy_device)(CanimResult *, CanimGfxContainer *);
+  void (*gfx_destroy_device)(CanimLogger *, CanimGfxContainer *);
 
   /// @brief This swaps swaps buffer
-  /// @param[out] CanimResult* This is the status
+  /// @param[out] CanimLogger* This is the status
   /// @param CanimGfxContainer* The graphics container
-  void (*gfx_swap_buffers)(CanimResult *, CanimGfxContainer *);
+  void (*gfx_swap_buffers)(CanimLogger *, CanimGfxContainer *);
 
   /// @brief This checks if the system should close
-  /// @param[out] CanimResult* This is the status
+  /// @param[out] CanimLogger* This is the status
   /// @param CanimGfxContainer* This is the graphics container
   /// @param close A bool pointerto keep track of whether or not to close
-  void (*gfx_should_close)(CanimResult *, CanimGfxContainer *, bool *);
+  void (*gfx_should_close)(CanimLogger *, CanimGfxContainer *, bool *);
 };
 
 /// @struct GfxContainer

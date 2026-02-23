@@ -3,6 +3,7 @@
 #include "canim/loader.h"
 #include "canim/core.h"
 #include "canim/gfx.h"
+#include "canim/log.h"
 #include <stdlib.h>
 #ifdef CANIM_POSIX
 #include <dlfcn.h>
@@ -32,7 +33,7 @@ const char *gfx_backend_libname(CanimGfxBackend backend) {
   }
 }
 CANIM_API CanimGfxContainer *
-canim_gfx_load_backend(CanimResult *c_result, CanimGfxBackend backend,
+canim_gfx_load_backend(CanimLogger *c_log, CanimGfxBackend backend,
                        const CanimGfxInitInfo *info) {
 #ifdef CANIM_POSIX
   dlerror();
@@ -44,7 +45,7 @@ canim_gfx_load_backend(CanimResult *c_result, CanimGfxBackend backend,
 #ifdef CANIM_POSIX
   char *err = dlerror();
   if (err != NULL) {
-    CANIM_RESULT_FATAL_EXT(CANIM_RESULT_CODE_LOADING, err);
+    CANIM_LOG_ERROR_EXT("Loading external libraries failed", err);
     dlclose(handle);
     return NULL;
   }
@@ -52,25 +53,26 @@ canim_gfx_load_backend(CanimResult *c_result, CanimGfxBackend backend,
   CanimGfxContainer *gfx = calloc(1, sizeof(*gfx));
   if (!gfx) {
     LIB_CLOSE(handle);
-    CANIM_RESULT_FATAL(CANIM_RESULT_CODE_MEMORY);
+
+    CANIM_LOG_ERROR("Allocating a graphics container failed");
     return NULL;
   }
   const CanimGfxAPI *api = *entry;
   gfx->api = *api;
   gfx->impl = NULL;
   gfx->backend = backend;
-  CanimGfxDevice *dev = gfx->api.gfx_create_device(c_result, gfx, info);
-  if (canim_is_error(c_result)) {
+  CanimGfxDevice *dev = gfx->api.gfx_create_device(c_log, gfx, info);
+
+  if (!dev) {
+    CANIM_LOG_ERROR("Creating a graphics device failed!");
     return NULL;
   }
   gfx->handle = (void *)handle;
   gfx->impl = dev;
-  CANIM_RESULT_SUCCESS();
   return gfx;
 }
 
-CANIM_API void canim_gfx_unload_backend(CanimResult *c_result,
+CANIM_API void canim_gfx_unload_backend(CanimLogger *c_log,
                                         CanimGfxContainer *gfx) {
   LIB_CLOSE(gfx->handle);
-  CANIM_RESULT_SUCCESS();
 }

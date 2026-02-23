@@ -2,14 +2,16 @@
 
 #include "canim/core.h"
 #include "canim/io.h"
+#include "canim/log.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-static long find_xref(CanimResult *c_result, FILE *f) {
-  long length = canim_get_file_length(c_result, f);
-  if (canim_is_error(c_result)) {
-    return 0;
+static long find_xref(CanimLogger *c_log, FILE *f) {
+  long length = canim_get_file_length(c_log, f);
+  if (!length) {
+    CANIM_LOG_ERROR("Couldn't find XREF, due to lack of file length");
   }
+
   long starting;
   if (length > BUFFER_SIZE) {
     starting = length - BUFFER_SIZE;
@@ -18,8 +20,7 @@ static long find_xref(CanimResult *c_result, FILE *f) {
   }
   long buf_size = length - starting;
   if (fseek(f, starting, SEEK_SET) == -1) {
-    CANIM_RESULT_FATAL(CANIM_RESULT_CODE_FILE);
-    return 0;
+    CANIM_LOG_ERROR("Couldn't find XREF, fseek failed");
   }
   char buf[BUFFER_SIZE + 1];
   fread(buf, buf_size, 1, f);
@@ -32,7 +33,7 @@ static long find_xref(CanimResult *c_result, FILE *f) {
   return starting + strstr(buf, "startxref") - buf;
 }
 
-CANIM_API PdfVersion canim_get_pdf_version(CanimResult *c_result, FILE *f) {
+CANIM_API PdfVersion canim_get_pdf_version(CanimLogger *c_log, FILE *f) {
   long cur = ftell(f);
   fseek(f, 0, SEEK_SET);
   char buf[9];
@@ -45,10 +46,10 @@ CANIM_API PdfVersion canim_get_pdf_version(CanimResult *c_result, FILE *f) {
   return version;
 }
 
-PdfXrefTable *get_xref_table(CanimResult *c_result, FILE *f) {
-  long xref_loc = find_xref(c_result, f);
-  if (canim_is_error(c_result)) {
-    return NULL;
+PdfXrefTable *get_xref_table(CanimLogger *c_log, FILE *f) {
+  long xref_loc = find_xref(c_log, f);
+  if (!xref_loc) {
+    CANIM_LOG_ERROR("Couldn't get XREF table, we couldn't find the XREF");
   }
   fseek(f, xref_loc, SEEK_SET);
   unsigned int start;

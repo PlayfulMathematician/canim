@@ -1,5 +1,4 @@
 set(CANIM_CORE_SRC
-    core/core.c
     core/endian.c
     loader/loader.c
     io/pdf.c
