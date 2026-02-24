@@ -20,10 +20,16 @@
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_video.h>
 #include <stdlib.h>
+
+typedef struct {
+  GLuint *shaders;
+  int shader_count;
+} CanimShaderList;
 struct CanimGfxDevice {
   bool headless;
   int width;
   int height;
+  CanimShaderList shaders;
   SDL_GLContext sdl_glctx;
   SDL_Window *sdl_win;
 #ifdef CANIM_PLATFORM_LINUX
@@ -35,6 +41,47 @@ struct CanimGfxDevice {
   CGLContextObj cgl_ctx;
 #endif
 };
+
+const char *tri_vertex_shader =
+    "#version 330 core\n"
+    "layout (location = 0) in vec3 aPos;\n"
+    "void main()\n"
+    "{\n"
+    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
+    "}\0";
+
+const char *tri_fragment_shader = "#version 330 core\n"
+                                  "out vec4 FragColor;\n"
+                                  "void main()\n"
+                                  "{\n"
+                                  "FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+                                  "}\0";
+// add logging
+GLuint compile_shaders(CanimLogger *c_log, const char *shader, GLenum type) {
+  GLuint shader_id = glCreateShader(type);
+  glShaderSource(shader_id, 1, &shader, NULL);
+  glCompileShader(shader_id);
+
+  GLint compile_status;
+
+  glGetShaderiv(shader_id, GL_COMPILE_STATUS, &compile_status);
+  return shader_id;
+}
+GLuint link_program(GLuint vertex_shader_id, GLuint fragment_shader_id) {
+  GLuint program_id = glCreateProgram();
+  glAttachShader(program_id, vertex_shader_id);
+  glAttachShader(program_id, fragment_shader_id);
+
+  glLinkProgram(program_id);
+
+  GLint link_status;
+
+  glGetProgramiv(program_id, GL_LINK_STATUS, &link_status);
+  glDeleteShader(vertex_shader_id);
+  glDeleteShader(fragment_shader_id);
+  return program_id;
+}
+
 CanimGfxDevice *gl_create_device(CanimLogger *c_log,
                                  CanimGfxContainer *container,
                                  const CanimGfxInitInfo *info) {
@@ -228,7 +275,11 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
 }
 
 void gl_swap_buffers(CanimLogger *c_log, CanimGfxContainer *container) {
+
   CanimGfxDevice *dev = container->impl;
+  glViewport(0, 0, dev->width, dev->height);
+  glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
+  glClear(GL_COLOR_BUFFER_BIT);
   if (dev->headless) {
 #ifdef CANIM_PLATFORM_LINUX
     eglSwapBuffers(dev->egl_display, dev->egl_surface);
@@ -286,10 +337,29 @@ void gl_save_screen(CanimLogger *c_log, CanimGfxContainer *container,
                GL_UNSIGNED_BYTE, buf.data);
 };
 
+bool gl_setup_shaders(CanimLogger *c_log, CanimGfxContainer *container) {
+  container->impl->shaders.shader_count = 1;
+  GLuint *shader_list =
+      malloc(container->impl->shaders.shader_count * sizeof(GLuint));
+  container->impl->shaders.shaders = shader_list;
+  if (!shader_list) {
+    CANIM_LOG_ERROR("Allocating space to store shaders failed");
+    return false;
+  }
+  GLuint vs, fs, s;
+
+  vs = compile_shaders(c_log, tri_vertex_shader, GL_VERTEX_SHADER);
+  fs = compile_shaders(c_log, tri_fragment_shader, GL_FRAGMENT_SHADER);
+  s = link_program(vs, fs);
+  container->impl->shaders.shaders[0] = s;
+  return true;
+}
+
 const CanimGfxAPI GFX_GL_API = {.gfx_create_device = gl_create_device,
                                 .gfx_destroy_device = gl_destroy_device,
                                 .gfx_swap_buffers = gl_swap_buffers,
                                 .gfx_should_close = gl_should_close,
-                                .gfx_save_screen = gl_save_screen};
+                                .gfx_save_screen = gl_save_screen,
+                                .gfx_setup_shaders = gl_setup_shaders};
 
 CANIM_API const CanimGfxAPI *GFX_API_ENTRY = &GFX_GL_API;

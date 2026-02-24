@@ -41,6 +41,11 @@ struct CanimGfxAPI {
   /// @return A graphics device
   CanimGfxDevice *(*gfx_create_device)(CanimLogger *, CanimGfxContainer *,
                                        const CanimGfxInitInfo *);
+  /// @brief This sets up the shaders
+  /// @param[out] CanimLogger* This is the error status
+  /// @param CanimGfxContainer* This is the container
+  bool (*gfx_setup_shaders)(CanimLogger *, CanimGfxContainer *);
+
   /// @brief This destroys a graphics device
   /// @param[out] CanimLogger* This is the error status
   /// @param CanimGfxContainer* This is the graphics container

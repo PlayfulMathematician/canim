@@ -20,3 +20,5 @@
 .vscode/
 /docs
 /Testing
+*.out
+*.mp4
