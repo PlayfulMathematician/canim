@@ -3,6 +3,8 @@ set(CANIM_CORE_SRC
     loader/loader.c
     io/pdf.c
     io/utils.c
+    io/ffmpeg.c 
+    io/screen_buf.c
     math/math_utils.c
     io/image_stb.c
     arena/arena.c

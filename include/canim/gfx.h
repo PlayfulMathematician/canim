@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: GPL-3.0
 #pragma once
 #include "canim/core.h"
+#include "canim/io.h"
 #include "canim/log.h"
 #include <stdbool.h>
 /// @enum GfxBackend
@@ -55,6 +56,12 @@ struct CanimGfxAPI {
   /// @param CanimGfxContainer* This is the graphics container
   /// @param close A bool pointerto keep track of whether or not to close
   void (*gfx_should_close)(CanimLogger *, CanimGfxContainer *, bool *);
+  /// @brief This saves the screen in a buffer
+  /// @param[out] CanimLogger* CanimLogger
+  /// @param CanimGfxContainer* This is the graphics container
+  /// @param CanimScreenBuffer This is the buffer
+  void (*gfx_save_screen)(CanimLogger *, CanimGfxContainer *,
+                          CanimScreenBuffer);
 };
 
 /// @struct GfxContainer

@@ -276,10 +276,20 @@ void gl_should_close(CanimLogger *c_log, CanimGfxContainer *container,
     }
   }
 }
+/*
+ *glPixelStorei(GL_PACK_ALIGNMENT, 1);
+  glReadPixels(0, 0, w, h, GL_RGB, GL_UNSIGNED_BYTE, rgb); */
+void gl_save_screen(CanimLogger *c_log, CanimGfxContainer *container,
+                    CanimScreenBuffer buf) {
+  glPixelStorei(GL_PACK_ALIGNMENT, 1);
+  glReadPixels(0, 0, container->impl->width, container->impl->height, GL_RGB,
+               GL_UNSIGNED_BYTE, buf.data);
+};
 
 const CanimGfxAPI GFX_GL_API = {.gfx_create_device = gl_create_device,
                                 .gfx_destroy_device = gl_destroy_device,
                                 .gfx_swap_buffers = gl_swap_buffers,
-                                .gfx_should_close = gl_should_close};
+                                .gfx_should_close = gl_should_close,
+                                .gfx_save_screen = gl_save_screen};
 
 CANIM_API const CanimGfxAPI *GFX_API_ENTRY = &GFX_GL_API;
