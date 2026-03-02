@@ -4,26 +4,15 @@
 #include "canim/core.h"
 #include "canim/gfx.h"
 #include "canim/log.h"
-#include <stdlib.h>
-#ifdef CANIM_POSIX
 #include <dlfcn.h>
-#define LIB_LOAD(name) dlopen(name, RTLD_NOW | RTLD_LOCAL)
-#define LIB_SYM(h, sym) dlsym(h, sym)
-#define LIB_CLOSE(h) dlclose(h)
-#endif
+#include <stdlib.h>
 #ifdef CANIM_PLATFORM_LINUX
 #define LIB_EXT ".so"
 #endif
 #ifdef CANIM_PLATFORM_MACOS
 #define LIB_EXT ".dylib"
 #endif
-#ifdef CANIM_PLATFORM_WINDOWS
-#include <windows.h>
-#define LIB_LOAD(name) LoadLibraryA(name)
-#define LIB_SYM(h, sym) GetProcAddress(h, sym)
-#define LIB_CLOSE(h) FreeLibrary(h)
-#define LIB_EXT ".dll"
-#endif
+
 const char *gfx_backend_libname(CanimGfxBackend backend) {
   switch (backend) {
   case CANIM_GFX_GL:
@@ -39,9 +28,9 @@ canim_gfx_load_backend(CanimLogger *c_log, CanimGfxBackend backend,
   dlerror();
 #endif
   const char *libname = gfx_backend_libname(backend);
-  void *handle = LIB_LOAD(libname);
+  void *handle = dlopen(libname, RTLD_NOW | RTLD_LOCAL);
   const CanimGfxAPI *const *entry =
-      (const CanimGfxAPI *const *)LIB_SYM(handle, "GFX_API_ENTRY");
+      (const CanimGfxAPI *const *)dlsym(handle, "GFX_API_ENTRY");
 #ifdef CANIM_POSIX
   char *err = dlerror();
   if (err != NULL) {
@@ -52,7 +41,7 @@ canim_gfx_load_backend(CanimLogger *c_log, CanimGfxBackend backend,
 #endif
   CanimGfxContainer *gfx = calloc(1, sizeof(*gfx));
   if (!gfx) {
-    LIB_CLOSE(handle);
+    dlclose(handle);
 
     CANIM_LOG_ERROR("Allocating a graphics container failed");
     return NULL;
@@ -74,5 +63,5 @@ canim_gfx_load_backend(CanimLogger *c_log, CanimGfxBackend backend,
 
 CANIM_API void canim_gfx_unload_backend(CanimLogger *c_log,
                                         CanimGfxContainer *gfx) {
-  LIB_CLOSE(gfx->handle);
+  dlclose(gfx->handle);
 }

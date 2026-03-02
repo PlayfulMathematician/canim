@@ -28,7 +28,6 @@ typedef struct {
   int width;           ///< The width of the window
   int height;          ///< The height of it
 } CanimGfxInitInfo;
-
 /// @struct GfxAPI
 /// @brief This struct stores the cross platform API functions
 /// This struct has a fptr, but i am not gonna document it, because i believe in
@@ -67,6 +66,15 @@ struct CanimGfxAPI {
   /// @param CanimScreenBuffer This is the buffer
   void (*gfx_save_screen)(CanimLogger *, CanimGfxContainer *,
                           CanimScreenBuffer);
+  /// @brief This draws a mesh
+  /// @param[out] CanimLogger* the CanimLogger
+  /// @param CanimGfxContainer* This is the relevant graphics container
+  /// @param float* This is the list of vertices
+  /// @param unsigned int* This is the list of indices
+  /// @param int This is the number of vertices
+  /// @param This is the number of triangles
+  void (*gfx_draw_mesh)(CanimLogger *, CanimGfxContainer *, float *,
+                        unsigned int *, int, int);
 };
 
 /// @struct GfxContainer

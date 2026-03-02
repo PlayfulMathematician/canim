@@ -20,7 +20,7 @@
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_video.h>
 #include <stdlib.h>
-
+#define CANIM_TRIANGLE_SHADER_IDX 0
 typedef struct {
   GLuint *shaders;
   int shader_count;
@@ -261,8 +261,6 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
     gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress);
   }
   glViewport(0, 0, dev->width, dev->height);
-  glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
   if (dev->headless) {
 #ifdef CANIM_PLATFORM_LINUX
     eglSwapBuffers(dev->egl_display, dev->egl_surface);
@@ -278,8 +276,8 @@ void gl_swap_buffers(CanimLogger *c_log, CanimGfxContainer *container) {
 
   CanimGfxDevice *dev = container->impl;
   glViewport(0, 0, dev->width, dev->height);
-  glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT);
+  // glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+  // glClear(GL_COLOR_BUFFER_BIT);
   if (dev->headless) {
 #ifdef CANIM_PLATFORM_LINUX
     eglSwapBuffers(dev->egl_display, dev->egl_surface);
@@ -354,12 +352,39 @@ bool gl_setup_shaders(CanimLogger *c_log, CanimGfxContainer *container) {
   container->impl->shaders.shaders[0] = s;
   return true;
 }
+void gl_draw_mesh(CanimLogger *c_log, CanimGfxContainer *container,
+                  float *vertices, unsigned int *indices, int vertex_size,
+                  int indices_size) {
+
+  unsigned int VBO, VAO, EBO;
+  glGenVertexArrays(1, &VAO);
+  glGenBuffers(1, &VBO);
+  glGenBuffers(1, &EBO);
+  glBindVertexArray(VAO);
+  glBindBuffer(GL_ARRAY_BUFFER, VBO);
+  glBufferData(GL_ARRAY_BUFFER, vertex_size, vertices, GL_STATIC_DRAW);
+  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+  glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices_size, indices, GL_STATIC_DRAW);
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void *)0);
+  glEnableVertexAttribArray(0);
+  glBindBuffer(GL_ARRAY_BUFFER, 0);
+  glBindVertexArray(0);
+
+  glUseProgram(container->impl->shaders.shaders[CANIM_TRIANGLE_SHADER_IDX]);
+  glBindVertexArray(VAO);
+  glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+  glBindVertexArray(VAO);
+  glDeleteVertexArrays(1, &VAO);
+  glDeleteBuffers(1, &VBO);
+  glDeleteBuffers(1, &EBO);
+}
 
 const CanimGfxAPI GFX_GL_API = {.gfx_create_device = gl_create_device,
                                 .gfx_destroy_device = gl_destroy_device,
                                 .gfx_swap_buffers = gl_swap_buffers,
                                 .gfx_should_close = gl_should_close,
                                 .gfx_save_screen = gl_save_screen,
-                                .gfx_setup_shaders = gl_setup_shaders};
+                                .gfx_setup_shaders = gl_setup_shaders,
+                                .gfx_draw_mesh = gl_draw_mesh};
 
 CANIM_API const CanimGfxAPI *GFX_API_ENTRY = &GFX_GL_API;
