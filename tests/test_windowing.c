@@ -1,6 +1,5 @@
-
 #define CANIM_DEBUG
-#include "canim/io.h"
+#include <canim/io.h>
 #include <stdint.h>
 
 #include <canim/gfx.h>

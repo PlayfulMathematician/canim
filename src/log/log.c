@@ -20,6 +20,7 @@ CANIM_API void canim_log(CanimLogger *c_log, CanimLog log) {
     write_to = c_log->error_stream;
     status = "ERROR";
   }
+
   fprintf(write_to, "[%s]: %s:%d %s\n", status, log.file, log.line_number,
           log.reason);
   if (log.note) {
