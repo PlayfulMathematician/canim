@@ -6,9 +6,9 @@
 #include "glad/glad.h"
 #ifdef CANIM_PLATFORM_LINUX
 #include <EGL/egl.h>
+#include <GL/gl.h>
 #endif
 
-#include <GL/gl.h>
 #ifdef CANIM_PLATFORM_MACOS
 
 #include <OpenGL/CGLCurrent.h>
@@ -115,7 +115,7 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
     err = CGLChoosePixelFormat(attrs, &pixelFormat, &npix);
     if (err != kCGLNoError) {
       const char *errStr = CGLErrorString(err);
-      CANIM_RESULT_FATAL_EXT(CANIM_RESULT_CODE_GFX, errStr); // NOLINT
+      CANIM_LOG_ERROR_EXT("Choosing a pixel format failed: ", errStr); // NOLINT
       return NULL;
     }
     CGLContextObj cglctx = NULL;
@@ -123,7 +123,7 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
     if (err != kCGLNoError) {
       CGLReleasePixelFormat(pixelFormat);
       const char *errStr = CGLErrorString(err);
-      CANIM_RESULT_FATAL_EXT(CANIM_RESULT_CODE_GFX, errStr); // NOLINT
+      CANIM_LOG_ERROR_EXT("Creating an CGL context failed: ", errStr); // NOLINT
       return NULL;
     }
     dev->cgl_ctx = cglctx;
@@ -134,7 +134,7 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
     if (err != kCGLNoError) {
       CGLDestroyContext(cglctx);
       const char *errStr = CGLErrorString(err);
-      CANIM_RESULT_FATAL_EXT(CANIM_RESULT_CODE_GFX, errStr); // NOLINT
+      CANIM_LOG_ERROR_EXT("Setting the CGL context failed", errStr); // NOLINT
       return NULL;
     }
 
@@ -250,7 +250,7 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
   if (dev->headless) {
 #ifdef CANIM_PLATFORM_MACOS
     if (!gladLoadGL()) {
-      CANIM_RESULT_FATAL(CANIM_RESULT_CODE_GFX);
+      CANIM_LOG_ERROR("Loading Glad Failed");
     }
 #endif
 #ifdef CANIM_PLATFORM_LINUX
