@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
+// @file loader.h
+// @brief This header handles dynamic loading
 #pragma once
 #include "canim/core.h"
 #include "canim/gfx.h"

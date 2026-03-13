@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
+// @file gfx.h
+// @brief This header defines the GFX Api wrapper
 #pragma once
 #include "canim/core.h"
 #include "canim/io.h"
@@ -28,10 +30,9 @@ typedef struct {
   int width;           ///< The width of the window
   int height;          ///< The height of it
 } CanimGfxInitInfo;
+
 /// @struct GfxAPI
 /// @brief This struct stores the cross platform API functions
-/// This struct has a fptr, but i am not gonna document it, because i believe in
-/// freedom and you can't stop me
 struct CanimGfxAPI {
   /// @brief This constructs a graphics device
   /// @param[out] CanimLogger* This is the error status

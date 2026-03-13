@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: GPL-3.0
+// @file log.h
+// @brief This header handles logging
 #pragma once
 #include "canim/core.h"
 #include <stdio.h>
@@ -25,13 +28,21 @@ typedef enum {
 // @struct CanimLogger
 // @brief This stores a Logger
 typedef struct {
-  CanimLogLevel level;  ///< This is the level for which logs are accepted
-  FILE *info_stream;    ///< This is where info logs are printed (recommended is
-                        ///< stdout)
-  FILE *warning_stream; ///< This is where warning logs are printed (recommended
-                        ///< is stdout)
-  FILE *error_stream; ///< This is where error logs are printed (recommended is
-                      ///< stderr)
+  // @def level
+  // @brief This is the log level
+  CanimLogLevel level;
+
+  // @def info_stream
+  // @brief This is the info stream where info is printed
+  FILE *info_stream;
+
+  // @def warning_stream
+  // @brief This is the warning stream where warnings are printed
+  FILE *warning_stream;
+
+  // @def error_stream
+  // @brief This is the stream where errors are printed
+  FILE *error_stream;
 } CanimLogger;
 
 // @struct CanimLog
@@ -43,6 +54,10 @@ typedef struct {
   char *reason;        ///< The contents of this log
   char *note;          ///< Other stuff
 } CanimLog;
+// @def canim_log
+// @brief This is the function that logs something
+// @param c_log The Logger
+// @param log The log
 
 CANIM_API void canim_log(CanimLogger *c_log, CanimLog log);
 // Note .reason is replaced with .rea##son to avoid macro replacement

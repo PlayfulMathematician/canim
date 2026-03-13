@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
-#pragma once
 /// @file core.h
 /// @brief This is everything core to Canim that is shared between subsystems
+
+#pragma once
 #include <stdbool.h>
 #include <stdint.h>
 #include <sys/types.h>

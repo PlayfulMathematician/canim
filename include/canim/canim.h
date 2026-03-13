@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
+// @file canim.h
+// @brief This header imports all other headers
 #pragma once
 #include "canim/arena.h"
 #include "canim/core.h"
