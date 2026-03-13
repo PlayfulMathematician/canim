@@ -48,53 +48,56 @@ typedef struct {
 // @struct CanimLog
 // @brief This stores an individual log
 typedef struct {
-  int line_number;     ///< What line number is this log?
-  char *file;          ///< What file is this log made from
-  CanimLogLevel level; ///< What level is this log?
-  char *reason;        ///< The contents of this log
-  char *note;          ///< Other stuff
+  // @def line_number
+  // @brief The line number of the log
+  int line_number;
+
+  // @def file
+  // @brief The file of the log
+  char *file;
+
+  // @def level
+  // @brief The severity of the log
+  CanimLogLevel level;
+
+  // @def reason
+  // @brief The reason for this log
+  char *reason;
+
+  // @def note
+  // @brief If there exists other information produced from stuff like errno,
+  // this variable will store it
+  char *note;
 } CanimLog;
+
 // @def canim_log
 // @brief This is the function that logs something
 // @param c_log The Logger
 // @param log The log
-
 CANIM_API void canim_log(CanimLogger *c_log, CanimLog log);
-// Note .reason is replaced with .rea##son to avoid macro replacement
-//
-// https://stackoverflow.com/questions/18167990/suppress-c-macro-variable-substitution
+
+#define CANIM_LOG(...)                                                         \
+  canim_log(                                                                   \
+      c_log,                                                                   \
+      (CanimLog){.line_number = __LINE__, .file = __FILE__, __VA_ARGS__})
 
 // TODO Document this
 #define CANIM_LOG_INFO(reason)                                                 \
-  canim_log(c_log, (CanimLog){.line_number = __LINE__,                         \
-                              .file = __FILE__,                                \
-                              .level = CANIM_LOG_LEVEL_INFO,                   \
-                              .no##te = NULL,                                  \
-                              .rea##son = reason})
+  CANIM_LOG(.level = CANIM_LOG_LEVEL_INFO, .no##te = NULL, .rea##son = reason)
 
 // TODO Document this
 #define CANIM_LOG_INFO_EXT(reason, note)                                       \
-  canim_log(c_log, (CanimLog){.line_number = __LINE__,                         \
-                              .file = __FILE__,                                \
-                              .level = CANIM_LOG_LEVEL_INFO,                   \
-                              .no##te = note,                                  \
-                              .rea##son = reason})
+  CANIM_LOG(.level = CANIM_LOG_LEVEL_INFO, .no##te = note, .rea##son = reason)
 
 // TODO Document this
 #define CANIM_LOG_WARNING_EXT(reason, note)                                    \
-  canim_log(c_log, (CanimLog){.line_number = __LINE__,                         \
-                              .file = __FILE__,                                \
-                              .level = CANIM_LOG_LEVEL_WARNING,                \
-                              .no##te = note,                                  \
-                              .rea##son = reason})
+  CANIM_LOG(.level = CANIM_LOG_LEVEL_WARNING, .no##te = note,                  \
+            .rea##son = reason)
 
 // TODO Document this
 #define CANIM_LOG_WARNING(reason)                                              \
-  canim_log(c_log, (CanimLog){.line_number = __LINE__,                         \
-                              .file = __FILE__,                                \
-                              .level = CANIM_LOG_LEVEL_WARNING,                \
-                              .no##te = NULL,                                  \
-                              .rea##son = reason})
+  CANIM_LOG(.level = CANIM_LOG_LEVEL_WARNING, .no##te = NULL,                  \
+            .rea##son = reason)
 
 // TODO Document this
 #define CANIM_LOG_ERROR_EXT(reason, note)                                      \
