@@ -4,6 +4,7 @@
 #include "canim/gfx.h"
 #include "canim/log.h"
 #include "glad/glad.h"
+#include <SDL_error.h>
 #ifdef CANIM_PLATFORM_LINUX
 #include <EGL/egl.h>
 #include <GL/gl.h>
@@ -15,6 +16,7 @@
 #include <OpenGL/CGLTypes.h>
 #include <OpenGL/OpenGL.h>
 #include <OpenGL/gl.h>
+#define GL_SILENCE_DEPRECATION 0
 #endif
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
@@ -215,6 +217,10 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
       free(dev);
       return NULL;
     }
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK,
+                        SDL_GL_CONTEXT_PROFILE_CORE);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 
     CANIM_LOG_INFO("Initialized SDL_video mode");
     dev->sdl_win = info->native_window
@@ -245,19 +251,28 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
 
     CANIM_LOG_INFO("Created an SDL_OpenGL Context");
 
-    SDL_GL_MakeCurrent(dev->sdl_win, dev->sdl_glctx);
+    if (SDL_GL_MakeCurrent(dev->sdl_win, dev->sdl_glctx) < 0) {
+      CANIM_LOG_ERROR_EXT("Making an SDL GL context current failed",
+                          SDL_GetError());
+      return (CanimGfxDevice *)0;
+    }
+    CANIM_LOG_INFO("Made an SDL context current");
   }
   if (dev->headless) {
 #ifdef CANIM_PLATFORM_MACOS
     if (!gladLoadGL()) {
       CANIM_LOG_ERROR("Loading Glad Failed");
+      return (CanimGfxDevice *)0;
     }
 #endif
 #ifdef CANIM_PLATFORM_LINUX
     gladLoadGLLoader((GLADloadproc)eglGetProcAddress);
 #endif
   } else {
-    gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress);
+    if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) {
+      CANIM_LOG_ERROR("Loading with Glad failed");
+    }
+    CANIM_LOG_INFO("Loaded external functions with GLAD");
   }
   glViewport(0, 0, dev->width, dev->height);
   if (dev->headless) {
