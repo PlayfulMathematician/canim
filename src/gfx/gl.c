@@ -41,6 +41,7 @@ struct CanimGfxDevice {
 #endif
 #ifdef CANIM_PLATFORM_MACOS
   CGLContextObj cgl_ctx;
+  CGLPBufferObj cgl_pbuf;
 #endif
 };
 
@@ -98,18 +99,10 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
   if (dev->headless) {
 #ifdef CANIM_PLATFORM_MACOS
     CGLError err = kCGLNoError;
+
     CGLPixelFormatAttribute attrs[] = {
-        kCGLPFAOpenGLProfile,
-        (CGLPixelFormatAttribute)kCGLOGLPVersion_3_2_Core,
-        kCGLPFAAccelerated,
-        kCGLPFADoubleBuffer,
-        kCGLPFAColorSize,
-        (CGLPixelFormatAttribute)24,
-        kCGLPFAAlphaSize,
-        (CGLPixelFormatAttribute)8,
-        kCGLPFADepthSize,
-        (CGLPixelFormatAttribute)24,
-        (CGLPixelFormatAttribute)0};
+        kCGLPFAAccelerated, kCGLPFAOpenGLProfile,
+        (CGLPixelFormatAttribute)kCGLOGLPVersion_3_2_Core, 0};
 
     CGLPixelFormatObj pixelFormat;
     GLint npix;
@@ -120,6 +113,7 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
       CANIM_LOG_ERROR_EXT("Choosing a pixel format failed: ", errStr); // NOLINT
       return NULL;
     }
+    CANIM_LOG_INFO("Chose a pixel format");
     CGLContextObj cglctx = NULL;
     err = CGLCreateContext(pixelFormat, NULL, &cglctx);
     if (err != kCGLNoError) {
@@ -128,10 +122,15 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
       CANIM_LOG_ERROR_EXT("Creating an CGL context failed: ", errStr); // NOLINT
       return NULL;
     }
+    CANIM_LOG_INFO("Created a CGL context");
     dev->cgl_ctx = cglctx;
 
     CGLReleasePixelFormat(pixelFormat);
+    CGLPBufferObj pbuffer;
+    CGLCreatePBuffer(info->width, info->height, GL_TEXTURE_2D, GL_RGBA, 0,
+                     &pbuffer);
 
+    CGLSetPBuffer(cglctx, pbuffer, 0, 0, 0);
     err = CGLSetCurrentContext(cglctx);
     if (err != kCGLNoError) {
       CGLDestroyContext(cglctx);
@@ -139,7 +138,7 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
       CANIM_LOG_ERROR_EXT("Setting the CGL context failed", errStr); // NOLINT
       return NULL;
     }
-
+    CANIM_LOG_INFO("Set a CGL Context");
 #endif
 #ifdef CANIM_PLATFORM_LINUX
     dev->egl_display = eglGetDisplay(EGL_DEFAULT_DISPLAY);
@@ -217,6 +216,7 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
       free(dev);
       return NULL;
     }
+
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK,
                         SDL_GL_CONTEXT_PROFILE_CORE);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
@@ -279,6 +279,9 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
 #ifdef CANIM_PLATFORM_LINUX
     eglSwapBuffers(dev->egl_display, dev->egl_surface);
 #endif
+#ifdef CANIM_PLATFORM_MACOS
+    CGLFlushDrawable(dev->cgl_ctx);
+#endif
   } else {
     SDL_GL_SwapWindow(dev->sdl_win);
   }
@@ -295,6 +298,9 @@ void gl_swap_buffers(CanimLogger *c_log, CanimGfxContainer *container) {
   if (dev->headless) {
 #ifdef CANIM_PLATFORM_LINUX
     eglSwapBuffers(dev->egl_display, dev->egl_surface);
+#endif
+#ifdef CANIM_PLATFORM_MACOS
+    CGLFlushDrawable(container->impl->cgl_ctx);
 #endif
   } else {
     SDL_GL_SwapWindow(dev->sdl_win);
