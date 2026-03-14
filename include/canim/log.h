@@ -76,46 +76,45 @@ typedef struct {
 // @param log The log
 CANIM_API void canim_log(CanimLogger *c_log, CanimLog log);
 
-#define CANIM_LOG(...)                                                         \
-  canim_log(                                                                   \
-      c_log,                                                                   \
-      (CanimLog){.line_number = __LINE__, .file = __FILE__, __VA_ARGS__})
+// @def CANIM_LOG
+// @brief This macro is a simple wrapper around canim_log,
+// @param level This is the level of the  log
+// @param reason This is the reason for the log
+// @param ... An optional note
+#define CANIM_LOG(level, reason, ...)                                          \
+  canim_log(c_log,                                                             \
+            (CanimLog){.line_number = __LINE__,                                \
+                       .file = __FILE__,                                       \
+                       .lev##el = level,                                       \
+                       .rea##son = reason __VA_OPT__(, .note =) __VA_ARGS__})
 
-// TODO Document this
-#define CANIM_LOG_INFO(reason)                                                 \
-  CANIM_LOG(.level = CANIM_LOG_LEVEL_INFO, .no##te = NULL, .rea##son = reason)
+// @def CANIM_LOG_INFO
+// @brief This macro logs info
+#define CANIM_LOG_INFO(...) CANIM_LOG(CANIM_LOG_LEVEL_INFO, __VA_ARGS__)
 
-// TODO Document this
-#define CANIM_LOG_INFO_EXT(reason, note)                                       \
-  CANIM_LOG(.level = CANIM_LOG_LEVEL_INFO, .no##te = note, .rea##son = reason)
+// @def CANIM_LOG_WARNING
+// @brief This macro logs warnings
+#define CANIM_LOG_WARNING(...) CANIM_LOG(CANIM_LOG_LEVEL_WARNING, __VA_ARGS__)
 
-// TODO Document this
-#define CANIM_LOG_WARNING_EXT(reason, note)                                    \
-  CANIM_LOG(.level = CANIM_LOG_LEVEL_WARNING, .no##te = note,                  \
-            .rea##son = reason)
+// @def CANIM_LOG_ERROR
+// @brief This macro logs errors
+#define CANIM_LOG_ERROR(...) CANIM_LOG(CANIM_LOG_LEVEL_ERROR, __VA_ARGS__)
 
-// TODO Document this
-#define CANIM_LOG_WARNING(reason)                                              \
-  CANIM_LOG(.level = CANIM_LOG_LEVEL_WARNING, .no##te = NULL,                  \
-            .rea##son = reason)
+// @def CANIM_LOG_INFO_EXT
+// @deprecated
+#define CANIM_LOG_INFO_EXT CANIM_LOG_INFO
 
-// TODO Document this
-#define CANIM_LOG_ERROR_EXT(reason, note)                                      \
-  canim_log(c_log, (CanimLog){.line_number = __LINE__,                         \
-                              .file = __FILE__,                                \
-                              .level = CANIM_LOG_LEVEL_ERROR,                  \
-                              .no##te = note,                                  \
-                              .rea##son = reason})
+// @def CANIM_LOG_WARNING_EXT
+// @deprecated
+#define CANIM_LOG_WARNING_EXT CANIM_LOG_WARNING
 
-// TODO Document this
-#define CANIM_LOG_ERROR(reason)                                                \
-  canim_log(c_log, (CanimLog){.line_number = __LINE__,                         \
-                              .file = __FILE__,                                \
-                              .level = CANIM_LOG_LEVEL_ERROR,                  \
-                              .no##te = NULL,                                  \
-                              .rea##son = reason})
+// @def CANIM_LOG_ERROR_EXT
+// @deprecated
+#define CANIM_LOG_ERROR_EXT CANIM_LOG_ERROR
 
-// TODO Document this
+// @def CANIM_CREATE_LOGGER
+// @brief This is the level of the logger
+// @param level This is the level of the logger
 #define CANIM_CREATE_LOGGER(level)                                             \
   CanimLogger clog;                                                            \
   clog.lev##el = level;                                                        \

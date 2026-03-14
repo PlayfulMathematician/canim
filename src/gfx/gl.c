@@ -262,8 +262,8 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
     CANIM_LOG_INFO("Created an SDL_OpenGL Context");
 
     if (SDL_GL_MakeCurrent(dev->sdl_win, dev->sdl_glctx) < 0) {
-      CANIM_LOG_ERROR_EXT("Making an SDL GL context current failed",
-                          SDL_GetError());
+      CANIM_LOG_ERROR("Making an SDL GL context current failed",
+                      SDL_GetError());
       return (CanimGfxDevice *)0;
     }
     CANIM_LOG_INFO("Made an SDL context current");

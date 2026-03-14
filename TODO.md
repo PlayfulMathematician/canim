@@ -1,4 +1,0 @@
-- Add triangles (finish shaders)
-- Create framebuffer stuff
-- Create an object scheme
-- Create quick animation
