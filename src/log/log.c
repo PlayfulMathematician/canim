@@ -24,6 +24,6 @@ CANIM_API void canim_log(CanimLogger *c_log, CanimLog log) {
   fprintf(write_to, "[%s]: %s:%d %s\n", status, log.file, log.line_number,
           log.reason);
   if (log.note) {
-    fprintf(write_to, "\t%s\n", log.reason);
+    fprintf(write_to, "\t%s\n", log.note);
   }
 }

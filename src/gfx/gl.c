@@ -127,10 +127,20 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
 
     CGLReleasePixelFormat(pixelFormat);
     CGLPBufferObj pbuffer;
-    CGLCreatePBuffer(info->width, info->height, GL_TEXTURE_2D, GL_RGBA, 0,
-                     &pbuffer);
+    err = CGLCreatePBuffer(info->width, info->height, GL_TEXTURE_2D, GL_RGBA, 0,
+                           &pbuffer);
+    if (err != kCGLNoError) {
+      const char *errStr = CGLErrorString(err);
+      CANIM_LOG_ERROR_EXT("Creating a CGL pbuffer failed: ", errStr); // NOLINT
+      return NULL;
+    }
 
-    CGLSetPBuffer(cglctx, pbuffer, 0, 0, 0);
+    err = CGLSetPBuffer(cglctx, pbuffer, 0, 0, 0);
+    if (err != kCGLNoError) {
+      const char *errStr = CGLErrorString(err);
+      CANIM_LOG_ERROR_EXT("Setting a CGL pbuffer failed: ", errStr); // NOLINT
+      return NULL;
+    }
     err = CGLSetCurrentContext(cglctx);
     if (err != kCGLNoError) {
       CGLDestroyContext(cglctx);
