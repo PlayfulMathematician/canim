@@ -62,12 +62,12 @@ typedef struct {
 
   // @def reason
   // @brief The reason for this log
-  char *reason;
+  const char *reason;
 
   // @def note
   // @brief If there exists other information produced from stuff like errno,
   // this variable will store it
-  char *note;
+  const char *note;
 } CanimLog;
 
 // @def canim_log

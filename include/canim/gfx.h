@@ -9,8 +9,12 @@
 /// @enum GfxBackend
 /// @brief This is a list of available backends
 typedef enum {
-  CANIM_GFX_NONE = 0, ///< No Graphics API used
-  CANIM_GFX_GL = 1,   ///< OpenGL in use
+  /// @def CANIM_GFX_NONE
+  /// @brief This is for no graphics API
+  CANIM_GFX_NONE = 0,
+  /// @def CANIM_GFX_GL
+  /// @brief This is for an OpenGL graphics API
+  CANIM_GFX_GL = 1,
 } CanimGfxBackend;
 
 /// @brief GFX API Specific struct
@@ -25,10 +29,21 @@ typedef struct CanimGfxAPI CanimGfxAPI;
 /// @struct GfxInitInfo
 /// @brief This struct stores info neccesary to initialize graphics
 typedef struct {
-  bool headless;       ///< This stores whether or not the window is headless
-  void *native_window; ///< This stores a pointer to a native window
-  int width;           ///< The width of the window
-  int height;          ///< The height of it
+  /// @def headless
+  /// @brief This variable specifies if the device should be headless
+  bool headless;
+
+  /// @def native_window
+  /// @brief This is a pointer to the native window
+  void *native_window;
+
+  /// @def width
+  /// @brief This is the width of the device
+  int width;
+
+  /// @def height
+  /// @brief This is the height of the device
+  int height;
 } CanimGfxInitInfo;
 
 /// @struct GfxAPI
@@ -80,8 +95,19 @@ struct CanimGfxAPI {
 
 /// @struct GfxContainer
 struct CanimGfxContainer {
-  CanimGfxAPI api;         ///< The API
-  CanimGfxDevice *impl;    ///< The Implementation specfic gfxdevice
-  CanimGfxBackend backend; ///< The backend
-  void *handle;            ///< Handle to the dynamic lib
+  /// @def api
+  /// @brief This is the VTable storing gfx api commands
+  CanimGfxAPI api;
+
+  /// @def impl
+  /// @brief This is the implementation specific graphics device
+  CanimGfxDevice *impl;
+
+  /// @def backend
+  /// @brief This is the backend to the graphics api
+  CanimGfxBackend backend;
+
+  /// @def handle
+  /// @brief This is the handle to the dynamically loaded backend
+  void *handle;
 };

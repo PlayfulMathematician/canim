@@ -1,4 +1,6 @@
 // SPDX-License-Identifier: GPL-3.0
+// @file math.h
+// @brief This header handles mathematical operations
 #pragma once
 #include "canim/core.h"
 #include <stdbool.h>
