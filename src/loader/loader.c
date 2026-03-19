@@ -34,7 +34,7 @@ canim_gfx_load_backend(CanimLogger *c_log, CanimGfxBackend backend,
 #ifdef CANIM_POSIX
   char *err = dlerror();
   if (err != NULL) {
-    CANIM_LOG_ERROR_EXT("Loading external libraries failed", err);
+    CANIM_LOG_ERROR("Loading external libraries failed: %s", err);
     dlclose(handle);
     return NULL;
   }

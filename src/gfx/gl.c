@@ -110,7 +110,8 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
     err = CGLChoosePixelFormat(attrs, &pixelFormat, &npix);
     if (err != kCGLNoError) {
       const char *errStr = CGLErrorString(err);
-      CANIM_LOG_ERROR_EXT("Choosing a pixel format failed: ", errStr); // NOLINT
+      CANIM_LOG_ERROR("Choosing a pixel format failed: %s",
+                      errStr); // NOLINT
       return NULL;
     }
     CANIM_LOG_INFO("Chose a pixel format");
@@ -119,7 +120,8 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
     if (err != kCGLNoError) {
       CGLReleasePixelFormat(pixelFormat);
       const char *errStr = CGLErrorString(err);
-      CANIM_LOG_ERROR_EXT("Creating an CGL context failed: ", errStr); // NOLINT
+      CANIM_LOG_ERROR("Creating an CGL context failed: %s",
+                      errStr); // NOLINT
       return NULL;
     }
     CANIM_LOG_INFO("Created a CGL context");
@@ -131,21 +133,23 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
                            &pbuffer);
     if (err != kCGLNoError) {
       const char *errStr = CGLErrorString(err);
-      CANIM_LOG_ERROR_EXT("Creating a CGL pbuffer failed: ", errStr); // NOLINT
+      CANIM_LOG_ERROR("Creating a CGL pbuffer failed: %s",
+                      errStr); // NOLINT
       return NULL;
     }
 
     err = CGLSetPBuffer(cglctx, pbuffer, 0, 0, 0);
     if (err != kCGLNoError) {
       const char *errStr = CGLErrorString(err);
-      CANIM_LOG_ERROR_EXT("Setting a CGL pbuffer failed: ", errStr); // NOLINT
+      CANIM_LOG_ERROR("Setting a CGL pbuffer failed: %s", errStr); // NOLINT
       return NULL;
     }
     err = CGLSetCurrentContext(cglctx);
     if (err != kCGLNoError) {
       CGLDestroyContext(cglctx);
       const char *errStr = CGLErrorString(err);
-      CANIM_LOG_ERROR_EXT("Setting the CGL context failed", errStr); // NOLINT
+      CANIM_LOG_ERROR("Setting the CGL context failed: %s",
+                      errStr); // NOLINT
       return NULL;
     }
     CANIM_LOG_INFO("Set a CGL Context");
@@ -262,7 +266,7 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
     CANIM_LOG_INFO("Created an SDL_OpenGL Context");
 
     if (SDL_GL_MakeCurrent(dev->sdl_win, dev->sdl_glctx) < 0) {
-      CANIM_LOG_ERROR("Making an SDL GL context current failed",
+      CANIM_LOG_ERROR("Making an SDL GL context current failed: %s",
                       SDL_GetError());
       return (CanimGfxDevice *)0;
     }

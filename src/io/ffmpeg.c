@@ -15,8 +15,8 @@ CANIM_API CanimPipe canim_create_ffmpeg_pipe(CanimLogger *c_log, CanimU64 w,
 
   CanimPipe pipef = popen(cmd, "w");
   if (!pipef) {
-    CANIM_LOG_ERROR("Creating the ffmpeg pipe failed");
-    CANIM_LOG_ERROR(strerror(errno));
+    CANIM_LOG_ERROR("Creating the ffmpeg pipe failed because %s",
+                    strerror(errno));
   }
 
   return pipef;
