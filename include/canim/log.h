@@ -83,5 +83,4 @@ CANIM_API void canim_log(CanimLogger *c_log, int line_number, const char *file,
   clog.info_stream = stdout;                                                   \
   clog.error_stream = stdout;                                                  \
   clog.warning_stream = stderr;                                                \
-                                                                               \
   CanimLogger *c_log = &clog

@@ -1,5 +1,4 @@
-
-// SPDX-License-Identifier: GPL
+// SPDX-License-Identifier: GPL-3.0
 #include "canim/core.h"
 #include "canim/math.h"
 #include <math.h>

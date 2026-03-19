@@ -1,4 +1,4 @@
-// test_vec.c example
+// SPDX-License-Identifier: GPL-3.0
 #include <cmocka.h>
 #include <setjmp.h>
 #include <stdarg.h>

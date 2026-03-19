@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: GPL-3.0
 #include "canim/io.h"
 #include "canim/log.h"
 #include <errno.h>
