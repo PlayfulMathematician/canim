@@ -233,4 +233,4 @@ CANIM_API bool canim_tri2_is_ccw(CanimTri2 tri);
 /// @return If it is counter clockwise
 #define canim_tri_is_ccw(tri)                                                  \
   _Generic((tri), CanimTri2: canim_tri2_is_ccw, CanimTri3: canim_tri3_is_ccw)( \
-      (a))
+      (tri))

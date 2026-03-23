@@ -22,11 +22,9 @@
 #include <SDL2/SDL_opengl.h>
 #include <SDL2/SDL_video.h>
 #include <stdlib.h>
-#define CANIM_TRIANGLE_SHADER_IDX 0
-typedef struct {
-  GLuint *shaders;
-  int shader_count;
-} CanimShaderList;
+enum { CANIM_TRIANGLE_SHADER = 0, CANIM_LAST_SHADER };
+typedef GLuint CanimShaderList[CANIM_LAST_SHADER];
+
 struct CanimGfxDevice {
   bool headless;
   int width;
@@ -44,20 +42,20 @@ struct CanimGfxDevice {
   CGLPBufferObj cgl_pbuf;
 #endif
 };
-
-const char *tri_vertex_shader =
+const char *VS_LIST[CANIM_LAST_SHADER] = {
     "#version 330 core\n"
     "layout (location = 0) in vec3 aPos;\n"
     "void main()\n"
     "{\n"
     "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-    "}\0";
-const char *tri_fragment_shader = "#version 330 core\n"
-                                  "out vec4 FragColor;\n"
-                                  "void main()\n"
-                                  "{\n"
-                                  "FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-                                  "}\0";
+    "}\0"};
+const char *FS_LIST[CANIM_LAST_SHADER] = {
+    "#version 330 core\n"
+    "out vec4 FragColor;\n"
+    "void main()\n"
+    "{\n"
+    "FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
+    "}\0"};
 // add logging
 GLuint compile_shaders(CanimLogger *c_log, const char *shader, GLenum type) {
   GLuint shader_id = glCreateShader(type);
@@ -370,20 +368,13 @@ void gl_save_screen(CanimLogger *c_log, CanimGfxContainer *container,
 };
 
 bool gl_setup_shaders(CanimLogger *c_log, CanimGfxContainer *container) {
-  container->impl->shaders.shader_count = 1;
-  GLuint *shader_list =
-      malloc(container->impl->shaders.shader_count * sizeof(GLuint));
-  container->impl->shaders.shaders = shader_list;
-  if (!shader_list) {
-    CANIM_LOG_ERROR("Allocating space to store shaders failed");
-    return false;
+  for (int i = 0; i < CANIM_LAST_SHADER; i++) {
+    GLuint vs, fs, s;
+    vs = compile_shaders(c_log, VS_LIST[i], GL_VERTEX_SHADER);
+    fs = compile_shaders(c_log, FS_LIST[i], GL_FRAGMENT_SHADER);
+    s = link_program(vs, fs);
+    container->impl->shaders[i] = s;
   }
-  GLuint vs, fs, s;
-
-  vs = compile_shaders(c_log, tri_vertex_shader, GL_VERTEX_SHADER);
-  fs = compile_shaders(c_log, tri_fragment_shader, GL_FRAGMENT_SHADER);
-  s = link_program(vs, fs);
-  container->impl->shaders.shaders[0] = s;
   return true;
 }
 void gl_draw_mesh(CanimLogger *c_log, CanimGfxContainer *container,
@@ -404,7 +395,8 @@ void gl_draw_mesh(CanimLogger *c_log, CanimGfxContainer *container,
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);
 
-  glUseProgram(container->impl->shaders.shaders[CANIM_TRIANGLE_SHADER_IDX]);
+  glUseProgram(container->impl->shaders[CANIM_TRIANGLE_SHADER]);
+
   glBindVertexArray(VAO);
   glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
   glBindVertexArray(VAO);
