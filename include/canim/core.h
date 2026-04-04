@@ -42,13 +42,7 @@
 #error "Unsupported compiler for Canim"
 #endif
 
-#if !defined(CANIM_DEBUG) && !defined(CANIM_RELEASE)
-#error "Build mode not defined (CANIM_DEBUG or CANIM_RELEASE)"
-#endif
 
-#if defined(CANIM_DEBUG) && defined(CANIM_RELEASE)
-#error "Both CANIM_DEBUG and CANIM_RELEASE are defined"
-#endif
 #if defined(CANIM_PLATFORM_WINDOWS)
 #if defined(CANIM_BUILD_DLL)
 #define CANIM_API __declspec(dllexport)
@@ -99,6 +93,8 @@
 #else
 #error "Cannot determine cpu endianness"
 #endif
+
+/// @brief I will not document this
 typedef double CanimNumber;
 typedef unsigned char CanimByte;
 typedef uint8_t CanimU8;

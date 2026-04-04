@@ -13,4 +13,3 @@ RUN cmake --build /canim/build --config Release --target all -j 6 --
 RUN mkdir /canim/out 
 RUN cp   /canim/build/lib/* /canim/out
 RUN ls /canim/build
-

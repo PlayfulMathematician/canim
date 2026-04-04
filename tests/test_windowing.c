@@ -1,5 +1,4 @@
 // SPDX-License-Identifier: GPL-3.0
-#define CANIM_DEBUG
 #include <canim/io.h>
 #include <stdint.h>
 
