@@ -21,15 +21,89 @@ int main() {
                                (uint64_t)init.height, (uint64_t)60, "test.mp4");
   bool running = false;
   int tick = 0;
-  float vertices[] = {0.5f,  0.5f,  0.0f, 0.5f,  -0.5f, 0.0f,
-                      -0.5f, -0.5f, 0.0f, -0.5f, 0.5f,  0.0f};
-  unsigned int indices[] = {0, 1, 3, 1, 2, 3};
-  while (tick < 120) {
-    vertices[0] += 0.001;
-    container->api.gfx_should_close(c_log, container, &running);
 
-    container->api.gfx_draw_mesh(c_log, container, vertices, indices,
-                                 sizeof(vertices), sizeof(indices));
+  float vertices[] = {
+      // face 0
+      0.0f,
+      0.5f,
+      0.2f,
+      0.0f,
+      0.5774f,
+      0.8165f,
+      0.5f,
+      -0.5f,
+      0.5f,
+      0.0f,
+      0.5774f,
+      0.8165f,
+      -0.5f,
+      -0.5f,
+      0.5f,
+      0.0f,
+      0.5774f,
+      0.8165f,
+      // face 1
+      0.0f,
+      0.5f,
+      0.2f,
+      -0.8165f,
+      0.5774f,
+      -0.4082f,
+      -0.5f,
+      -0.5f,
+      0.5f,
+      -0.8165f,
+      0.5774f,
+      -0.4082f,
+      0.0f,
+      -0.5f,
+      -0.5f,
+      -0.8165f,
+      0.5774f,
+      -0.4082f,
+      // face 2
+      0.0f,
+      0.5f,
+      0.2f,
+      0.8165f,
+      0.5774f,
+      -0.4082f,
+      0.0f,
+      -0.5f,
+      -0.5f,
+      0.8165f,
+      0.5774f,
+      -0.4082f,
+      0.5f,
+      -0.5f,
+      0.5f,
+      0.8165f,
+      0.5774f,
+      -0.4082f,
+      // face 3
+      0.5f,
+      -0.5f,
+      0.5f,
+      0.0f,
+      -1.0f,
+      0.0f,
+      0.0f,
+      -0.5f,
+      -0.5f,
+      0.0f,
+      -1.0f,
+      0.0f,
+      -0.5f,
+      -0.5f,
+      0.5f,
+      0.0f,
+      -1.0f,
+      0.0f,
+  };
+
+  while (tick < 120) {
+    container->api.gfx_should_close(c_log, container, &running);
+    container->api.gfx_draw_mesh(c_log, container, vertices, sizeof(vertices));
     container->api.gfx_swap_buffers(c_log, container);
     container->api.gfx_save_screen(c_log, container, buf);
     canim_pipe_into_ffmpeg(c_log, buf, pipe);
