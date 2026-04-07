@@ -59,7 +59,7 @@ const char *FS_LIST[CANIM_LAST_SHADER] = {
     "#version 330 core\n"
     "out vec4 FragColor;\n"
     "in vec4 v_position;\n"
-    "in vec3 v_norm;\n"    
+    "in vec3 v_norm;\n"
     "void main()\n"
     "{\n"
     "   FragColor = vec4(abs(normalize(v_norm).z) * vec3(1.0, 1.0, 1.0),1.0);\n"
@@ -395,12 +395,11 @@ void gl_draw_mesh(CanimLogger *c_log, CanimGfxContainer *container,
   glBindBuffer(GL_ARRAY_BUFFER, VBO);
   glBufferData(GL_ARRAY_BUFFER, vertex_size, vertices, GL_STATIC_DRAW);
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void *)0);
-    glEnableVertexAttribArray(0);
+  glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
-                          (void *)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-
+  glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float),
+                        (void *)(3 * sizeof(float)));
+  glEnableVertexAttribArray(1);
 
   glBindBuffer(GL_ARRAY_BUFFER, 0);
   glBindVertexArray(0);
