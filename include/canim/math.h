@@ -210,3 +210,36 @@ CANIM_API CanimVec3 canim_cross_vec3(CanimVec3 a, CanimVec3 b);
 typedef struct {
   CanimVec3 points[3];
 } CanimTri3;
+
+/// @struct CanimMat4
+/// @brief This stores a 4x4 vector
+/// @note It is arranged like
+/// [
+/// [ a b c d]
+/// [ e f g h]
+/// [ ... ]
+/// [ ... ]
+/// ]
+typedef struct {
+  double m[4][4];
+} CanimMat4;
+/// @struct CanimTri2
+/// @brief This stores 2 dimensional triangles
+typedef struct {
+  CanimVec2 points[3];
+} CanimTri2;
+
+/// @brief Computes the normal of a 3D triangle
+/// @param tri The triangle (3 points)
+/// @return The normalized normal vector
+CANIM_API CanimVec3 canim_normal_tri3(CanimTri3 tri);
+
+/// @brief Computes the normal of a 2D triangle
+/// @param tri The triangle (3 points)
+/// @return The normalized normal vector
+CANIM_API CanimNumber canim_normal_tri2(CanimTri2 tri);
+
+/// @brief This generates a translation matrix
+/// @param v The vector to translate
+/// @return a matrix
+CANIM_API CanimMat4 canim_translation_matrix(CanimVec3 v);

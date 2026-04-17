@@ -6,8 +6,7 @@ set(CANIM_CORE_SRC
     io/ffmpeg.c 
     io/screen_buf.c
     math/math_utils.c
-    math/vec2.c
-    math/vec3.c
+    math/vector.c
     log/log.c
 )
 
