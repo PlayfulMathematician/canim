@@ -8,14 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu
-
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install dependencies
-        run: |
-          apt-get update
-          apt-get install -y python3 libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev ninja-build cmake
 
       - name: Configure
         run: |
@@ -33,13 +27,5 @@ jobs:
         run: |
           mkdir -p out
           cp build/lib/* out/ || true
-          ls -lah build
           ls -lah out
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: canim-build
-          path: out/
-
 
