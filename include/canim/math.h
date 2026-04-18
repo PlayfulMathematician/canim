@@ -211,18 +211,6 @@ typedef struct {
   CanimVec3 points[3];
 } CanimTri3;
 
-/// @struct CanimMat4
-/// @brief This stores a 4x4 vector
-/// @note It is arranged like
-/// [
-/// [ a b c d]
-/// [ e f g h]
-/// [ ... ]
-/// [ ... ]
-/// ]
-typedef struct {
-  double m[4][4];
-} CanimMat4;
 /// @struct CanimTri2
 /// @brief This stores 2 dimensional triangles
 typedef struct {
@@ -239,7 +227,21 @@ CANIM_API CanimVec3 canim_normal_tri3(CanimTri3 tri);
 /// @return The normalized normal vector
 CANIM_API CanimNumber canim_normal_tri2(CanimTri2 tri);
 
-/// @brief This generates a translation matrix
-/// @param v The vector to translate
-/// @return a matrix
-CANIM_API CanimMat4 canim_translation_matrix(CanimVec3 v);
+/// @todo Document later
+typedef struct {
+  CanimNumber x;
+  CanimNumber y;
+  CanimNumber z;
+  CanimNumber w;
+} CanimQuat;
+
+CANIM_API CanimQuat canim_quat_identity(void);
+CANIM_API CanimQuat canim_quat_add(CanimQuat a, CanimQuat b);
+CANIM_API CanimQuat canim_quat_sub(CanimQuat a, CanimQuat b);
+CANIM_API CanimQuat canim_quat_scale(CanimQuat q, CanimNumber s);
+CANIM_API CanimNumber canim_quat_dot(CanimQuat a, CanimQuat b);
+CANIM_API CanimNumber canim_quat_magnitude(CanimQuat q);
+CANIM_API CanimQuat canim_quat_normalize(CanimQuat q);
+CANIM_API CanimQuat canim_quat_conjugate(CanimQuat q);
+CANIM_API CanimQuat canim_quat_inverse(CanimQuat q);
+CANIM_API CanimQuat canim_quat_mul(CanimQuat a, CanimQuat b);
