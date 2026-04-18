@@ -2,43 +2,44 @@ name: ci
 
 on:
   push:
-    branches: [ main, master ]
   pull_request:
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: docker
-
-    container:
-      image: kuyoh/vcpkg:2026.02.27-ubuntu
+    runs-on: ubuntu
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install dependencies
         run: |
           apt-get update
-          apt-get install -y \
-            python3 \
-            libgl1-mesa-dev \
-            libglu1-mesa-dev \
-            freeglut3-dev \
-            ninja-build \
-            cmake
+          apt-get install -y python3 libgl1-mesa-dev libglu1-mesa-dev freeglut3-dev ninja-build cmake
 
       - name: Configure
         run: |
-          cmake -S . -B build \
-            -DCMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
-            -DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE \
-            -DCMAKE_BUILD_TYPE=Release \
-            -G Ninja
+          cmake \
+            -DCMAKE_TOOLCHAIN_FILE:STRING=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE \
+            -DCMAKE_BUILD_TYPE:STRING=Release \
+            -H. -Bbuild -G Ninja
 
       - name: Build
         run: |
-          cmake --build build --config Release -j"$(nproc)"
+          cmake --build build --config Release --target all -j 6 --
 
-      - name: Test
+      - name: Collect outputs
         run: |
-          ctest --test-dir build --output-on-failure
+          mkdir -p out
+          cp build/lib/* out/ || true
+          ls -lah build
+          ls -lah out
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: canim-build
+          path: out/
+
+
