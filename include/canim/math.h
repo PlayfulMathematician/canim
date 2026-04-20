@@ -227,7 +227,8 @@ CANIM_API CanimVec3 canim_normal_tri3(CanimTri3 tri);
 /// @return The normalized normal vector
 CANIM_API CanimNumber canim_normal_tri2(CanimTri2 tri);
 
-/// @todo Document later
+/// @struct CanimQuat
+/// @brief This gets a quaternion
 typedef struct {
   CanimNumber x;
   CanimNumber y;
@@ -235,13 +236,35 @@ typedef struct {
   CanimNumber w;
 } CanimQuat;
 
+/// @brief The identity quaternion (no rotation)
+/// @return Quaternion (1, 0, 0, 0)
 CANIM_API CanimQuat canim_quat_identity(void);
-CANIM_API CanimQuat canim_quat_add(CanimQuat a, CanimQuat b);
-CANIM_API CanimQuat canim_quat_sub(CanimQuat a, CanimQuat b);
-CANIM_API CanimQuat canim_quat_scale(CanimQuat q, CanimNumber s);
-CANIM_API CanimNumber canim_quat_dot(CanimQuat a, CanimQuat b);
-CANIM_API CanimNumber canim_quat_magnitude(CanimQuat q);
+
+/// @brief Normalizes a quaternion (makes it unit length)
+/// @param q The quaternion
+/// @return Normalized quaternion
 CANIM_API CanimQuat canim_quat_normalize(CanimQuat q);
+
+/// @brief Computes the conjugate of a quaternion
+/// @param q The quaternion
+/// @return Conjugated quaternion (w, -x, -y, -z)
 CANIM_API CanimQuat canim_quat_conjugate(CanimQuat q);
-CANIM_API CanimQuat canim_quat_inverse(CanimQuat q);
+
+/// @brief Multiplies two quaternions (combines rotations)
+/// @param a First quaternion
+/// @param b Second quaternion
+/// @return Result of a * b
 CANIM_API CanimQuat canim_quat_mul(CanimQuat a, CanimQuat b);
+
+/// @brief Creates a quaternion from an axis and angle (radians)
+/// @param axis The rotation axis (must be normalized)
+/// @param angle The rotation angle in radians
+/// @return Rotation quaternion
+CANIM_API CanimQuat canim_quat_from_axis_angle(CanimVec3 axis,
+                                               CanimNumber angle);
+
+/// @brief Rotates a 3D vector by a quaternion
+/// @param q The rotation quaternion (should be normalized)
+/// @param v The vector
+/// @return Rotated vector
+CANIM_API CanimVec3 canim_quat_rotate_vec3(CanimQuat q, CanimVec3 v);
