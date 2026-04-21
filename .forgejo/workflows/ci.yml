@@ -8,24 +8,28 @@ on:
 jobs:
   build:
     runs-on: ubuntu
+    strategy:
+      fail-fast: false
+      matrix:
+        build_type: [Debug, Release]
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Configure
+      - name: Configure (${{ matrix.build_type }})
         run: |
           cmake \
             -DCMAKE_TOOLCHAIN_FILE:STRING=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake \
             -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE \
-            -DCMAKE_BUILD_TYPE:STRING=Release \
-            -H. -Bbuild -G Ninja
+            -DCMAKE_BUILD_TYPE:STRING=${{ matrix.build_type }} \
+            -S . -B build/${{ matrix.build_type }} -G Ninja
 
-      - name: Build
+      - name: Build (${{ matrix.build_type }})
         run: |
-          cmake --build build --config Release --target all -j 6 --
+          cmake --build build/${{ matrix.build_type }} --target all -j 6
 
-      - name: Collect outputs
+      - name: Collect outputs (${{ matrix.build_type }})
         run: |
-          mkdir -p out
-          cp build/lib/* out/ || true
-          ls -lah out
-
+          mkdir -p out/${{ matrix.build_type }}
+          cp build/${{ matrix.build_type }}/lib/* out/${{ matrix.build_type }}/ || true
+          ls -lah out/${{ matrix.build_type }}
