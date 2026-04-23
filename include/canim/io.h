@@ -8,18 +8,6 @@
 #include <stddef.h>
 #include <stdio.h>
 
-// @struct PdfVersion
-// @brief This is a struct to store PDF versions
-typedef struct {
-  // @def major
-  // @brief This is the PDF's major version
-  CanimU8 major;
-
-  // @def minor
-  // @brief This is the PDF's minor version
-  CanimU8 minor;
-} PdfVersion;
-
 // @def CanimPipe
 // @brief This is meant to be a representation of a pipe
 typedef FILE *CanimPipe;
@@ -45,12 +33,6 @@ typedef struct {
 /// @param f Pointer to the file
 /// @return The length of the file
 CANIM_API long canim_get_file_length(CanimLogger *c_log, FILE *f);
-
-/// @brief This gets the PDF version of a file
-/// @param c_log This is the relevant logger
-/// @param f This is the file we must get PDF info about
-/// @return the version of the pdf
-CANIM_API PdfVersion canim_get_pdf_version(CanimLogger *c_log, FILE *f);
 
 /// @brief This allocates memory for the screen buffer
 /// @param c_log This is the logger

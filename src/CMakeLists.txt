@@ -1,10 +1,9 @@
 set(CANIM_CORE_SRC
     core/endian.c
     loader/loader.c
-    io/pdf.c
     io/utils.c
     io/ffmpeg.c 
-    io/screen_buf.c
+    io/screen.c
     math/utils.c
     math/vector.c
     math/quat.c
@@ -28,7 +27,14 @@ target_include_directories(canim
         SYSTEM "${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/include"
 )
 
-target_link_libraries(canim PRIVATE m)
+find_package(SDL2 CONFIG REQUIRED)
+find_package(glad CONFIG REQUIRED)
+find_package(OpenGL REQUIRED)
+find_package(unofficial-libmupdf CONFIG REQUIRED)
+find_package(EGL QUIET)
+target_link_libraries(canim PRIVATE m
+        unofficial::libmupdf::libmupdf
+)
 
 add_library(canim_gl SHARED gfx/gl.c)
 
@@ -46,10 +52,6 @@ target_link_libraries(canim_gl
     PRIVATE SDL2::SDL2 glad::glad m
 )
 
-find_package(SDL2 CONFIG REQUIRED)
-find_package(glad CONFIG REQUIRED)
-find_package(OpenGL REQUIRED)
-find_package(EGL QUIET)
 
 if(APPLE)
     target_link_libraries(canim_gl PRIVATE "-framework OpenGL")
