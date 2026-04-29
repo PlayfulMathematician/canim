@@ -1,3 +1,4 @@
+# CMakeLists.txt
 cmake_minimum_required(VERSION 3.10)
 project(Canim VERSION 1.0.0 LANGUAGES C)
 

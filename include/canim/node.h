@@ -4,13 +4,20 @@
 #pragma once
 
 #include "canim/math.h"
+
 // @enum CanimNodeType
 // @brief This specifies the type of node
 typedef enum {
   // @def CANIM_NODE_TYPE_TRI
-  // @brief This specifies a triangle node
+  // @brief This specifies a 3 dimensional triangle node
   CANIM_NODE_TYPE_TRI,
-
+  // @def CANIM_NODE_BEGIN_BILLBOARD
+  // @brief This starts a billboard (it includes a translation, set .v2 to the
+  // translation.
+  CANIM_NODE_TYPE_BEGIN_BILLBOARD,
+  // @def CANIM_NODE_TYPE_END_BILLBOARD
+  // @brief This ends the billboard
+  CANIM_NODE_TYPE_END_BILLBOARD,
   // @def CANIM_NODE_TYPE_CAM
   // @brief This specifies a camera node
   CANIM_NODE_TYPE_CAM

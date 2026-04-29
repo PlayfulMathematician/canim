@@ -1,3 +1,4 @@
+# src/CMakeLists.txt
 set(CANIM_CORE_SRC
     core/endian.c
     loader/loader.c
@@ -8,6 +9,7 @@ set(CANIM_CORE_SRC
     math/vector.c
     math/quat.c
     log/log.c
+    data/da.c
 )
 
 add_library(canim SHARED ${CANIM_CORE_SRC})
