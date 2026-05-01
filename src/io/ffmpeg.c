@@ -7,12 +7,13 @@ CANIM_API CanimPipe canim_create_ffmpeg_pipe(CanimLogger *c_log, CanimU64 w,
                                              CanimU64 h, CanimU64 fps,
                                              const char *out) {
   char cmd[1024];
-  snprintf(
-      cmd, sizeof(cmd),
-      "ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size %dx%d -framerate "
-      "%d -i - "
-      "-vf vflip -c:v libx264 -preset veryfast -crf 18 -pix_fmt yuv420p \"%s\"",
-      (int)w, (int)h, (int)fps, out);
+  snprintf(cmd, sizeof(cmd),
+           "ffmpeg -y -f rawvideo -pixel_format rgb24 -video_size %dx%d "
+           "-framerate "
+           "%d -i - "
+           "-vf vflip -c:v libx264 -preset veryfast -crf 18 -pix_fmt "
+           "yuv420p \"%s\"",
+           (int)w, (int)h, (int)fps, out);
 
   CanimPipe pipef = popen(cmd, "w");
   if (!pipef) {

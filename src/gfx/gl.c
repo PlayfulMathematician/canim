@@ -147,7 +147,8 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
     err = CGLSetPBuffer(cglctx, pbuffer, 0, 0, 0);
     if (err != kCGLNoError) {
       const char *errStr = CGLErrorString(err);
-      CANIM_LOG_ERROR("Setting a CGL pbuffer failed: %s", errStr); // NOLINT
+      CANIM_LOG_ERROR("Setting a CGL pbuffer failed: %s",
+                      errStr); // NOLINT
       return NULL;
     }
     err = CGLSetCurrentContext(cglctx);
@@ -218,8 +219,8 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
     if (!eglMakeCurrent(dev->egl_display, dev->egl_surface, dev->egl_surface,
                         dev->egl_context)) {
 
-      CANIM_LOG_ERROR(
-          "Attaching an EGL rendering context to EGL surface failed");
+      CANIM_LOG_ERROR("Attaching an EGL rendering context to EGL "
+                      "surface failed");
       eglDestroySurface(dev->egl_display, dev->egl_surface);
       eglDestroyContext(dev->egl_display, dev->egl_context);
       eglTerminate(dev->egl_display);

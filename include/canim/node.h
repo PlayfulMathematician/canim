@@ -11,6 +11,12 @@ typedef enum {
   // @def CANIM_NODE_TYPE_TRI
   // @brief This specifies a 3 dimensional triangle node
   CANIM_NODE_TYPE_TRI,
+  // @def CANIM_NODE_TYPE_TARGET_INIT
+  // @brief This is a node for a initalizing a target
+  CANIM_NODE_TYPE_TARGET_INIT,
+  // @def CANIM_NODE_TYPE_TARGET_END
+  // @brief This is a node for ending a target
+  CANIM_NODE_TYPE_TARGET_END,
   // @def CANIM_NODE_BEGIN_BILLBOARD
   // @brief This starts a billboard (it includes a translation, set .v2 to the
   // translation.
@@ -20,7 +26,17 @@ typedef enum {
   CANIM_NODE_TYPE_END_BILLBOARD,
   // @def CANIM_NODE_TYPE_CAM
   // @brief This specifies a camera node
-  CANIM_NODE_TYPE_CAM
+  CANIM_NODE_TYPE_CAM,
+  // @def CANIM_NODE_TYPE_START
+  // @brief This is when the thing starts
+  CANIM_NODE_TYPE_START,
+  // @def CANIM_NODE_TYPE_END
+  // @brief This is when the thing ends
+  CANIM_NODE_TYPE_END,
+  // @def CANIM_NODE_TYPE_END_ROUND
+  // @brief This is when each target has completed it's emission, and everything
+  // is over
+  CANIM_NODE_TYPE_END_ROUND
 } CanimNodeType;
 
 // @struct CanimNodeTri
@@ -49,15 +65,10 @@ typedef struct {
     // @def tri
     // @brief This is a pointer to a triangular node, use in case the node_type
     // is triangular
-    CanimNodeTri *tri;
+    CanimNodeTri tri;
     // @def cam
     // @brief This is a pointer to a camera node, use in case the node_type
     // is camera
-    CanimNodeCam *cam;
+    CanimNodeCam cam;
   };
 } CanimNode;
-
-typedef struct {
-  CanimNode *nodes;
-  int length;
-} CanimNodeList;

@@ -42,7 +42,6 @@
 #error "Unsupported compiler for Canim"
 #endif
 
-
 #if defined(CANIM_PLATFORM_WINDOWS)
 #if defined(CANIM_BUILD_DLL)
 #define CANIM_API __declspec(dllexport)
@@ -69,7 +68,6 @@
 #if !defined(__STDC_VERSION__) || (__STDC_VERSION__ < 201112L)
 #error "Canim requires C11 or newer"
 #endif
-
 #if defined(CANIM_COMPILER_GCC) || defined(CANIM_COMPILER_CLANG)
 #define CANIM_LIKELY(x) __builtin_expect(!!(x), 1)
 #define CANIM_UNLIKELY(x) __builtin_expect(!!(x), 0)
