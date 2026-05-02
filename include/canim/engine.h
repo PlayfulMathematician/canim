@@ -114,9 +114,9 @@ typedef struct {
   };
 } CanimMsg;
 
-typedef CanimDA CanimMailbox;
-typedef CanimDA CanimTargetList;
-typedef CanimDA CanimNodeList;
+typedef CanimDA *CanimMailbox;
+typedef CanimDA *CanimTargetList;
+typedef CanimDA *CanimNodeList;
 typedef struct {
   bool active;
   CanimMailbox mail;
@@ -124,5 +124,5 @@ typedef struct {
   void *frame_buffer;
   void *full_buffer;
   // note: fix later
-  void (*handle_frame)(void *, CanimNodeList *);
+  void (*handle_frame)(void *, CanimNodeList);
 } CanimTarget;
