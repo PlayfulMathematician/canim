@@ -105,7 +105,7 @@ typedef int32_t CanimS32;
 typedef int64_t CanimS64;
 typedef double CanimDouble;
 typedef float CanimFloat;
-
+typedef uint64_t CanimUID;
 /// @def max
 /// @brief A max macro
 #ifndef max

@@ -10,12 +10,18 @@ static void test_vec_zero(void **state) {
   (void)state;
 
   CANIM_CREATE_LOGGER(CANIM_LOG_LEVEL_INFO);
-  CanimDA da_int = canim_da_new(sizeof(int));
+  CanimDA da_int = CANIM_DA_INIT(int);
   CANIM_DA_PUSH(&da_int, 10);
   CANIM_DA_PUSH(&da_int, 20);
   assert_int_equal(CANIM_DA_GET(da_int, int, 0), 10);
   assert_int_equal(CANIM_DA_GET(da_int, int, 1), 20);
-  CanimDA da_vec3 = canim_da_new(sizeof(CanimVec3));
+  int *last;
+  CANIM_DA_POP(da_int, last);
+  assert_int_equal(*last, 20);
+  CANIM_DA_PUSH(&da_int, 10);
+
+  assert_int_equal(CANIM_DA_GET(da_int, int, 1), 10);
+  CanimDA da_vec3 = CANIM_DA_INIT(CanimVec3);
   CanimVec3 vc03 = (CanimVec3){.x = 0, .y = 0, .z = 0};
   CANIM_DA_PUSH(&da_vec3, vc03);
   CanimVec3 vc13 = (CanimVec3){.x = 1, .y = 0, .z = 0};

@@ -4,6 +4,7 @@
 #pragma once
 #include "canim/arena.h"
 #include "canim/core.h"
+#include "canim/engine.h"
 #include "canim/gfx.h"
 #include "canim/io.h"
 #include "canim/loader.h"
