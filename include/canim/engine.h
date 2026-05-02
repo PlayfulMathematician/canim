@@ -114,7 +114,6 @@ typedef struct {
   };
 } CanimMsg;
 
-typedef struct CanimTarget CanimTarget;
 typedef CanimDA CanimMailbox;
 typedef CanimDA CanimTargetList;
 typedef CanimDA CanimNodeList;
