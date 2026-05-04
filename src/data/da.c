@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-CanimDA canim_da_new(uint64_t element_size) {
+CANIM_API CanimDA canim_da_new(uint64_t element_size) {
   CanimDA da = {0};
 
   da.start = NULL;
@@ -14,7 +14,7 @@ CanimDA canim_da_new(uint64_t element_size) {
   return da;
 }
 
-void canim_da_free(CanimDA *da) {
+CANIM_API void canim_da_free(CanimDA *da) {
   if (!da) {
     return;
   }
@@ -27,7 +27,7 @@ void canim_da_free(CanimDA *da) {
   da->length = 0;
 }
 
-void canim_da_reserve_capacity(CanimLogger *c_log, CanimDA *da,
+CANIM_API void canim_da_reserve_capacity(CanimLogger *c_log, CanimDA *da,
                                uint64_t new_capacity) {
   if (!da) {
     return;
@@ -50,7 +50,7 @@ void canim_da_reserve_capacity(CanimLogger *c_log, CanimDA *da,
   da->capacity = new_capacity;
 }
 
-void canim_da_shrink_to_fit(CanimDA *da) {
+CANIM_API void canim_da_shrink_to_fit(CanimDA *da) {
   if (!da)
     return;
 
