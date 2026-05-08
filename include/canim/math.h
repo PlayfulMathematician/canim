@@ -268,3 +268,26 @@ CANIM_API CanimQuat canim_quat_from_axis_angle(CanimVec3 axis,
 /// @param v The vector
 /// @return Rotated vector
 CANIM_API CanimVec3 canim_quat_rotate_vec3(CanimQuat q, CanimVec3 v);
+
+/// @struct CanimMat4
+/// @brief This stores a 4x4 matrix :)
+typedef struct {
+  CanimNumber data[16];
+} CanimMat4;
+
+#define CANIM_MAT4_AT(m, row, col) ((m).data[(col) * 4 + (row)])
+
+/// @brief Creates an identity 4x4 matrix
+/// @return Identity matrix
+CANIM_API CanimMat4 canim_mat4_identity(void);
+
+/// @brief Multiplies two 4x4 matrices
+/// @param a The left matrix
+/// @param b The right matrix
+/// @return The product a * b
+CANIM_API CanimMat4 canim_mat4_mul(CanimMat4 a, CanimMat4 b);
+
+/// @brief Creates a translation matrix
+/// @param v The translation vector
+/// @return Translation matrix
+CANIM_API CanimMat4 canim_mat4_translate(CanimVec3 v);
