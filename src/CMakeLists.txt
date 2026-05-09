@@ -3,7 +3,7 @@ set(CANIM_CORE_SRC
     core/endian.c
     loader/loader.c
     io/utils.c
-    io/ffmpeg.c 
+    io/ffmpeg.c
     io/screen.c
     math/utils.c
     math/vector.c
@@ -12,7 +12,13 @@ set(CANIM_CORE_SRC
     data/da.c
 )
 
-add_library(canim SHARED ${CANIM_CORE_SRC})
+find_package(unofficial-libmupdf CONFIG REQUIRED)
+
+add_library(canim SHARED
+    ${CANIM_CORE_SRC}
+)
+
+add_library(canim::canim ALIAS canim)
 
 target_compile_definitions(canim
     PUBLIC
@@ -23,22 +29,26 @@ target_compile_definitions(canim
 
 target_include_directories(canim
     PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>
+        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+
+target_link_libraries(canim
     PRIVATE
-        SYSTEM "${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/include"
+        m
+        unofficial::libmupdf::libmupdf
 )
 
 find_package(SDL2 CONFIG REQUIRED)
 find_package(glad CONFIG REQUIRED)
 find_package(OpenGL REQUIRED)
-find_package(unofficial-libmupdf CONFIG REQUIRED)
 find_package(EGL QUIET)
-target_link_libraries(canim PRIVATE m
-        unofficial::libmupdf::libmupdf
+
+add_library(canim_gl SHARED
+    gfx/gl.c
 )
 
-add_library(canim_gl SHARED gfx/gl.c)
+add_library(canim::canim_gl ALIAS canim_gl)
 
 target_compile_definitions(canim_gl
     PUBLIC
@@ -47,31 +57,69 @@ target_compile_definitions(canim_gl
         $<$<NOT:$<CONFIG:Debug>>:CANIM_RELEASE>
 )
 
-target_include_directories(canim_gl PRIVATE SYSTEM "${VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/include")
-
-target_link_libraries(canim_gl
-    PUBLIC canim
-    PRIVATE SDL2::SDL2 glad::glad m
+target_include_directories(canim_gl
+    PUBLIC
+        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
+target_link_libraries(canim_gl
+    PUBLIC
+        canim::canim
+    PRIVATE
+        SDL2::SDL2
+        glad::glad
+        m
+)
 
 if(APPLE)
-    target_link_libraries(canim_gl PRIVATE "-framework OpenGL")
+    target_link_libraries(canim_gl
+        PRIVATE
+            "-framework OpenGL"
+    )
+
     set(canim_rpath "@loader_path")
-elseif(UNIX)
-    target_link_libraries(canim_gl PRIVATE OpenGL::GL EGL)
+elseif(UNIX AND NOT APPLE)
+    target_link_libraries(canim_gl
+        PRIVATE
+            OpenGL::GL
+    )
+
+    if(TARGET EGL::EGL)
+        target_link_libraries(canim_gl PRIVATE EGL::EGL)
+    elseif(EGL_FOUND)
+        target_link_libraries(canim_gl PRIVATE EGL)
+    else()
+        message(WARNING "EGL was not found; continuing without explicit EGL linkage")
+    endif()
+
     set(canim_rpath "$ORIGIN")
 else()
-    message(FATAL_ERROR "Canim is not supported on Windows")
+    message(FATAL_ERROR "canim is not supported on this platform")
 endif()
 
 set_target_properties(canim canim_gl PROPERTIES
+    OUTPUT_NAME canim
+    VERSION ${PROJECT_VERSION}
+    SOVERSION ${PROJECT_VERSION_MAJOR}
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
     BUILD_RPATH "${canim_rpath}"
     INSTALL_RPATH "${canim_rpath}"
 )
 
-install(TARGETS canim canim_gl
-    LIBRARY DESTINATION lib
+set_target_properties(canim_gl PROPERTIES
+    OUTPUT_NAME canim_gl
 )
 
+install(TARGETS canim canim_gl
+    EXPORT canimTargets
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
+
+install(
+    EXPORT canimTargets
+    NAMESPACE canim::
+    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/canim
+)
