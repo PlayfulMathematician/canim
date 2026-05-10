@@ -14,6 +14,9 @@ jobs:
         build_type: [Debug, Release]
 
     steps:
+      - name: Deps 
+      - run: |
+        sudo pacman -S sdl2 pkgconf
       - uses: actions/checkout@v4
 
       - name: Configure
