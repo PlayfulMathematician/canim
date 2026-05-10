@@ -9,7 +9,7 @@
 int main() {
   CANIM_CREATE_LOGGER(CANIM_LOG_LEVEL_INFO);
   CanimGfxInitInfo init = {
-      .headless = false, .width = 1000, .height = 1000, .native_window = NULL};
+      .headless = true, .width = 1000, .height = 1000, .native_window = NULL};
 
   CanimGfxContainer *container =
       canim_gfx_load_backend(c_log, CANIM_GFX_GL, &init);
@@ -101,7 +101,7 @@ int main() {
       0.0f,
   };
 
-  while (tick < 120) {
+  while (tick < 12000) {
     container->api.gfx_should_close(c_log, container, &running);
     container->api.gfx_draw_mesh(c_log, container, vertices, sizeof(vertices));
     container->api.gfx_swap_buffers(c_log, container);

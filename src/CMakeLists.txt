@@ -39,7 +39,8 @@ target_link_libraries(canim
         unofficial::libmupdf::libmupdf
 )
 
-find_package(SDL2 CONFIG REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(SDL2 REQUIRED IMPORTED_TARGET sdl2)
 find_package(glad CONFIG REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(EGL QUIET)
@@ -67,7 +68,7 @@ target_link_libraries(canim_gl
     PUBLIC
         canim::canim
     PRIVATE
-        SDL2::SDL2
+        PkgConfig::SDL2
         glad::glad
         m
 )

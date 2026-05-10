@@ -233,9 +233,14 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
   } else {
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 
-      CANIM_LOG_ERROR("Initializing SDL_video failed");
+      CANIM_LOG_ERROR("Initializing SDL_video failed: %s", SDL_GetError());
       free(dev);
       return NULL;
+    }
+    int n = SDL_GetNumVideoDrivers();
+
+    for (int i = 0; i < n; i++) {
+        CANIM_LOG_INFO("SDL video driver %d: %s", i, SDL_GetVideoDriver(i));
     }
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK,
@@ -250,6 +255,8 @@ CanimGfxDevice *gl_create_device(CanimLogger *c_log,
                              "Canim", SDL_WINDOWPOS_CENTERED,
                              SDL_WINDOWPOS_CENTERED, info->width, info->height,
                              SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+
+    CANIM_LOG_INFO("SDL video driver: %s\n", SDL_GetCurrentVideoDriver());
     if (!dev->sdl_win) {
 
       CANIM_LOG_ERROR("Initializing SDL_window failed");

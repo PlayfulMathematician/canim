@@ -15,32 +15,33 @@
     in {
       devShells.${system}.default = pkgs.mkShell {
         nativeBuildInputs = with pkgs; [
-          cmake
-          ninja
-          pkg-config
-          gcc
-          gdb
-          git
-          curl
-          zip
-          unzip
-          gnutar
-          perl
-          python3
+            cmake
+            ninja
+            pkg-config
+            gcc
+            gdb
+            git
+            curl
+            zip
+            unzip
+            gnutar
+            perl
+            python3
         ];
 
         buildInputs = with pkgs; [
-          libglvnd
-          libglvnd.dev
-          libGL
-          libGLU
-          mesa
-          xorg.libX11
-          xorg.libXext
-          xorg.libXrandr
-          xorg.libXcursor
-          xorg.libXinerama
-          xorg.libXi
+            SDL2
+            libglvnd
+            libglvnd.dev
+            libGL
+            libGLU
+            mesa
+            xorg.libX11
+            xorg.libXext
+            xorg.libXrandr
+            xorg.libXcursor
+            xorg.libXinerama
+            xorg.libXi
         ];
 
         shellHook = ''
