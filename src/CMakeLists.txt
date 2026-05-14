@@ -42,8 +42,7 @@ target_link_libraries(canim
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(SDL2 REQUIRED IMPORTED_TARGET sdl2)
 find_package(glad CONFIG REQUIRED)
-find_package(OpenGL REQUIRED)
-find_package(EGL QUIET)
+find_package(OpenGL REQUIRED COMPONENTS OpenGL EGL)
 
 add_library(canim_gl SHARED
     gfx/gl.c
@@ -83,16 +82,9 @@ if(APPLE)
 elseif(UNIX AND NOT APPLE)
     target_link_libraries(canim_gl
         PRIVATE
-            OpenGL::GL
+            OpenGL::OpenGL
+            OpenGL::EGL
     )
-
-    if(TARGET EGL::EGL)
-        target_link_libraries(canim_gl PRIVATE EGL::EGL)
-    elseif(EGL_FOUND)
-        target_link_libraries(canim_gl PRIVATE EGL)
-    else()
-        message(WARNING "EGL was not found; continuing without explicit EGL linkage")
-    endif()
 
     set(canim_rpath "$ORIGIN")
 else()

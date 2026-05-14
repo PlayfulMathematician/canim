@@ -26,11 +26,20 @@ static void test_vec_zero(void **state) {
   CANIM_DA_PUSH(&da_vec3, vc03);
   CanimVec3 vc13 = (CanimVec3){.x = 1, .y = 0, .z = 0};
   CANIM_DA_PUSH(&da_vec3, vc13);
+
+
+  CanimVec3 vc23 = (CanimVec3){.x = 1, .y = 2, .z = 0};
+
+  CANIM_DA_PUSH(&da_vec3, vc23);
   assert_float_equal(CANIM_DA_GET(da_vec3, CanimVec3, 0).x, 0, 1e-6);
   assert_float_equal(CANIM_DA_GET(da_vec3, CanimVec3, 0).y, 0, 1e-6);
   assert_float_equal(CANIM_DA_GET(da_vec3, CanimVec3, 0).z, 0, 1e-6);
   assert_float_equal(CANIM_DA_GET(da_vec3, CanimVec3, 1).x, 1, 1e-6);
   assert_float_equal(CANIM_DA_GET(da_vec3, CanimVec3, 1).y, 0, 1e-6);
+  assert_float_equal(CANIM_DA_GET(da_vec3, CanimVec3, 1).z, 0, 1e-6);
+
+  assert_float_equal(CANIM_DA_GET(da_vec3, CanimVec3, 1).x, 1, 1e-6);
+  assert_float_equal(CANIM_DA_GET(da_vec3, CanimVec3, 1).y, 2, 1e-6);
   assert_float_equal(CANIM_DA_GET(da_vec3, CanimVec3, 1).z, 0, 1e-6);
 }
 

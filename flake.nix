@@ -13,8 +13,9 @@
         inherit system;
       };
     in {
-      devShells.${system}.default = pkgs.mkShell {
-        nativeBuildInputs = with pkgs; [
+      devShells.${system}.default =
+        (pkgs.mkShell.override { stdenv = pkgs.gccStdenv; }) {
+          nativeBuildInputs = with pkgs; [
             cmake
             ninja
             pkg-config
@@ -27,14 +28,12 @@
             gnutar
             perl
             python3
-        ];
+          ];
 
-        buildInputs = with pkgs; [
+          buildInputs = with pkgs; [
             SDL2
             libglvnd
             libglvnd.dev
-            libGL
-            libGLU
             mesa
             xorg.libX11
             xorg.libXext
@@ -42,18 +41,25 @@
             xorg.libXcursor
             xorg.libXinerama
             xorg.libXi
-        ];
+          ];
 
-        shellHook = ''
-          export VCPKG_ROOT="$PWD/.tools/vcpkg"
-          export PATH="$VCPKG_ROOT:$PATH"
+          shellHook = ''
+            export VCPKG_ROOT="$PWD/.tools/vcpkg"
+            export PATH="$VCPKG_ROOT:$PATH"
 
-          export PYTHON3=$(command -v python3)
-          export Python3_EXECUTABLE=$(command -v python3)
+            export CC="$(command -v gcc)"
+            export CXX="$(command -v g++)"
 
-          echo "VCPKG_ROOT=$VCPKG_ROOT"
-          echo "PYTHON3=$PYTHON3"
-        '';
-      };
+            export PYTHON3="$(command -v python3)"
+            export Python3_EXECUTABLE="$PYTHON3"
+
+            export VCPKG_BINARY_SOURCES=clear
+
+            echo "VCPKG_ROOT=$VCPKG_ROOT"
+            echo "CC=$CC"
+            echo "CXX=$CXX"
+            echo "PYTHON3=$PYTHON3"
+          '';
+        };
     };
 }
