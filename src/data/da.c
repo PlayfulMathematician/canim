@@ -5,7 +5,6 @@
 
 CANIM_API CanimDA canim_da_new(uint64_t element_size) {
   CanimDA da = {0};
-
   da.start = NULL;
   da.element_size = element_size;
   da.capacity = 0;
@@ -28,7 +27,7 @@ CANIM_API void canim_da_free(CanimDA *da) {
 }
 
 CANIM_API void canim_da_reserve_capacity(CanimLogger *c_log, CanimDA *da,
-                               uint64_t new_capacity) {
+                                         uint64_t new_capacity) {
   if (!da) {
     return;
   }
@@ -41,7 +40,7 @@ CANIM_API void canim_da_reserve_capacity(CanimLogger *c_log, CanimDA *da,
   void *new_start = realloc(da->start, new_size);
   if (!new_start) {
     CANIM_LOG_ERROR(
-        "Reallocating array size failed, attempted to go from %d to %d",
+        "Reallocating array size failed, attempted to go from %zu to %zu",
         da->capacity, new_capacity);
     return;
   }

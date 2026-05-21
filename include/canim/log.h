@@ -54,7 +54,7 @@ typedef struct {
 // @param fmt A string format
 // @param ... The other string format stuff
 CANIM_API void canim_log(CanimLogger *c_log, int line_number, const char *file,
-                         CanimLogLevel level, const char *fmt, ...);
+                         CanimLogLevel level, const char *fmt, ...) CANIM_PRINTF_LIKE(5, 6);
 
 // @def CANIM_LOG
 // @brief This macro is a simple wrapper around canim_log,

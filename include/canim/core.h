@@ -190,3 +190,10 @@ CANIM_API CanimDouble canim_read_le_f64(const CanimByte *p);
 /// @def REALIGN(a, b)
 /// @brief True if a and b land in different aligned capacity buckets.
 #define REALIGN(a, b) (BIT_ALIGN(a) != BIT_ALIGN(b))
+
+#if defined(__GNUC__) || defined(__clang__)
+#define CANIM_PRINTF_LIKE(fmt_index, first_arg)                                \
+  __attribute__((format(printf, fmt_index, first_arg)))
+#else
+#define CANIM_PRINTF_LIKE(fmt_index, first_arg)
+#endif

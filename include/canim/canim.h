@@ -2,8 +2,8 @@
 // @file canim.h
 // @brief This header imports all other headers
 #pragma once
-#include "canim/arena.h"
 #include "canim/core.h"
+#include "canim/data.h"
 #include "canim/engine.h"
 #include "canim/gfx.h"
 #include "canim/io.h"
