@@ -29,10 +29,17 @@ canim_gfx_load_backend(CanimLogger *c_log, CanimGfxBackend backend,
 #endif
   const char *libname = gfx_backend_libname(backend);
   void *handle = dlopen(libname, RTLD_NOW | RTLD_LOCAL);
+#ifdef CANIM_POSIX
+  char *err = dlerror();
+  if (err != NULL) {
+    CANIM_LOG_ERROR("Loading external libraries failed: %s", err);
+    return NULL;
+  }
+#endif
   const CanimGfxAPI *const *entry =
       (const CanimGfxAPI *const *)dlsym(handle, "GFX_API_ENTRY");
 #ifdef CANIM_POSIX
-  char *err = dlerror();
+  err = dlerror();
   if (err != NULL) {
     CANIM_LOG_ERROR("Loading external libraries failed: %s", err);
     dlclose(handle);
