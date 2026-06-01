@@ -5,8 +5,9 @@
 
 #include "canim/core.h"
 #include "canim/data.h"
+#include "canim/gfx.h"
+#include "canim/log.h"
 #include "canim/math.h"
-
 // @enum CanimNodeType
 // @brief This specifies the type of node
 typedef enum {
@@ -117,12 +118,27 @@ typedef struct {
 typedef CanimDA *CanimMailbox;
 typedef CanimDA *CanimTargetList;
 typedef CanimDA *CanimNodeList;
+typedef CanimDA *CanimDepList;
 typedef struct {
+  CanimUID uid;
   bool active;
   CanimMailbox mail;
-  CanimTargetList deps;
+  CanimDepList deps;
   void *frame_buffer;
   void *full_buffer;
   // note: fix later
   void (*handle_frame)(void *, CanimNodeList);
 } CanimTarget;
+
+typedef struct {
+  CanimTargetList target;
+  CanimNodeList node;
+  CanimRenderData *data;
+  CanimUID seed;
+} CanimContext;
+
+CANIM_API CanimContext *canim_init(CanimLogger *c_log);
+CANIM_API CanimUID canim_new_uid(CanimContext *);
+CANIM_API CanimTarget *canim_create_and_add_target(
+    CanimLogger *c_log, void (*func)(void *, CanimNodeList), CanimContext *ctx);
+CANIM_API void canim_generate_frame_data(CanimLogger *c_log, CanimContext *ctx);

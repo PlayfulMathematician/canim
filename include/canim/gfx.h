@@ -2,6 +2,7 @@
 // @file gfx.h
 // @brief This header defines the GFX Api wrapper
 #pragma once
+#include "canim/core.h"
 #include "canim/io.h"
 #include "canim/log.h"
 #include <stdbool.h>
@@ -24,6 +25,11 @@ typedef struct CanimGfxContainer CanimGfxContainer;
 
 /// @brief This stores the function pointers for implementation of gfx api's
 typedef struct CanimGfxAPI CanimGfxAPI;
+// @brief This is a render data.
+typedef struct {
+  CanimFloat (*v)[3][3];
+  CanimSize n;
+} CanimRenderData;
 
 /// @struct GfxInitInfo
 /// @brief This struct stores info neccesary to initialize graphics
@@ -87,6 +93,12 @@ struct CanimGfxAPI {
   /// @param float* This is the list of vertices
   /// @param int This is the number of triangles
   void (*gfx_draw_mesh)(CanimLogger *, CanimGfxContainer *, float *, int);
+
+  /// @brief This takes in the render data and does a render
+  /// @param[out] CanimLogger* The CanimLogger
+  /// @param CanimGfxContainer* This is the relevant graphics containre
+  /// @param CanimRenderData* this is the data
+  void (*gfx_draw)(CanimLogger *, CanimGfxContainer *, CanimRenderData *);
 };
 
 /// @struct GfxContainer

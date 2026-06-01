@@ -9,7 +9,7 @@
 int main() {
   CANIM_CREATE_LOGGER(CANIM_LOG_LEVEL_INFO);
   CanimGfxInitInfo init = {
-      .headless = false, .width = 1000, .height = 1000, .native_window = NULL};
+      .headless = true, .width = 1000, .height = 1000, .native_window = NULL};
 
   CanimGfxContainer *container =
       canim_gfx_load_backend(c_log, CANIM_GFX_GL, &init);
@@ -21,27 +21,10 @@ int main() {
                                (uint64_t)init.height, (uint64_t)60, "test.mp4");
   bool running = false;
   int tick = 0;
-
   float vertices[] = {
-      // face 1
-      0.5f,
-      0.5f,
-      -0.5f,
-      -0.8165f,
-      0.5774f,
-      -0.4082f,
-      0.5f,
-      0.5f,
-      -0.5f,
-      -0.8165f,
-      0.5774f,
-      -0.4082f,
-      0.5f,
-      1.0f,
-       0.1f,
-      -0.8165f,
-      0.5774f,
-      -0.4082f,
+      // position           // normal
+      -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 1.0f, 0.5f, -0.5f, 0.0f,
+      0.0f,  0.0f,  1.0f, 0.0f, 0.5f, 0.0f, 0.0f, 0.0f,  1.0f,
   };
 
   while (tick < 120) {
